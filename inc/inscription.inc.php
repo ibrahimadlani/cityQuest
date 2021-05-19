@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('../config/db.php');
 require_once('../lib/pdo_db.php');
 require_once('../models/User.php');
@@ -14,7 +14,6 @@ $user = new User();
 $users = $user->getUsers();
 
     if (!(isset($_POST['email']) && isset($_POST['mdp']) && isset($_POST['mdpconfirmation']) && isset($_POST['nom']) &&  isset($_POST['prenom']))) {
-        echo "oui";
         header('Location: ../inscription.php');
         exit();
     }elseif (!$mdp === $mdpconfirmation) {

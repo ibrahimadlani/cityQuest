@@ -1,4 +1,7 @@
 <?php
+
+
+
   class User {
     private $db;
 
@@ -34,6 +37,19 @@
 
     public function emailExist($email) {
       $this->db->query('SELECT * FROM `User` WHERE `mail` = "'. $email . '"');
+
+      $results = $this->db->resultset();
+
+      if (sizeof($results) > 0) {
+        return true;
+      }else {
+        return false;
+      }
+    }
+
+    public function checkCredential($email,$mdp) {
+
+      $this->db->query('SELECT * FROM `User` WHERE `mail` = "' . $email . '" AND `motDePasse` = "' . $mdp . '"');
 
       $results = $this->db->resultset();
 
