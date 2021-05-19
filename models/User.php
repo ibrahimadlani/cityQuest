@@ -35,6 +35,15 @@
       return $results;
     }
 
+    public function getUsersbyEmail($email) {
+      $this->db->query('SELECT * FROM `User` WHERE `mail` = "'. $email .'"');
+
+      $results = $this->db->resultset();
+
+      return $results;
+    }
+
+
     public function emailExist($email) {
       $this->db->query('SELECT * FROM `User` WHERE `mail` = "'. $email . '"');
 
@@ -48,13 +57,12 @@
     }
 
     public function checkCredential($email,$mdp) {
-
-      $this->db->query('SELECT * FROM `User` WHERE `mail` = "' . $email . '" AND `motDePasse` = "' . $mdp . '"');
+      $this->db->query('SELECT * FROM `User` WHERE `mail` = "'. $email .'"');
 
       $results = $this->db->resultset();
 
       if (sizeof($results) > 0) {
-        return true;
+        return $verify = password_verify($mdp, $results[0]->motDePasse);
       }else {
         return false;
       }

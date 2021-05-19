@@ -13,12 +13,12 @@ $mdp = $_POST['mdp'];
 
 $user = new User();
 $users = $user->getUsers();
-
+$user->checkCredential($email, $mdp);
     if (!(isset($_POST['email']) && isset($_POST['mdp']))) {
         header('Location: ../connexion.php');
         exit();
     }elseif (!$user->checkCredential($email, $mdp)) {
-        header('Location: ../connexion.php?error=mauvaisID');
+        //header('Location: ../connexion.php?error=mauvaisID');
         exit();
     }else {
         $_SESSION["email"] = $email;

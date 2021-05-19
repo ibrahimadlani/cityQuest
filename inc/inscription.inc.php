@@ -30,4 +30,4 @@ $users = $user->getUsers();
         header("Location: ../inscription.php?error=SUCCES");
         exit();
     }
-}
+
