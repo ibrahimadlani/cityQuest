@@ -2,7 +2,7 @@
 session_start();
 require_once('../config/db.php');
 require_once('../lib/pdo_db.php');
-require_once('../models/User.php');
+require_once('../models/Utilisateur.php');
 
 $email = $_POST['email'];
 $mdp = $_POST['mdp'];
@@ -10,8 +10,8 @@ $mdpconfirmation = $_POST['mdpconfirmation'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 
-$user = new User();
-$users = $user->getUsers();
+$user = new Utilisateur();
+$users = $user->getUtilisateurs();
 
     if (!(isset($_POST['email']) && isset($_POST['mdp']) && isset($_POST['mdpconfirmation']) && isset($_POST['nom']) &&  isset($_POST['prenom']))) {
         header('Location: ../inscription.php');
@@ -32,7 +32,7 @@ $users = $user->getUsers();
         header('Location: ../inscription.php?error=mdpSansLettre');
         exit();
     }else {
-        $user->addUser(array("mail" => $email,"motDePasse" => password_hash($mdp, PASSWORD_DEFAULT),"nom" => $nom,"prenom" => $prenom,"groupe" => 0));
+        $user->addUtilisateur(array("email" => $email,"mdp" => password_hash($mdp, PASSWORD_DEFAULT),"nom" => $nom,"prenom" => $prenom,"groupe" => 1,"avatar" => "default.svg","bio" => "Je suis nouveau sur CityQuest !"));
         header("Location: ../connexion.php?error=success");
         exit();
     }

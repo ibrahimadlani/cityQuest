@@ -9,14 +9,16 @@ else { require_once("inc/views/header.inc.php"); }
 ?>
 <main class="container container-main py-3 my-5">
     <div class="text-center mb-5">
-        <h1 class="display-4">Boostez l'influence de votre etablissement !</h1>
+        <h1 class="display-4">Boostez l'influence<br>de votre etablissement !</h1>
         <p class="lead text-secondary">En sousscrivant à l'une de nos offres qui s'adaptera le mieux à vos besoins.</p>
-        <hr>
+        
     </div>
+    <hr class="mb-5">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
           <div class="card-header py-3">
+            <img src="img/no-racism.svg" class="w-50 p-4" alt="...">
             <h4 class="my-0 fw-normal">Gratuit</h4>
           </div>
           <div class="card-body">
@@ -38,6 +40,7 @@ else { require_once("inc/views/header.inc.php"); }
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
           <div class="card-header py-3">
+            <img src="img/reliability.svg" class="w-50 p-4" alt="...">
             <h4 class="my-0 fw-normal">Pro</h4>
           </div>
           <div class="card-body">
@@ -55,6 +58,7 @@ else { require_once("inc/views/header.inc.php"); }
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm border-danger">
           <div class="card-header py-3 text-white bg-danger border-danger">
+            <img src="img/protection.svg" class="w-50 p-4" alt="...">
             <h4 class="my-0 fw-normal">Enterprise</h4>
           </div>
           <div class="card-body">

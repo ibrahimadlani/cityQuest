@@ -8,7 +8,6 @@ define("TITLE", "Carte - ");
 require_once("inc/views/head.inc.php");
 require_once("inc/views/headerConnecte.inc.php");
 
-if (!isset($_SESSION["email"])) { header("Location: index.php");exit;}
 
 ?>
 
