@@ -1,4 +1,7 @@
-<?php require_once("inc/views/head.inc.php"); ?>
+<?php 
+define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
+require_once("inc/views/head.inc.php");
+?>
 <form action="inc/inscription.inc.php" method="post" class="form-signin text-center">
     <img class="mb-1" src="img/cityQuest.svg" alt=""  height="72">
     <h1 class="h3 mb-3 display-6 text-secondary">Inscription</h1>

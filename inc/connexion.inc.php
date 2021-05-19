@@ -22,7 +22,7 @@ $user->checkCredential($email, $mdp);
         exit();
     }else {
         $_SESSION["email"] = $email;
-        header("Location: ../index.php?error=SUCCES");
+        header("Location: ../carte.php?error=success");
         exit();
     }
 
