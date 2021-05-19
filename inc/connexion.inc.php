@@ -12,7 +12,8 @@ $email = $_POST['email'];
 $mdp = $_POST['mdp'];
 
 $user = new User();
-$users = $user->getUsers();
+
+
 $user->checkCredential($email, $mdp);
     if (!(isset($_POST['email']) && isset($_POST['mdp']))) {
         header('Location: ../connexion.php');
@@ -21,7 +22,11 @@ $user->checkCredential($email, $mdp);
         header('Location: ../connexion.php?error=mauvaisID');
         exit();
     }else {
-        $_SESSION["email"] = $email;
+        $users = $user->getUsersbyEmail($email);
+        $_SESSION["email"] = $users[0]->mail;
+        $_SESSION["nom"] = $users[0]->nom;
+        $_SESSION["prenom"] = $users[0]->prenom;
+        $_SESSION["motDePasse"] = $users[0]->motDePasse;
         header("Location: ../carte.php?error=success");
         exit();
     }

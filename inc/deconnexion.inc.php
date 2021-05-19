@@ -1,4 +1,4 @@
 <?php
 session_start();
 session_destroy();
-header("Location: ../index.php?error=SUCCES");
+header("Location: ../connexion.php?error=deconnexionReussi");

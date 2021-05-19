@@ -11,7 +11,7 @@
                     <a class="nav-link px-3" href="index.php">A C C U E I L</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="dashboard.php">C A R T E</a>
+                    <a class="nav-link px-3" href="carte.php">C A R T E</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-3" href="offes.php">O F F R E S</a>
@@ -29,7 +29,7 @@
                     </ul>
                 </li>
                 <li class="nav-item border-start border-end">
-                    <a class="nav-link px-3" href="connexion.php"><i class="fas fa-sign-in-alt"></i> Deconnexion</a>
+                    <a class="nav-link px-3" href="inc/deconnexion.inc.php"><i class="fas fa-sign-in-alt"></i> Deconnexion</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-lg-none">

@@ -4,9 +4,48 @@ require_once("inc/views/head.inc.php");
 ?>
 
 <form action="inc/connexion.inc.php" method="post" class="form-signin text-center">
-  <img class="mb-1" src="img/cityQuest.svg" alt=""  height="72">
-      <h1 class="h1 mb-3 display-6 text-secondary">Connexion</h1>
-      <hr>
+    <a href="index.php"><img class="mb-1" src="img/cityQuest.svg" alt=""  height="72"></a>
+    <h1 class="h1 mb-3 display-6 text-secondary">Connexion</h1>
+    <?php 
+    if($_GET["error"] == "mauvaisID") {
+      echo "
+      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
+          
+    }elseif($_GET["error"] == "connexionRequise") {
+      echo "
+      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Zut de flute !</strong> Vous devez d'abord vous connecter pour acceder à cette page.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
+    }elseif($_GET["error"] == "mauvaisID") {
+      echo "
+      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
+    }elseif($_GET["error"] == "mauvaisID") {
+      echo "
+      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
+    }elseif($_GET["error"] == "mauvaisID") {
+      echo "
+      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
+    }
+    ?>
+    <hr>
 
     <label for="email" class="sr-only"><b>Adresse Email</b></label>
     <input type="text" placeholder="Adresse Email" name="email" class="form-control top" required>

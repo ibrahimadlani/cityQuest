@@ -11,7 +11,7 @@
                     <a class="nav-link px-3" href="index.php">A C C U E I L</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="dashboard.php">C A R T E</a>
+                    <a class="nav-link px-3" href="carte.php">C A R T E</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-3" href="offes.php">O F F R E S</a>

@@ -23,7 +23,7 @@ $users = $user->getUsers();
         header('Location: ../inscription.php?error=emailExistant');
         exit();
     }elseif (strlen($mdpconfirmation) < 6) {
-        header("Location: ../inscription.php?error=fsdfsdfdsf");
+        header("Location: ../inscription.php?error=tropCourt");
         exit();
     }elseif (!preg_match("#[0-9]+#", $mdp)) {
         header('Location: ../inscription.php?error=mdpSansChiffre');
