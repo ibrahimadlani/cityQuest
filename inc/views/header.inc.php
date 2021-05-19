@@ -14,7 +14,7 @@
                     <a class="nav-link px-3" href="carte.php">C A R T E</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="offes.php">O F F R E S</a>
+                    <a class="nav-link px-3" href="offres.php">O F F R E S</a>
                 </li>
              </ul>
             <ul class="navbar-nav d-none d-lg-flex">

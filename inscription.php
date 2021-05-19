@@ -1,5 +1,6 @@
 <?php 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
+define("TITLE", "Inscription - ");
 require_once("inc/views/head.inc.php");
 ?>
 <form action="inc/inscription.inc.php" method="post" class="form-signin text-center">

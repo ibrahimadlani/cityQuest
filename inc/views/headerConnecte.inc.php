@@ -14,30 +14,23 @@
                     <a class="nav-link px-3" href="carte.php">C A R T E</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="offes.php">O F F R E S</a>
+                    <a class="nav-link px-3" href="offres.php">O F F R E S</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-none d-lg-flex">      
                 <li class="nav-item  border-start dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog"></i> Paramètre
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <a class="nav-link px-3" href="parametre.php"><i class="fas fa-cog"></i> Paramètre</a>
                 </li>
                 <li class="nav-item border-start border-end">
                     <a class="nav-link px-3" href="inc/deconnexion.inc.php"><i class="fas fa-sign-in-alt"></i> Deconnexion</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-lg-none">
-                <li class="nav-item">
-                    <a class="nav-link px-3 border-top" href="connexion.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+                <li class="nav-item border-top border-end">
+                    <a class="nav-link px-3" href="inc/deconnexion.inc.php"><i class="fas fa-sign-in-alt"></i> Deconnexion</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 border-top" href="connexion.php"><i class="far fa-user"></i> Inscription</a>
+                <li class="nav-item border-top border-end">
+                    <a class="nav-link px-3" href="inc/deconnexion.inc.php"><i class="fas fa-sign-in-alt"></i> Deconnexion</a>
                 </li>
             </ul>
         </div>

@@ -1,13 +1,11 @@
 <?php 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
+define("TITLE", "");
 require_once("inc/views/head.inc.php"); 
 
-if (isset($_SESSION["email"])) {
-    require_once("inc/views/headerConnecte.inc.php"); 
-    
-}else {
-    require_once("inc/views/header.inc.php"); 
-}
+if (isset($_SESSION["email"])) { require_once("inc/views/headerConnecte.inc.php"); }
+else { require_once("inc/views/header.inc.php"); }
+
 ?>
 
 <div class="container">

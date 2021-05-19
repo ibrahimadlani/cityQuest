@@ -1,5 +1,6 @@
 <?php 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
+define("TITLE", "Connexion - ");
 require_once("inc/views/head.inc.php");
 ?>
 
