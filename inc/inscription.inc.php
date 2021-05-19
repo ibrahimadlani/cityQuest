@@ -25,6 +25,12 @@ $users = $user->getUsers();
     }elseif (strlen($mdpconfirmation) < 6) {
         header("Location: ../inscription.php?error=fsdfsdfdsf");
         exit();
+    }elseif (!preg_match("#[0-9]+#", $mdp)) {
+        header('Location: ../inscription.php?error=mdpSansChiffre');
+        exit();
+    }elseif (!preg_match("#[a-zA-Z]+#", $mdp)) {
+        header('Location: ../inscription.php?error=mdpSansLettre');
+        exit();
     }else {
         $user->addUser(array("mail" => $email,"motDePasse" => password_hash($mdp, PASSWORD_DEFAULT),"nom" => $nom,"prenom" => $prenom,"groupe" => 0));
         header("Location: ../connexion.php?error=SUCCES");
