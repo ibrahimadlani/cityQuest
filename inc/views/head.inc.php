@@ -8,6 +8,8 @@
       <!-- jQuery 3.6.0 CDN -->
       <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
       
+
+
       <!-- Font Awsome -->
       <script src="https://kit.fontawesome.com/8e5a240d2c.js" crossorigin="anonymous"></script>
       <script src=" js/app.js"></script>

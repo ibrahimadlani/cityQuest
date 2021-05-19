@@ -27,7 +27,7 @@ $users = $user->getUsers();
         exit();
     }else {
         $user->addUser(array("mail" => $email,"motDePasse" => password_hash($mdp, PASSWORD_DEFAULT),"nom" => $nom,"prenom" => $prenom,"groupe" => 0));
-        header("Location: ../inscription.php?error=SUCCES");
+        header("Location: ../connexion.php?error=SUCCES");
         exit();
     }
 

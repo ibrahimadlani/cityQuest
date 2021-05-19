@@ -18,7 +18,7 @@ $user->checkCredential($email, $mdp);
         header('Location: ../connexion.php');
         exit();
     }elseif (!$user->checkCredential($email, $mdp)) {
-        //header('Location: ../connexion.php?error=mauvaisID');
+        header('Location: ../connexion.php?error=mauvaisID');
         exit();
     }else {
         $_SESSION["email"] = $email;
