@@ -54,13 +54,20 @@ function updateMap(){
     downloadUrl('./api/lieu.php', function(data) { json  = JSON.parse(data.responseText);initMap();});
   }else if ((ville === "0") == false && (type === "0") == false) {
     
-    console.log('http://localhost:8888/cityQuest/api/lieu.php?ville='+ville+'&typeLieu='+(parseInt(type)));
     downloadUrl('./api/ville.php', function(data) { 
       villes  = JSON.parse(data.responseText);
       centerMap = {lat:villes[ville-1].lat,lng:villes[ville-1].lng};
       zoom = 12;
       });
-      downloadUrl('./api/lieu.php?ville='+ville+'&typeLieu='+(parseInt(type)), function(data) { json  = JSON.parse(data.responseText);initMap();});
+      downloadUrl('./api/lieu.php?ville='+ville+'&typeLieu='+(parseInt(type)), function(data) { 
+        json  = JSON.parse(data.responseText);
+        initMap();
+        
+          $('#mypar').load('inc/views/caseLieu.inc.php', {
+            jsonFile: json,
+          });
+
+      });
     
   }else if ((ville === "0") == false && (type === "0") == true) {
     
