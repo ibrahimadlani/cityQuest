@@ -31,7 +31,7 @@ else { require_once("inc/views/header.inc.php"); }
             </ul>
             <?php 
             if (isset($_SESSION["email"])) { echo '<button type="button" class="w-100 btn btn-lg btn-outline-danger disabled rounded-pill">Déjà connecté</button>'; }
-            else { echo '<button type="button" class="w-100 btn btn-lg btn-outline-danger rounded-pill">Sign up for free</button>'; }
+            else { echo '<a type="button" class="w-100 btn btn-lg btn-outline-danger rounded-pill" href="connexion.php">Sign up for free</a>'; }
             ?>
             
           </div>
