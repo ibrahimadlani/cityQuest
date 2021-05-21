@@ -56,17 +56,13 @@
       return $results;
     }
 
-    public function getLieuxByVilleAndType($idType,$idVille) {
-      $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '" AND `ville` = "' . $idVille . '" ORDER BY `dateCreation` DESC');
-      $results = $this->db->resultset();
-      return $results;
-    }
 
-    public function setNote($idLieu)) {
+
+    /*public function setNote($idLieu)) {
       $somme = 0;
       $effectifs = 0
       $avis = new Avis();
-      $avisParLieu = $avis->getAvisParLieu()
+      $avisParLieu = $avis->getAvisParLieu();
       foreach ($avisParLieu as $a) {
         $somme =+ $a->note;
         $effectifs++;
@@ -75,7 +71,7 @@
       $this->db->query('UPDATE `Lieu` SET `note`= ' . $moyenne .' WHERE `id` = ' . $idLieu);
       $results = $this->db->resultset();
       return $results;
-    }
+    }*/
     
 
   }

@@ -1,4 +1,8 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once('../config/db.php');
 require_once('../lib/pdo_db.php');
 require_once('../models/Lieu.php');
@@ -19,4 +23,6 @@ elseif (isset($_GET["ville"]) && !isset($_GET["typeLieu"])) { $lieux = $lieu->ge
 
 // Retourner le string json stocker dans $lieu
 echo json_encode($lieux);
+
+var_dump($lieux[0])
 

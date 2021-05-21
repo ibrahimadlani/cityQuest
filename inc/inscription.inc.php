@@ -23,6 +23,7 @@ $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $token = bin2hex(random_bytes(16));
 
+
 $user = new Utilisateur();
 $users = $user->getUtilisateurs();
 
@@ -46,6 +47,15 @@ $users = $user->getUtilisateurs();
         exit();
     }else {
         
+        $body = file_get_contents('../mails/email.html');
+	
+        $body = str_replace('$nom', $nom, $body);
+        $body = str_replace('$prenom', $prenom, $body);
+        $body = str_replace('$token', $token, $body);
+        
+
+
+        
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -53,12 +63,20 @@ $users = $user->getUtilisateurs();
         $mail->Port = 587;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->SMTPAuth = true;
-        $mail->Username = 'ibrahim.adlani@gmail.com';
-        $mail->Password = 'Coco08200';
+        $mail->Username = 'cityquest.contact@gmail.com';
+        $mail->Password = 'CityQuestIUTMAUBEUGE59%';
         $mail->setFrom('cityquest.contact@gmail.com', 'Ibrahim de CityQuest');
         $mail->addAddress($email, $prenom." ".$nom );
+        
+        $mail->isHTML(true);
+        $mail->Priority = 1;
+        $mail->AddCustomHeader("X-MSMail-Priority: High");
+        $mail->AddCustomHeader("Importance: High");
         $mail->Subject = 'CityQuest - Activation de compte';
-        $mail->Body = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur <a href='http://localhost:8888/cityQuest/api/token.php?token=".$token."'>ce lien</a>";
+        //$mail->body = " ";
+        $mail->MsgHTML($body);
+        $mail->IsHTML(true);
+        $mail->CharSet="utf-8";
         $mail->AltBody = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur ce lien : http://localhost:8888/cityQuest/api/token.php?token=".$token;
         if (!$mail->send()) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
