@@ -2,36 +2,35 @@
   class Ville {
     private $db;
 
-    public function __construct() {
-      $this->db = new Database;
-    }
+    public function __construct() { $this->db = new Database; }
 
     public function addVille($data) {
-      // Prepare Query
-      $this->db->query('INSERT INTO `Ville`(`nom`, `description`, `adresse`, `lat`, `lng`, `typeLieu`, `auteur`) VALUES (:nom, :description, :adresse, :lat, :lng, :typeLieu, :auteur)');
+      $this->db->query('INSERT INTO `Ville`(`ville`, `lat`, `lng`, `etat`) VALUES (:ville, :lat, :lng, 1)');
       
-      
-      
-      $this->db->bind(':nom', $data['nom']);
+      $this->db->bind(':ville', $data['ville']);
+      $this->db->bind(':lat', $data['lat']);
+      $this->db->bind(':lng', $data['lng']);
 
-      
-      // Execute
-      if($this->db->execute()) {
-        return true;
-      } else {
-        return false;
-      }
+      if($this->db->execute()) { return true; }
+      else { return false; }
     }
 
     public function getVilles() {
       $this->db->query('SELECT * FROM `Ville` ORDER BY `id`');
-
       $results = $this->db->resultset();
-
       return $results;
     }
 
+    public function getVillesNonValide() {
+      $this->db->query('SELECT * FROM `Ville` WHERE `etat` = 1');
+      $results = $this->db->resultset();
+      return $results;
+    }
 
-
+    public function getVillesValide() {
+      $this->db->query('SELECT * FROM `Ville` WHERE `etat` = 2');
+      $results = $this->db->resultset();
+      return $results;
+    }
 
   }

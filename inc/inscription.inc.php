@@ -1,14 +1,27 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 require_once('../config/db.php');
 require_once('../lib/pdo_db.php');
 require_once('../models/Utilisateur.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require '../phpMailer/Exception.php';
+require '../phpMailer/PHPMailer.php';
+require '../phpMailer/SMTP.php';
 
 $email = $_POST['email'];
 $mdp = $_POST['mdp'];
 $mdpconfirmation = $_POST['mdpconfirmation'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
+$token = bin2hex(random_bytes(16));
 
 $user = new Utilisateur();
 $users = $user->getUtilisateurs();
@@ -32,8 +45,30 @@ $users = $user->getUtilisateurs();
         header('Location: ../inscription.php?error=mdpSansLettre');
         exit();
     }else {
-        $user->addUtilisateur(array("email" => $email,"mdp" => password_hash($mdp, PASSWORD_DEFAULT),"nom" => $nom,"prenom" => $prenom,"groupe" => 1,"avatar" => "default.svg","bio" => "Je suis nouveau sur CityQuest !"));
-        header("Location: ../connexion.php?error=success");
-        exit();
+        
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPAuth = true;
+        $mail->Username = 'ibrahim.adlani@gmail.com';
+        $mail->Password = 'Coco08200';
+        $mail->setFrom('cityquest.contact@gmail.com', 'Ibrahim de CityQuest');
+        $mail->addAddress($email, $prenom." ".$nom );
+        $mail->Subject = 'CityQuest - Activation de compte';
+        $mail->Body = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur <a href='http://localhost:8888/cityQuest/api/token.php?token=".$token."'>ce lien</a>";
+        $mail->AltBody = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur ce lien : http://localhost:8888/cityQuest/api/token.php?token=".$token;
+        if (!$mail->send()) {
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            
+        } else {
+            $rwer = $user->addUtilisateur(array("email" => $email,"mdp" => password_hash($mdp, PASSWORD_DEFAULT),"nom" => $nom,"prenom" => $prenom,"groupe" => 1,"avatar" => "default.svg","bio" => "Je suis nouveau sur CityQuest !","token"=>$token));
+            header("Location: ../connexion.php?error=success");
+            exit();
+            
+            
+        }
+        
     }
-

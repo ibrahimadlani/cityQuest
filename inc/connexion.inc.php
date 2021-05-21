@@ -21,6 +21,9 @@ $user->checkCredential($email, $mdp);
     }elseif (!$user->checkCredential($email, $mdp)) {
         header('Location: ../connexion.php?error=mauvaisID');
         exit();
+    }elseif (!$user->compteEstValide($email)) {
+        header('Location: ../connexion.php?error=compteNonValidee');
+        exit();
     }else {
         $users = $user->getUtilisateurbyEmail($email);
         $_SESSION["email"] = $users[0]->email;

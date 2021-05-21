@@ -12,7 +12,7 @@ require_once("inc/views/head.inc.php");
       echo "
       <div class='alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
           
@@ -20,28 +20,21 @@ require_once("inc/views/head.inc.php");
       echo "
       <div class='alert alert-danger alert-dismissible fade show' role='alert'>
         <strong>Zut de flute !</strong> Vous devez d'abord vous connecter pour acceder à cette page.
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
-    }elseif($_GET["error"] == "mauvaisID") {
+    }elseif($_GET["error"] == "success") {
       echo "
-      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <strong>Let's goooo !</strong> Votre compte à bien été crée ! Allez checker vos mail pour conf
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
-    }elseif($_GET["error"] == "mauvaisID") {
+    }elseif($_GET["error"] == "compteNonValidee") {
       echo "
       <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-      </div>
-      ";
-    }elseif($_GET["error"] == "mauvaisID") {
-      echo "
-      <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-        <strong>Zut de flute !</strong> L'adresse mail ou le mot de passe de correspond pas.
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        <strong>Zut de flute !</strong> Vous d'abord valider votre compte via le mail que l'on vous a envoyé
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
     }
