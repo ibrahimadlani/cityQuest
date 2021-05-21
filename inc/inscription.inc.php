@@ -21,7 +21,8 @@ $mdp = $_POST['mdp'];
 $mdpconfirmation = $_POST['mdpconfirmation'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
-$token = bin2hex(random_bytes(16));
+try { $token = bin2hex(random_bytes(16)); }
+catch (\Exception $e) {}
 
 $user = new Utilisateur();
 $users = $user->getUtilisateurs();
@@ -54,7 +55,7 @@ $users = $user->getUtilisateurs();
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->SMTPAuth = true;
         $mail->Username = '';
-        $mail->Password = ;
+        $mail->Password = '';
         $mail->setFrom('cityquest.contact@gmail.com', 'Ibrahim de CityQuest');
         $mail->addAddress($email, $prenom." ".$nom );
         $mail->Subject = 'CityQuest - Activation de compte';
