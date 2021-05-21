@@ -60,7 +60,7 @@
 
     /*public function setNote($idLieu)) {
       $somme = 0;
-      $effectifs = 0
+      $effectifs = 0;
       $avis = new Avis();
       $avisParLieu = $avis->getAvisParLieu();
       foreach ($avisParLieu as $a) {

@@ -1,13 +1,14 @@
 var json;
 centerMap = {lat:46.63886499344043,lng:2.4373620082870815};
 var zoom = 5.6;
+
 function downloadUrl(url, callback) {
     var request = window.ActiveXObject ?
         new ActiveXObject('Microsoft.XMLHTTP') :
         new XMLHttpRequest;
   
     request.onreadystatechange = function() {
-      if (request.readyState == 4 && request.status == 200) {
+      if (request.readyState === 4 && request.status === 200) {
         request.onreadystatechange = doNothing;
         callback(request, request.status);
       }
@@ -17,7 +18,6 @@ function downloadUrl(url, callback) {
     request.send(null);
   }
 
-  
 downloadUrl('./api/lieu.php', function(data) { json  = JSON.parse(data.responseText);});
 
 function initMap() {
