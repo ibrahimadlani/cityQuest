@@ -19,11 +19,6 @@ define("TITLE", "Carte - ");
 require_once("inc/views/head.inc.php");
 require_once("inc/views/headerConnecte.inc.php");
 
-
-
-
-
-
 ?>
 <div id="map"></div>
 <div class="container my-5">
@@ -33,14 +28,14 @@ require_once("inc/views/headerConnecte.inc.php");
             <hr>
             <div class="row">
                 <div class="col-6">
-                    <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="ville" onchange="updateMap();">
-                    <option selected value="0">Ville</option>
+                    <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="ville" onchange="initMap();">
+                    <option selected value="0">France</option>
                     <?php foreach ($villes as $v) {echo "<option value='" . $v->id . "'>" . $v->ville . "</option>";}?>
                     </select>
                 </div>
                 <div class="col-6">
-                    <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="type" onchange="updateMap();">
-                    <option selected value="0">Type</option>
+                    <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="type" onchange="initMap();">
+                    <option selected value="0">Tout type</option>
                     <?php foreach ($typeslieu as $tl) {echo "<option value='" . $tl->id . "'>" . $tl->type . "</option>";}?>
                     </select>
                 </div>
@@ -51,25 +46,24 @@ require_once("inc/views/headerConnecte.inc.php");
             <h3 class="display-6"><i class="fas fa-map-pin text-danger"></i> Ajouter</h3>
             <hr>
             <div class="row">
-                <div class="col-4">
-                    <select class="form-select border-danger rounded-pill" aria-label="Default select example">
-                    <option selected>Ville</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <div class="col-8">
+                    <input  class="form-control border-danger rounded-pill" type="text" placeholder="Lieu" /> 
                 </div>
                 <div class="col-4">
                     <select class="form-select border-danger rounded-pill" aria-label="Default select example">
                     <option selected>Type</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Lieu</option>
+                        <option value="2">Evenement</option>
                     </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-8">
+                    <input type="text" class="form-control border-danger rounded-pill" placeholder="Lieu">
                 </div>
                 <div class="col-4">
                     <select class="form-select border-danger rounded-pill" aria-label="Default select example">
-                    <option selected>Disponibilité</option>
+                    <option selected>Type</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>

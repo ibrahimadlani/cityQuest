@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+#map2{
+  height: 200px;
+  width: 200px;
+}
+
+
 a[href^="http://maps.google.com/maps"]{display:none !important}
 a[href^="https://maps.google.com/maps"]{display:none !important}
 
