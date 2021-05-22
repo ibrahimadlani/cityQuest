@@ -12,12 +12,51 @@ require_once("inc/views/headerConnecte.inc.php");
 
 <main class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded border">
+  <div class="d-flex justify-content-between">
     <img class="me-3" src="img/avatar/<?php echo $_SESSION["avatar"];?>" alt="" height="45">
     <div class="lh-1">
       <h1 class="h6 mb-0 text-danger lh-1"><b><?php echo $_SESSION["prenom"]." ".$_SESSION["nom"];?></b></h1>
       <small class="text-secondary"><?php echo $_SESSION["bio"];?></small>
+      <button class="btn btn-secondary">Editer</button>
+    </div>
     </div>
   </div>
+
+  <form action="parametre.php" method="POST">
+    <div class="p-3 my-3 rounded border">
+      <div class="row">
+        <div class="col-1 border rounded d-flex align-items-center">
+          <img class="mx-auto my-4" src="img/avatar/<?php echo $_SESSION["avatar"];?>" alt="" height="45">
+        </div>
+        <div class="col-11">
+          <div class="row">
+            <div class="col-6">
+              <label for="nom">Prénom</label>
+              <input type="text" name="" id="nom" class="form-control rounded-pill border-danger" value='<?php echo $_SESSION["prenom"];?>'>
+            </div>
+            <div class="col-6"></div>
+          </div>
+          
+          <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- <img class="me-3" src="img/avatar/<?php //echo $_SESSION["avatar"];?>" alt="" height="45">
+      <div class="lh-1 row">
+      <div class="d-flex">
+          <input class="h6 mb-0 text-danger form-control bottom lh-1" value="<?php //echo $_SESSION["prenom"];?>">
+          <div style="width: 100px"></div>
+          <input class="h6 mb-0 text-danger form-control bottom lh-1" value="<?php //echo $_SESSION["nom"];?>">
+      </div>
+        <input class="text-secondary form-control bottom" value="<?php //echo $_SESSION["bio"];?>">
+        
+      </div>
+      <input type="submit" value="Valider"> -->
+  </form>
 
   <div class="my-3 p-3 bg-body rounded border">
     <h6 class="border-bottom pb-2 mb-0">Dernieres activités</h6>
