@@ -20,38 +20,38 @@
     }
 
     public function getLieux() {
-      $this->db->query('SELECT * FROM `Lieu` ORDER BY `promotion` DESC');
+      $this->db->query('SELECT * FROM `Lieu` ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
       $results = $this->db->resultset();
       return $results;
     }
 
 
     public function getLieuxByVille($idVille) {
-      $this->db->query('SELECT * FROM `Lieu` WHERE `ville` = "' . $idVille . '" ORDER BY `dateCreation` DESC');
+      $this->db->query('SELECT * FROM `Lieu` WHERE `ville` = "' . $idVille . '"  ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
       $results = $this->db->resultset();
       return $results;
     }
 
     public function getLieuxByAuteur($auteur) {
-      $this->db->query('SELECT * FROM `Lieu` WHERE `auteur` = "' . $auteur . '"');
+      $this->db->query('SELECT * FROM `Lieu` WHERE `auteur` = "' . $auteur . '" ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
       $results = $this->db->resultset();
       return $results;
     }
 
     public function getLieuxByPromotion($promotion) {
-      $this->db->query('SELECT * FROM `Lieu` WHERE `promotion` = "' . $promotion . '"');
+      $this->db->query('SELECT * FROM `Lieu` WHERE `promotion` = "' . $promotion . '" ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
       $results = $this->db->resultset();
       return $results;
     }
 
     public function getLieuxByType($idType) {
-      $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '" ORDER BY `dateCreation` DESC');
+      $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '"  ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
       $results = $this->db->resultset();
       return $results;
     }
 
     public function getLieuxByVilleAndType($idType,$idVille) {
-      $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '" AND `ville` = "' . $idVille . '" ORDER BY `dateCreation` DESC');
+      $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '" AND `ville` = "' . $idVille . '"  ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
       $results = $this->db->resultset();
       return $results;
     }

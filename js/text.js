@@ -4,12 +4,13 @@ const zoomDefaut = 5.6;
 
 function ajouterMarker(lat, lng, map, icon){
 
-    const marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map: map,
         icon:'img/iconsLieu/'+icon
       });
-    console.log('img/iconsLieu/'+icon);
+
+      return marker;
 }
 
 function definirCentre(lat, lng, zoom, map){
@@ -25,7 +26,7 @@ function recuperationJSON(requete){
         return this.responseText;
       }
     };
-    xhttp.open("GET", "http://localhost:8888/cityQuest/api/"+requete, false);
+    xhttp.open("GET", requete, false);
     xhttp.send();
 
     return JSON.parse(xhttp.responseText);
@@ -37,37 +38,53 @@ function afficherResultats(resultats){
       });
 }
 
-console.log();
 function afficherPoints(ville,type,map){
     if ((ville === "0") == false && (type === "0") == false) {
-        recuperationJSON("lieu.php?ville="+ville+"&typeLieu="+type).forEach(lieu => {
-            ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+        recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php?ville="+ville+"&typeLieu="+type).forEach(lieu => {
+            var marker = ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+            marker.addListener("click", () => {
+                document.getElementById(lieu.id).scrollIntoView({behavior: "smooth", block: "start"});
+                document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey" ;
+              });
         });
-        var infoVille = recuperationJSON("ville.php")[ville-1]
+        var infoVille = recuperationJSON("http://localhost:8888/cityQuest/api/ville.php")[ville-1]
         definirCentre(parseFloat(infoVille.lat), parseFloat(infoVille.lng), 12, map);
     }else if ((ville === "0") == false && (type === "0") == true) {
-        recuperationJSON("lieu.php?ville="+ville).forEach(lieu => {
-            ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+        recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php?ville="+ville).forEach(lieu => {
+            var marker = ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+            marker.addListener("click", () => {
+                document.getElementById(lieu.id).scrollIntoView({behavior: "smooth", block: "start"});
+                document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey" ;
+              });
         });
-        var infoVille = recuperationJSON("ville.php")[ville-1]
+        var infoVille = recuperationJSON("http://localhost:8888/cityQuest/api/ville.php")[ville-1]
         definirCentre(parseFloat(infoVille.lat), parseFloat(infoVille.lng), 12, map);
-        afficherResultats(recuperationJSON("lieu.php?ville="+ville));
+        afficherResultats(recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php?ville="+ville));
     }else if ((ville === "0") == true && (type === "0") == false) {
-        recuperationJSON("lieu.php?typeLieu="+type).forEach(lieu => {
-            ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+        recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php?typeLieu="+type).forEach(lieu => {
+            var marker = ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+            marker.addListener("click", () => {
+                document.getElementById(lieu.id).scrollIntoView({behavior: "smooth", block: "start"});
+                document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey" ;
+              });
         });
         definirCentre(latDefaut, lngDefaut, zoomDefaut, map);
-        afficherResultats(recuperationJSON("lieu.php?typeLieu="+type));
+        afficherResultats(recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php?typeLieu="+type));
     }else if ((ville === "0") == true && (type === "0") == true) {
-        recuperationJSON("lieu.php").forEach(lieu => {
-            ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+        recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php").forEach(lieu => {
+            var marker = ajouterMarker(parseFloat(lieu.lat), parseFloat(lieu.lng),map,recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[parseInt(lieu.typeLieu)-1].icone);
+            marker.addListener("click", () => {
+                document.getElementById(lieu.id).scrollIntoView({behavior: "smooth", block: "start"});
+                document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey" ;
+              });
         });
         definirCentre(latDefaut, lngDefaut, zoomDefaut, map);
-        afficherResultats(recuperationJSON("lieu.php"));
+        afficherResultats(recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php"));
+        
     }
 }
 
-
+let service;
 
 function initMap(ville,type) {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -83,5 +100,30 @@ function initMap(ville,type) {
     afficherPoints(ville,type,map);
     
 
-  }
 
+  }
+  console.log();
+ function recupererAdresse(){
+    var json = recuperationJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+encodeURIComponent(document.getElementById('rechercheGoogleAPI').value)+'&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI');
+    $('#resultats').load('inc/views/caseAdresse.inc.php', {
+        jsonFile: json,
+      });
+ }
+
+
+  $(document).ready(function(){
+	$(window).scroll(function () {
+			if ($(this).scrollTop() > 50) {
+				$('#back-to-top').fadeIn();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 400);
+			return false;
+		});
+});
