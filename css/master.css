@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+#map2{
+  height: 200px;
+  width: 200px;
+}
+
+
 a[href^="http://maps.google.com/maps"]{display:none !important}
 a[href^="https://maps.google.com/maps"]{display:none !important}
 
@@ -14,3 +20,15 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
   background:none !important;
 }
 
+#border {
+  border-color: red;
+  transition: color 2s ease;
+ }
+
+ .back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+  opacity: 0.5;
+}

@@ -23,6 +23,3 @@ elseif (isset($_GET["ville"]) && !isset($_GET["typeLieu"])) { $lieux = $lieu->ge
 
 // Retourner le string json stocker dans $lieu
 echo json_encode($lieux);
-
-var_dump($lieux[0])
-
