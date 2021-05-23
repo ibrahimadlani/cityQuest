@@ -26,6 +26,7 @@ $user->checkCredential($email, $mdp);
         exit();
     }else {
         $users = $user->getUtilisateurbyEmail($email);
+        $_SESSION["id"] = $users[0]->id;
         $_SESSION["email"] = $users[0]->email;
         $_SESSION["nom"] = $users[0]->nom;
         $_SESSION["prenom"] = $users[0]->prenom;
