@@ -5,13 +5,15 @@
     public function __construct() { $this->db = new Database; }
 
     public function addLieu($data) {
-      $this->db->query('INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `typeLieu`, `auteur`) VALUES (:nom, :description, :adresse, :lat, :lng, :typeLieu, :auteur)');
+      $this->db->query('INSERT INTO `Lieu`(`nom`, `description`,`presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES (:nom, :description, :presentation, :adresse, :lat, :lng, :ville, :typeLieu, :auteur)');
 
       $this->db->bind(':nom', $data['nom']);
       $this->db->bind(':description', $data['description']);
+      $this->db->bind(':presentation', $data['presentation']);
       $this->db->bind(':adresse', $data['adresse']);
       $this->db->bind(':lat', $data['lat']);
       $this->db->bind(':lng', $data['lng']);
+      $this->db->bind(':ville', $data['ville']);
       $this->db->bind(':typeLieu', $data['typeLieu']);
       $this->db->bind(':auteur', $data['auteur']);
 
