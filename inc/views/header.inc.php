@@ -16,7 +16,7 @@
                 <li class="nav-item">
                     <a class="nav-link px-3" href="offres.php">O F F R E S</a>
                 </li>
-             </ul>
+            </ul>
             <ul class="navbar-nav d-none d-lg-flex">
                 <li class="nav-item border-start border-end">
                     <a class="nav-link px-3" href="connexion.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
