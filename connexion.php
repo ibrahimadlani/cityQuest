@@ -49,14 +49,13 @@ require_once("inc/views/head.inc.php");
 
     <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> Se souvenir de moi
+            <input type="checkbox" value="remember-me"> Se souvenir de moi
         </label>
     </div>
 
     <button type="submit" class="btn btn-lg btn-danger btn-block rounded-pill w-100">Se connecter</button>
     <a href="inscription.php" class="text-danger"><small>Pas de compte? Inscrivez-vous ici.</small></a>
-    <p class="my-5 text-center text-secondary"><small>© City<b class="text-danger">Quest</b> 2020 - Tous Droits Réservés</small>
-  </div>
+    <p class="my-5 text-center text-secondary"><small>© City<b class="text-danger">Quest</b> 2020 - Tous Droits Réservés</small></p>
 </form>
 
 <?php require_once("inc/views/foot.inc.php"); ?>

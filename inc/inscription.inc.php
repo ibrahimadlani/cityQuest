@@ -21,8 +21,8 @@ $mdp = $_POST['mdp'];
 $mdpconfirmation = $_POST['mdpconfirmation'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
-$token = bin2hex(random_bytes(16));
-
+try { $token = bin2hex(random_bytes(16)); }
+catch (\Exception $e) {}
 
 $user = new Utilisateur();
 $users = $user->getUtilisateurs();
@@ -48,14 +48,14 @@ $users = $user->getUtilisateurs();
     }else {
         
         $body = file_get_contents('../mails/email.html');
-	
+
         $body = str_replace('$nom', $nom, $body);
         $body = str_replace('$prenom', $prenom, $body);
         $body = str_replace('$token', $token, $body);
-        
 
 
-        
+
+
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -67,7 +67,7 @@ $users = $user->getUtilisateurs();
         $mail->Password = 'CityQuestIUTMAUBEUGE59%';
         $mail->setFrom('cityquest.contact@gmail.com', 'Ibrahim de CityQuest');
         $mail->addAddress($email, $prenom." ".$nom );
-        
+
         $mail->isHTML(true);
         $mail->Priority = 1;
         $mail->AddCustomHeader("X-MSMail-Priority: High");
