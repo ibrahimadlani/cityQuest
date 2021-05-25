@@ -120,7 +120,7 @@
     }
 
     public function isProprietaire($id): bool {
-        $this->db->query('SELECT * FROM `Ville` WHERE `proprietaire`=""' . $id . '"');
+        $this->db->query('SELECT * FROM `Lieu` WHERE `proprietaire`="' . $id . '" AND `etatProprietaire` = 2');
         $results = $this->db->resultset();
         if (sizeof($results) > 0) { return true; }
         else { return false; }
