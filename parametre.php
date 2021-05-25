@@ -6,7 +6,7 @@ if (!isset($_SESSION["email"])) { header('Location: connexion.php?error=connexio
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Paramètre - ");
 require_once("inc/views/head.inc.php");
-require_once("inc/views/headerConnecte.inc.php");
+require_once("inc/views/header.inc.php");
 require_once('config/db.php');
 require_once('lib/pdo_db.php');
 require_once('models/Utilisateur.php');
@@ -133,8 +133,8 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
   <div class="my-3 p-3 bg-body rounded border">
     <h6 class="border-bottom pb-2 mb-0">Suggestions de profils</h6>
 
-    <?php 
-    
+    <?php
+
       foreach ($utilisateurs as $key => $user) {
         $prenom = $user->prenom;
         $nom = $user->nom;
@@ -160,7 +160,7 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
 
     ?>
 
-    
+
     </div>
     <small class="d-block text-end mt-3">
       <a href="#" class="text-danger">Raffraichir les suggestions</a>

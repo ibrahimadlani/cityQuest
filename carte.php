@@ -17,7 +17,7 @@ $typeslieu = $typelieu->getTypesLieu();
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Carte - ");
 require_once("inc/views/head.inc.php");
-require_once("inc/views/headerConnecte.inc.php");
+require_once("inc/views/header.inc.php");
 
 ?>
 <div id="map"></div>

@@ -119,6 +119,13 @@
       return $results;
     }
 
+    public function isProprietaire($id): bool {
+        $this->db->query('SELECT * FROM `Proprietaire` WHERE `utilisateur`="' . $id . '" AND `etat` = 2');
+        $results = $this->db->resultset();
+        if (sizeof($results) > 0) { return true; }
+        else { return false; }
+    }
+
   }
 
 ?>
