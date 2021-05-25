@@ -7,7 +7,12 @@ define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Paramètre - ");
 require_once("inc/views/head.inc.php");
 require_once("inc/views/header.inc.php");
+require_once('config/db.php');
+require_once('lib/pdo_db.php');
+require_once('models/Utilisateur.php');
 
+$utilisateur = new Utilisateur();
+$utilisateurs = $utilisateur->getRandomSuggestion();
 ?>
 
 <main class="container">
@@ -17,7 +22,7 @@ require_once("inc/views/header.inc.php");
     <div class="lh-1">
       <h1 class="h6 mb-0 text-danger lh-1"><b><?php echo $_SESSION["prenom"]." ".$_SESSION["nom"];?></b></h1>
       <small class="text-secondary"><?php echo $_SESSION["bio"];?></small>
-      <button class="btn btn-secondary" onclick="showForm()">Editer</button>
+      <button id="editer" class="btn btn-secondary" onclick="showForm()">Editer</button>
     </div>
     </div>
   </div>
@@ -68,7 +73,7 @@ require_once("inc/views/header.inc.php");
               <textarea class="form-control rounded border-danger" name="bio" id="" cols="30" rows="7"><?php echo $_SESSION["bio"];?></textarea>
               <div class="row">
                 <div class="col-6">
-                  <button class="btn btn-danger btn-block rounded-pill w-100 mt-3" value="Valider" onclick="hideForm()">Annuler</button>
+                  <button type="button" class="btn btn-danger btn-block rounded-pill w-100 mt-3" value="Valider" onclick="hideForm()">Annuler</button>
                 </div>
                 <div class="col-6">
                   <button class="btn btn-danger btn-block rounded-pill w-100 mt-3" type="submit" value="Valider">Valider</button>
@@ -127,35 +132,35 @@ require_once("inc/views/header.inc.php");
 
   <div class="my-3 p-3 bg-body rounded border">
     <h6 class="border-bottom pb-2 mb-0">Suggestions de profils</h6>
-    <div class="d-flex text-muted pt-3">
-    <img class="me-3" src="img/zoid.svg" alt="" height="32">
-      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-        <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">Alaaedin ALMAJO</strong>
-          <a href="#" class="text-danger">Voire le profil</a>
-        </div>
-        <span class="d-block">@imigreySangPapiey</span>
-      </div>
-    </div>
-    <div class="d-flex text-muted pt-3">
-    <img class="me-3" src="img/protection.svg" alt="" height="32">
-      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-        <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">Alcide FAUCHERON</strong>
-          <a href="#" class="text-danger">Voire le profil</a>
-        </div>
-        <span class="d-block">@bonwafwaf08150</span>
-      </div>
-    </div>
-    <div class="d-flex text-muted pt-3">
-    <img class="me-3" src="img/reliability.svg" alt="" height="32">
-      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-        <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">Clarence CLAUX</strong>
-          <a href="#" class="text-danger">Voire le profil</a>
-        </div>
-        <span class="d-block">@bigzgegenergy</span>
-      </div>
+
+    <?php
+
+      foreach ($utilisateurs as $key => $user) {
+        $prenom = $user->prenom;
+        $nom = $user->nom;
+        $bio = $user->bio;
+        $avatar = $user->avatar;
+        $id = $user->id;
+
+          echo '
+          
+          <div class="d-flex text-muted pt-3">
+          <img class="me-3" src="img/avatar/'.$avatar.'" alt="" height="32">
+            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+              <div class="d-flex justify-content-between">
+                <strong class="text-gray-dark">'.$prenom .' '. $nom .'</strong>
+                <a href="profil.php?id='.$id.'" class="text-danger">Voire le profil</a>
+              </div>
+              <span class="d-block">'.$bio.'</span>
+            </div>
+          </div>
+
+          ';
+      }
+
+    ?>
+
+
     </div>
     <small class="d-block text-end mt-3">
       <a href="#" class="text-danger">Raffraichir les suggestions</a>
@@ -168,7 +173,15 @@ require_once("inc/views/header.inc.php");
 
 
 <script>
-  function hideForm(){$('#formParametre').hide();}
+  function hideForm(){
+    $('#formParametre').hide();
+    $('#editer').text("Editer");
+    $("#editer").attr("onclick","showForm()");
+}
 
-  function showForm(){$('#formParametre').show();}
+  function showForm(){
+    $('#formParametre').show();
+    $('#editer').text("Fermer");
+    $("#editer").attr("onclick","hideForm()");
+  }
 </script>

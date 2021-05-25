@@ -38,7 +38,7 @@ foreach ($_POST["jsonFile"]["results"][0]["address_components"] as $ac) {
                     </select>
                 </div>
                 <div class="col-6">
-                    <select class="form-select border-danger rounded-5" id="ville">
+                    <select class="form-select border-danger rounded-5" id="ville2">
                         <option selected value="0">Ville</option>
                         <?php foreach ($_POST["ville"] as $v) {echo "<option value='" . $v["id"] . "'>" . $v["ville"]. "</option>";}?>
                     </select>
@@ -46,7 +46,7 @@ foreach ($_POST["jsonFile"]["results"][0]["address_components"] as $ac) {
             </div>
             <hr>
             
-            <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="addLieuBDD(document.getElementById('nom').value,document.getElementById('desc').value,document.getElementById('pres').value,'<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat'];?>,<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng'];?>,parseInt(document.getElementById('ville').value),parseInt(document.getElementById('typeLieu').value),<?php echo $_SESSION['id']; ?>);">Ajouter un lieu</button>
+            <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="addLieuBDD(document.getElementById('nom').value,document.getElementById('desc').value,document.getElementById('pres').value,'<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat'];?>,<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng'];?>,parseInt(document.getElementById('ville2').value),parseInt(document.getElementById('typeLieu').value),<?php echo $_SESSION['id']; ?>);">Ajouter un lieu</button>
             <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="console.log(document.getElementById('nom').value,document.getElementById('desc').value,document.getElementById('pres').value,'<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat'];?>,<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng'];?>,parseInt(document.getElementById('ville').value),parseInt(document.getElementById('typeLieu').value),<?php echo $_SESSION['id']; ?>);">Ajouter un evenement</button>
           </div>
         </div>
