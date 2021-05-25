@@ -13,12 +13,13 @@ $lieu = new Lieu();
 $data = array(
     'nom' => $_POST['nom'],
     'description' => $_POST['desc'],
-    'presentation' => $_POST['pres'], 
+    'presentation' => $_POST['pres'],
     'adresse' => $_POST['adresse'],
     'lat' => $_POST['lat'],
     'lng' => $_POST['lng'],
     'ville' => $_POST['ville'],
     'typeLieu' => $_POST['typeLieu'],
-    'auteur' => $_POST['auteur']);
+    'auteur' => $_POST['auteur']
+);
 
 $lieu->addLieu($data);

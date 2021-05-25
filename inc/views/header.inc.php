@@ -29,8 +29,7 @@
                         <a class='nav-link px-3 border-start border-end' href='inc/deconnexion.inc.php'><i class='fas fa-sign-in-alt'></i> Deconnexion</a>
                     </li>
                     ";
-                }
-                else {
+                } else {
                     echo "
                     <li class='nav-item'>
                         <a class='nav-link px-3 border-start border-end' href='connexion.php'><i class='fas fa-sign-in-alt'></i> Connexion</a>
@@ -53,8 +52,7 @@
                         <a class='nav-link px-3 border-top' href='inc/deconnexion.inc.php'><i class='fas fa-sign-in-alt'></i> Deconnexion</a>
                     </li>
                     ";
-                }
-                else {
+                } else {
                     echo "
                     <li class='nav-item'>
                         <a class='nav-link px-3 border-top' href='connexion.php'><i class='fas fa-sign-in-alt'></i> Connexion</a>
