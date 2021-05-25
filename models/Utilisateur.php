@@ -113,4 +113,12 @@
       }
     }
 
+    public function getRandomSuggestion(){
+      $this->db->query('SELECT id, nom, prenom, avatar, bio FROM `Utilisateur` ORDER BY RAND ( )  LIMIT 3  ');
+      $results = $this->db->resultset();
+      return $results;
+    }
+
   }
+
+?>
