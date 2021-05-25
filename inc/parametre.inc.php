@@ -69,10 +69,10 @@ if($user->modifierInfos($id, $nom, $prenom, $bio, $file)){
     $_SESSION["prenom"] = $prenom;
     $_SESSION["bio"] = $bio;
     $_SESSION["avatar"] = $file;
-    header("location: http://localhost:2222/cityQuest/parametre.php?error=success");
+    header("location: http://localhost:8888/cityQuest/parametre.php?error=success");
    exit();
 }else{
-    header("location: http://localhost:2222/cityQuest/parametre.php?error=fail");
+    header("location: http://localhost:8888/cityQuest/parametre.php?error=fail");
     exit();
 };
 

@@ -113,4 +113,11 @@
       }
     }
 
+    public function isProprietaire($id): bool {
+        $this->db->query('SELECT * FROM `Ville` WHERE `proprietaire`=""' . $id . '"');
+        $results = $this->db->resultset();
+        if (sizeof($results) > 0) { return true; }
+        else { return false; }
+    }
+
   }

@@ -23,5 +23,3 @@ if (isset($_GET["token"])) {
     header("Location: ../connexion.php?error=noToken");
     exit();
 }
-
-

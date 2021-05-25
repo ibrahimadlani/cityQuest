@@ -18,20 +18,53 @@
                 </li>
             </ul>
             <ul class="navbar-nav d-none d-lg-flex">
-                <li class="nav-item border-start border-end">
-                    <a class="nav-link px-3" href="connexion.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
-                </li>
-                <li class="nav-item border-end">
-                    <a class="nav-link px-3" href="inscription.php"><i class="far fa-user"></i> Inscription</a>
-                </li>
+
+                <?php
+                if (isset($_SESSION["email"])) {
+                    echo "
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-start border-end' href='parametre.php'><i class='fas fa-sign-in-alt'></i> Paramètre</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-start border-end' href='inc/deconnexion.inc.php'><i class='fas fa-sign-in-alt'></i> Deconnexion</a>
+                    </li>
+                    ";
+                }
+                else {
+                    echo "
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-start border-end' href='connexion.php'><i class='fas fa-sign-in-alt'></i> Connexion</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-start border-end' href='inscription.php'><i class='far fa-user'></i> Inscription</a>
+                    </li>
+                    ";
+                }
+                ?>
             </ul>
             <ul class="navbar-nav d-lg-none">
-                <li class="nav-item">
-                    <a class="nav-link px-3 border-top" href="connexion.php"><i class="fas fa-sign-in-alt"></i> Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 border-top" href="connexion.php"><i class="far fa-user"></i> Inscription</a>
-                </li>
+                <?php
+                if (isset($_SESSION["email"])) {
+                    echo "
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-top' href='parametre.php'><i class='fas fa-cog'></i> Paramètre</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-top' href='inc/deconnexion.inc.php'><i class='fas fa-sign-in-alt'></i> Deconnexion</a>
+                    </li>
+                    ";
+                }
+                else {
+                    echo "
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-top' href='connexion.php'><i class='fas fa-sign-in-alt'></i> Connexion</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link px-3 border-top' href='connexion.php'><i class='far fa-user'></i> Inscription</a>
+                    </li>
+                    ";
+                }
+                ?>
             </ul>
         </div>
     </div>

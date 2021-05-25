@@ -1,10 +1,8 @@
 <?php 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/offres.css'>");
 define("TITLE", "Offres - ");
-require_once("inc/views/head.inc.php"); 
-
-if (isset($_SESSION["email"])) { require_once("inc/views/headerConnecte.inc.php"); }
-else { require_once("inc/views/header.inc.php"); }
+require_once("inc/views/head.inc.php");
+require_once("inc/views/header.inc.php");
 
 ?>
 <main class="container container-main py-3 my-5">
