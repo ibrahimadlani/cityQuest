@@ -1,73 +1,90 @@
-<?php 
+<?php
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "");
-require_once("inc/views/head.inc.php"); 
+require_once("inc/views/head.inc.php");
 
-if (isset($_SESSION["email"])) { require_once("inc/views/headerConnecte.inc.php"); }
-else { require_once("inc/views/header.inc.php"); }
+if (isset($_SESSION["email"])) {
+    require_once("inc/views/headerConnecte.inc.php");
+} else {
+    require_once("inc/views/header.inc.php");
+}
 
 ?>
 
 <div class="container">
     <div class="row align-items-center border-bottom">
         <div class="col-lg-6 text-lg-start text-center col-12 my-5">
-            <h1 class="display-3">CityQuest, la solution pour comprendre la ville</h1>
+            <h1 class="display-3 ">CityQuest, la solution pour comprendre la ville</h1>
             <p class="lead text-secondary">Une solution simple, ergonomique et facile d'utilisation pour découvrir et gérer les lieux et événements dans le monde entier !</p>
             <div class="row mt-5 justify-content-center justify-content-lg-start">
-                    <a href="carte.php"><button class="btn btn-danger btn-lg rounded-pill col-6">Commencer gratuitement</button></a>
+                <a href="carte.php"><button class="btn btn-danger btn-lg rounded-pill col-6">Commencer gratuitement</button></a>
             </div>
         </div>
         <div class="col-lg-6  d-lg-block d-none">
             <img src="img/gummy-city.svg" class="img-fluid" alt="">
         </div>
     </div>
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold">L'application CityQuest disponible</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4 text-secondary">Après des mois de developpement et de reflexion sur comment faire une application mobile respectant l'esprit du site, nous vous revenons avec un produit dont nous somme fiere de vous présenter.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <button type="button" class="btn rounded-pill btn-danger btn-lg px-4"><i class="fab fa-app-store"></i> Apple Store</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill btn-lg px-4 me-sm-3"><i class="fab fa-google-play"></i> Google Play</button>
+            </div>
+        </div>
+        <div class="overflow-hidden" style="max-height: 30vh;">
+            <div class="container px-5">
+                <img src="img/mockup.png" class="img-fluid mb-4" alt="Example image" width="700" height="500" loading="lazy">
+            </div>
+        </div>
+    </div>
     <div class="row border-bottom">
         <div class="col-md-4  col-12">
             <div class="card text-center my-5 border-0">
                 <div class="col d-flex justify-content-center">
-                <img src="img/no-racism.svg" class="w-50 p-4" alt="...">
+                    <img src="img/trust.svg" class="w-50 p-4" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Philip J. Fry</h5>
-                    <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Un communauté active</h5>
+                    <p class="card-text text-secondary">Tout le projet se base sur une participation active de toute la communauté de CityQuest.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4  col-12">
             <div class="card text-center my-5 border-0">
                 <div class="col d-flex justify-content-center">
-                <img src="img/protection.svg" class="w-50 p-4" alt="...">
+                    <img src="img/medal.svg" class="w-50 p-4" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Pennywise le grippesou</h5>
-                    <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Mises en avants pertinentes</h5>
+                    <p class="card-text text-secondary">Afin d'aider les établissements avec le plus de potentiel, nous les mettons simplement en avant.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4  col-12">
             <div class="card text-center my-5 border-0">
                 <div class="col d-flex justify-content-center">
-                <img src="img/reliability.svg" class="w-50 p-4" alt="...">
+                    <img src="img/security.svg" class="w-50 p-4" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Mario l'italien</h5>
-                    <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Données publique mais protégées</h5>
+                    <p class="card-text text-secondary">Avec notre analyste en cyber-sécurité Maxence, nous pouvons vous certifier une sécurité infaillible.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row text-center my-5 border-bottom">
-        <h1 class="display-6">CityQuest, la solution pour comprendre la ville</h1>
-        <p class="lead mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem excepturi fuga nisi officia voluptates adipisci, doloribus, quis ducimus ipsum consequatur ab minus quidem sapiente numquam, porro aliquam. Eum, reprehenderit itaque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem excepturi fuga nisi officia voluptates adipisci, doloribus, quis ducimus ipsum consequatur ab minus quidem sapiente numquam, porro aliquam. Eum, reprehenderit itaque.</p>
-    </div>
-    <div class="row my-5">
-        <div class="col-6">
-            <h1 class="">CityQuest, la solution pour comprendre la ville</h1>
-            <p class=" mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem excepturi fuga nisi officia voluptates adipisci, doloribus, quis ducimus ipsum consequatur ab minus quidem sapiente numquam, porro aliquam. Eum, reprehenderit itaque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem excepturi fuga nisi officia voluptates adipisci, doloribus, quis ducimus ipsum consequatur ab minus quidem sapiente numquam, porro aliquam. Eum, reprehenderit itaque.</p>
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="img/screenshot.png" class="d-block mx-lg-auto img-fluid border rounded-3 shadow-sm" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
         </div>
-        <div class="col-6">
-            <h1 class="">CityQuest, la solution pour comprendre la ville</h1>
-            <p class=" mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem excepturi fuga nisi officia voluptates adipisci, doloribus, quis ducimus ipsum consequatur ab minus quidem sapiente numquam, porro aliquam. Eum, reprehenderit itaque.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem excepturi fuga nisi officia voluptates adipisci, doloribus, quis ducimus ipsum consequatur ab minus quidem sapiente numquam, porro aliquam. Eum, reprehenderit itaque.</p>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">Plus qu'un outil,<br> un endroits de discussion.</h1>
+            <p class="lead text-secondary">En effet, avant d'être une web application, CityQuest est un lieu de partage entre les baroudeures des villes qui aime découvrir des partis inconnues de leur ville ou d'ailleurs.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <button type="button" class="btn btn-danger rounded-pill btn-lg px-4 me-md-2">Nous rejoindre</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill btn-lg px-4">Voire les offres</button>
+            </div>
         </div>
     </div>
 </div>
