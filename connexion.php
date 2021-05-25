@@ -33,7 +33,7 @@ require_once("inc/views/head.inc.php");
     }elseif($_GET["error"] == "compteNonValidee") {
       echo "
       <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-        <strong>Zut de flute !</strong> Vous d'abord valider votre compte via le mail que l'on vous a envoyé
+        <strong>Zut de flute !</strong> Vous devez d'abord valider votre compte via le mail que l'on vous a envoyé
         <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
@@ -47,11 +47,11 @@ require_once("inc/views/head.inc.php");
     <label for="psw" class="sr-only"><b>Mot de passe</b></label>
     <input type="password" placeholder="Mot de passe" name="mdp" class="form-control bottom" required>
 
-    <div class="checkbox mb-3">
+    <!--<div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Se souvenir de moi
         </label>
-    </div>
+    </div>-->
 
     <button type="submit" class="btn btn-lg btn-danger btn-block rounded-pill w-100">Se connecter</button>
     <a href="inscription.php" class="text-danger"><small>Pas de compte? Inscrivez-vous ici.</small></a>

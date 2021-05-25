@@ -10,16 +10,24 @@ require_once('../models/Lieu.php');
 $lieu = new Lieu();
 
 // Si les parametres sont VILLE et TYPE
-if (isset($_GET["ville"]) && isset($_GET["typeLieu"])) { $lieux = $lieu->getLieuxByVilleAndType($_GET["typeLieu"],$_GET["ville"]); }
+if (isset($_GET["ville"]) && isset($_GET["typeLieu"])) {
+    $lieux = $lieu->getLieuxByVilleAndType($_GET["typeLieu"],$_GET["ville"]);
+}
 
-// Si le parametres est TYPE
-elseif (!isset($_GET["ville"]) && isset($_GET["typeLieu"])) { $lieux = $lieu->getLieuxByType($_GET["typeLieu"]); }
+// Si le parametre est uniquement TYPE
+elseif (!isset($_GET["ville"]) && isset($_GET["typeLieu"])) {
+    $lieux = $lieu->getLieuxByType($_GET["typeLieu"]);
+}
+
+// Si le parametres est uniquement VILLE
+elseif (isset($_GET["ville"]) && !isset($_GET["typeLieu"])) {
+    $lieux = $lieu->getLieuxByVille($_GET["ville"]);
+}
 
 // Si il n'y a pas de paramètre
-elseif (!isset($_GET["ville"]) && !isset($_GET["typeLieu"])) { $lieux = $lieu->getLieux(); }
+elseif (!isset($_GET["ville"]) && !isset($_GET["typeLieu"])) {
+    $lieux = $lieu->getLieux();
+}
 
-// Si le parametres est VILLE
-elseif (isset($_GET["ville"]) && !isset($_GET["typeLieu"])) { $lieux = $lieu->getLieuxByVille($_GET["ville"]); }
-
-// Retourner le string json stocker dans $lieu
+// Retourner le string json stocké dans $lieu
 echo json_encode($lieux);
