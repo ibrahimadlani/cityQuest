@@ -94,7 +94,7 @@ function initMap(ville,type) {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: latDefaut, lng: lngDefaut},
         zoom: zoomDefaut,
-        mapId: '6b985e72b5f5f6c1',
+        mapId: '34fdf6f4bce154c0',
         disableDefaultUI: true,
     });
     
