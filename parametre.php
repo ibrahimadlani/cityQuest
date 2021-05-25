@@ -25,20 +25,45 @@ require_once("inc/views/headerConnecte.inc.php");
   <form action="parametre.php" method="POST">
     <div class="p-3 my-3 rounded border">
       <div class="row">
-        <div class="col-1 border rounded d-flex align-items-center">
+        <div class="col-3 rounded d-flex align-items-center justify-content-start">
           <img class="mx-auto my-4" src="img/avatar/<?php echo $_SESSION["avatar"];?>" alt="" height="45">
         </div>
-        <div class="col-11">
+        <div class="col-9">
           <div class="row">
             <div class="col-6">
-              <label for="nom">Prénom</label>
-              <input type="text" name="" id="nom" class="form-control rounded-pill border-danger" value='<?php echo $_SESSION["prenom"];?>'>
+              <label class="fw-bold" for="prenom">Prénom</label>
+              <input type="text" name="prenom" id="prenom" class="form-control rounded-pill border-danger" value='<?php echo $_SESSION["prenom"];?>'>
             </div>
             <div class="col-6"></div>
           </div>
-          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 rounded d-flex align-items-center justify-content-start">
+          <img class="mx-auto my-4" src="" alt="" height="45">
+        </div>
+        <div class="col-9">
           <div class="row">
+            <div class="col-6">
+              <label class="fw-bold" for="nom">Nom</label>
+              <input type="text" name="nom" id="nom" class="form-control rounded-pill border-danger" value='<?php echo $_SESSION["nom"];?>'>
+            </div>
             <div class="col-6"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 rounded d-flex align-items-center justify-content-start">
+          <img class="mx-auto my-4" src="" alt="" height="45">
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-6">
+              <label class="fw-bold" for="nom">Bio</label>
+              <textarea class="form-control rounded border-danger" name="bio" id="" cols="30" rows="10"><?php echo $_SESSION["bio"];?></textarea>
+            </div>
             <div class="col-6"></div>
           </div>
         </div>
