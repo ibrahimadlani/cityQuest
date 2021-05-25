@@ -76,5 +76,7 @@ if($user->modifierInfos($id, $nom, $prenom, $bio, $file)){
     exit();
 };
 
+?>
+
 
 
