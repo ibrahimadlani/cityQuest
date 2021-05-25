@@ -12,7 +12,7 @@ else { require_once("inc/views/header.inc.php"); }
     <div class="row align-items-center border-bottom">
         <div class="col-lg-6 text-lg-start text-center col-12 my-5">
             <h1 class="display-3">CityQuest, la solution pour comprendre la ville</h1>
-            <p class="lead text-secondary">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="lead text-secondary">Une solution simple, ergonomique et facile d'utilisation pour découvrir et gérer les lieux et événements dans le monde entier !</p>
             <div class="row mt-5 justify-content-center justify-content-lg-start">
                     <a href="carte.php"><button class="btn btn-danger btn-lg rounded-pill col-6">Commencer gratuitement</button></a>
             </div>

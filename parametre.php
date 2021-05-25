@@ -17,16 +17,20 @@ require_once("inc/views/headerConnecte.inc.php");
     <div class="lh-1">
       <h1 class="h6 mb-0 text-danger lh-1"><b><?php echo $_SESSION["prenom"]." ".$_SESSION["nom"];?></b></h1>
       <small class="text-secondary"><?php echo $_SESSION["bio"];?></small>
-      <button class="btn btn-secondary">Editer</button>
+      <button class="btn btn-secondary" onclick="showForm()">Editer</button>
     </div>
     </div>
   </div>
 
-  <form action="parametre.php" method="POST">
+  <form id="formParametre" action="inc/parametre.inc.php" method="POST" enctype="multipart/form-data">
+  <script>$('#formParametre').hide();</script>
     <div class="p-3 my-3 rounded border">
       <div class="row">
-        <div class="col-3 rounded d-flex align-items-center justify-content-start">
-          <img class="mx-auto my-4" src="img/avatar/<?php echo $_SESSION["avatar"];?>" alt="" height="45">
+        <div class="col-3 rounded d-flex align-items-center justify-content-center">
+          <label for="fileToUpload">
+            <img class="mx-auto my-4" src="img/avatar/<?php echo $_SESSION["avatar"];?>" alt="" height="45" style="cursor: pointer;">
+            <input class="form-control" type="file" name="fileToUpload" id="fileToUpload" style="display:none">
+          </label>
         </div>
         <div class="col-9">
           <div class="row">
@@ -41,7 +45,6 @@ require_once("inc/views/headerConnecte.inc.php");
 
       <div class="row">
         <div class="col-3 rounded d-flex align-items-center justify-content-start">
-          <img class="mx-auto my-4" src="" alt="" height="45">
         </div>
         <div class="col-9">
           <div class="row">
@@ -62,12 +65,22 @@ require_once("inc/views/headerConnecte.inc.php");
           <div class="row">
             <div class="col-6">
               <label class="fw-bold" for="nom">Bio</label>
-              <textarea class="form-control rounded border-danger" name="bio" id="" cols="30" rows="10"><?php echo $_SESSION["bio"];?></textarea>
+              <textarea class="form-control rounded border-danger" name="bio" id="" cols="30" rows="7"><?php echo $_SESSION["bio"];?></textarea>
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-danger btn-block rounded-pill w-100 mt-3" value="Valider" onclick="hideForm()">Annuler</button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-danger btn-block rounded-pill w-100 mt-3" type="submit" value="Valider">Valider</button>
+                </div>
+              </div>
             </div>
             <div class="col-6"></div>
           </div>
         </div>
+        
       </div>
+      
     </div>
 
       <!-- <img class="me-3" src="img/avatar/<?php //echo $_SESSION["avatar"];?>" alt="" height="45">
@@ -80,7 +93,8 @@ require_once("inc/views/headerConnecte.inc.php");
         <input class="text-secondary form-control bottom" value="<?php //echo $_SESSION["bio"];?>">
         
       </div>
-      <input type="submit" value="Valider"> -->
+      -->
+      
   </form>
 
   <div class="my-3 p-3 bg-body rounded border">
@@ -151,3 +165,10 @@ require_once("inc/views/headerConnecte.inc.php");
 
 <?php require_once("inc/views/footer.inc.php"); ?>
 <?php require_once("inc/views/foot.inc.php"); ?>
+
+
+<script>
+  function hideForm(){$('#formParametre').hide();}
+
+  function showForm(){$('#formParametre').show();}
+</script>

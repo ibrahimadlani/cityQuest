@@ -104,4 +104,13 @@
         return false;
       }
     }
+
+    public function modifierInfos($id, $nom, $prenom, $bio, $file){
+      $this->db->query('UPDATE `Utilisateur` SET `nom` = "'. $nom .'", `prenom` = "'. $prenom .'", `bio` = "'. $bio .'", `avatar` = "'. $file . '" WHERE `id`='. $id);
+      $a = $this->db->execute();
+      if ($a){
+        return true;
+      }
+    }
+
   }
