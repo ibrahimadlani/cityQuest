@@ -72,7 +72,13 @@ class Lieu
     return $results;
   }
 
-
+    public function setProprietaire($idUtilisateur, $idLieu) {
+        $this->db->query('INSERT INTO `Proprietaire`(`utilisateur`, `lieu`, `etat`) VALUES (' . $idUtilisateur . ', ' . $idLieu . ', 1)');
+        $a = $this->db->execute();
+        if ($a){
+            return true;
+        }
+    }
 
   /*public function setNote($idLieu)) {
       $somme = 0;

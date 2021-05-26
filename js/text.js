@@ -242,3 +242,9 @@ $(document).ready(function () {
     return false;
   });
 });
+
+function seDeclarerProprietaire(idLieu) {
+  $.post("http://localhost:8888/cityQuest/inc/ajouterProprietaire.inc.php", {
+    idLieu: idLieu
+  });
+}
