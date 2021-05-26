@@ -2,6 +2,13 @@ const latDefaut = 46.62423629785034;
 const lngDefaut = 2.4361340279539414;
 const zoomDefaut = 5.6;
 
+
+
+
+
+
+
+
 function ajouterMarker(lat, lng, map, icon) {
   var marker = new google.maps.Marker({
     position: { lat: lat, lng: lng },
@@ -162,8 +169,6 @@ function afficherPoints(ville, type, map) {
   }
 }
 
-let service;
-
 function initMap(ville, type) {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: latDefaut, lng: lngDefaut },
@@ -177,6 +182,7 @@ function initMap(ville, type) {
 
   afficherPoints(ville, type, map);
 }
+
 function recupererAdresse() {
   var json = recuperationJSON(
     "https://maps.googleapis.com/maps/api/geocode/json?address=" +
@@ -222,6 +228,15 @@ function addLieuBDD(
   });
   initMap();
 }
+
+
+
+
+
+
+
+
+
 
 $(document).ready(function () {
   $(window).scroll(function () {

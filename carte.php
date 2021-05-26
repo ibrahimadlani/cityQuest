@@ -1,22 +1,18 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["email"])) {
-    header('Location: connexion.php?error=connexionRequise');
-    exit();
-}
+if (!isset($_SESSION["email"])) {header('Location: connexion.php?error=connexionRequise');exit();}
 
 require_once('config/db.php');
 require_once('lib/pdo_db.php');
-
 require_once('models/Ville.php');
 require_once('models/TypeLieu.php');
 
 $ville = new Ville();
 $villes = $ville->getVilles();
-
 $typelieu = new TypeLieu();
 $typeslieu = $typelieu->getTypesLieu();
+
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Carte - ");
 require_once("inc/views/head.inc.php");
@@ -76,68 +72,3 @@ require_once("inc/views/header.inc.php");
 
 <?php require_once("inc/views/footer.inc.php"); ?>
 <?php require_once("inc/views/foot.inc.php"); ?>
-
-<!--
-
-    INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,1,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,1,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,2,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,2,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,2,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,3,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,3,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,3,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,4,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,4,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,4,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,5,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,5,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,5,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,5,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,6,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,6,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,2,6,1);
-
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,1,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,1,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,2,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,2,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,2,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,3,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,3,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,3,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,4,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,4,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,4,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,5,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,5,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,5,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,5,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,6,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,6,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,3,6,1);
-
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,1,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,1,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,2,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,2,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,2,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,3,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,3,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,3,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,4,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,4,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,4,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,5,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,5,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,5,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,5,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,6,1);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,6,2);
-INSERT INTO `Lieu`(`nom`, `description`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES ("","","",,4,6,1);
-
-
-
-
-
--->

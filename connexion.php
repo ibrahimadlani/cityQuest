@@ -36,7 +36,15 @@ require_once("inc/views/head.inc.php");
         <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
+  } elseif ($_GET["error"] == "deconnexionReussi") {
+    echo "
+      <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <strong>Let's goooo !</strong> Vous vous êtes bien déconnecter... À bientôt !
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
   }
+
   ?>
   <hr>
 

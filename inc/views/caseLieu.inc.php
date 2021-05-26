@@ -87,12 +87,18 @@
                                     </p>
                                 </div>
                             </div>
+                            <div class="row p-2">
+                                <div class="d-flex pt-3 rounded  p-3">
+                                    <img class="me-3 border rounded-pill p-1" src="img/no-racism.svg" alt="" height="50">
+                                    <textarea name="" id="" rows="4" class="border w-100 rounded-3"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="col-12 d-xl-none d-block mt-4">
 
                                 <div class="d-flex justify-content-between align-items-baseline">
-                                    <h5 class="">Horraire 1</h5><span class="badge bg-success badge-sm">Ouvert</span>
+                                    <h5 class="">Horraire</h5><span class="badge bg-success badge-sm">Ouvert</span>
                                 </div>
 
                                 <p class="text-secondary  mb-0 mt-3">Lundi</p>
@@ -144,7 +150,7 @@
                 <div class="col-3 d-none d-xl-block">
 
                     <div class="d-flex justify-content-between align-items-baseline">
-                        <h5 class="">Horraire 2</h5><span class="badge bg-success badge-sm">Ouvert</span>
+                        <h5 class="">Horraire</h5><span class="badge bg-success badge-sm">Ouvert</span>
                     </div>
 
                     <p class="text-secondary  mb-0 mt-3">Lundi</p>

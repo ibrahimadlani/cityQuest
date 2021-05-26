@@ -4,7 +4,7 @@ define("TITLE", "");
 require_once("inc/views/head.inc.php");
 
 
-    require_once("inc/views/header.inc.php");
+require_once("inc/views/header.inc.php");
 
 ?>
 

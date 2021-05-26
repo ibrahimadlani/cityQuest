@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["email"])) {
-  header('Location: connexion.php?error=connexionRequise');
-  exit();
-}
+if (!isset($_SESSION["email"])) {header('Location: connexion.php?error=connexionRequise');exit();}
 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Paramètre - ");
+
 require_once("inc/views/head.inc.php");
 require_once("inc/views/header.inc.php");
 require_once('config/db.php');
@@ -16,20 +14,26 @@ require_once('models/Utilisateur.php');
 
 $utilisateur = new Utilisateur();
 $utilisateurs = $utilisateur->getRandomSuggestion();
+
+
 ?>
 
 <main class="container">
-  <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded border">
-    <div class="d-flex justify-content-between">
-      <img class="me-3" src="img/avatar/<?php echo $_SESSION["avatar"]; ?>" alt="" height="150" class="rounded-pill">
-      <div class="lh-1">
-        <h1 class="h6 mb-0 text-danger lh-1"><b><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?></b></h1>
-        <small class="text-secondary"><?php echo $_SESSION["bio"]; ?></small>
-        <button id="editer" class="btn btn-secondary" onclick="showForm()">Editer</button>
-      </div>
+  <div class="row border my-3 rounded justify-content-center">
+    <div class="col-12 pt-5 justify-content-center">
+        <img class="rounded-pill mx-auto d-block" height="200" width="200" src="img/avatar/<?php echo $_SESSION["avatar"]; ?>" alt="">
+        <h1 class="display-4 fw-bold text-center mb-0"><?php echo ucfirst($_SESSION["prenom"]) . " " . strtoupper($_SESSION["nom"]); ?></h1>
+        <small class="text-center mx-auto d-block text-danger"><?php echo $_SESSION["email"]; ?> - Inscrit depuis le <?php echo strftime("%d/%m/%Y", strtotime($_SESSION["dateCreation"])); ?></small>
+        <p class="lead col-12 col-md-8 col-lg-6 text-center mx-auto text-secondary"><?php echo $_SESSION["bio"]; ?></p>
+    </div>
+    <div class="col-12 bg-white py-3 ">
+      <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" onclick="showForm()"><i class="fas fa-edit"></i> Editer mon profil</button>
+    </div>
+    <div class="container">
+      <hr>
     </div>
   </div>
-
+   
   <form id="formParametre" action="inc/parametre.inc.php" method="POST" enctype="multipart/form-data">
     <script>
       $('#formParametre').hide();
@@ -184,7 +188,7 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
 <script>
   function hideForm() {
     $('#formParametre').hide();
-    $('#editer').text("Editer");
+    $('#editer').text("<i class='fas fa-edit'></i> Editer mon profil");
     $("#editer").attr("onclick", "showForm()");
   }
 
