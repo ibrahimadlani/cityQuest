@@ -1,13 +1,14 @@
 <?php
 session_start();
+
+// Boucle qui retrouve le nom de la municipalité du lieu recherché par l'utilisateur
 foreach ($_POST["jsonFile"]["results"][0]["address_components"] as $ac) {
-
     if ($ac["types"][0] == "locality") {
-
         $ville = $ac["long_name"];
         break;
     }
 }
+
 ?>
 <div class="card mb-4 rounded-3 shadow-sm mt-3">
     <div class="card-header py-3 bg-danger text-white">
@@ -52,15 +53,3 @@ foreach ($_POST["jsonFile"]["results"][0]["address_components"] as $ac) {
         <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="console.log(document.getElementById('nom').value,document.getElementById('desc').value,document.getElementById('pres').value,'<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,parseInt(document.getElementById('ville').value),parseInt(document.getElementById('typeLieu').value),<?php echo $_SESSION['id']; ?>);">Ajouter un evenement</button>
     </div>
 </div>
-
-<!-- onclick="console.log(s
-                ' Nom :' + document.getElementById('nom').value +
-                ' Description :' + document.getElementById('desc').value+ 
-                ' Presentation :' + document.getElementById('pres').value +
-                ' Adresse :' + '<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>' +
-                ' Lat :' + <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?> +
-                ' Lng :' + <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?> +
-                ' Ville :' + parseInt(document.getElementById('ville').value) +
-                ' TypeLieu :' + parseInt(document.getElementById('typeLieu').value) +
-                ' Auteur :' + <?php echo $_SESSION['id']; ?>
-                );"-->

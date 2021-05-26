@@ -2,13 +2,6 @@ const latDefaut = 46.62423629785034;
 const lngDefaut = 2.4361340279539414;
 const zoomDefaut = 5.6;
 
-
-
-
-
-
-
-
 function ajouterMarker(lat, lng, map, icon) {
   var marker = new google.maps.Marker({
     position: { lat: lat, lng: lng },
@@ -19,11 +12,13 @@ function ajouterMarker(lat, lng, map, icon) {
   return marker;
 }
 
+// Recentre la carte sur des coordoonnée a un certain zoom
 function definirCentre(lat, lng, zoom, map) {
   map.setZoom(zoom);
   map.setCenter({ lat: lat, lng: lng });
 }
 
+// Transforme un requete AJAX en un objet JSON
 function recuperationJSON(requete) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function test() {
@@ -37,12 +32,14 @@ function recuperationJSON(requete) {
   return JSON.parse(xhttp.responseText);
 }
 
+// Affichage (rafraichissement) des cases Lieu sur la page carte.php
 function afficherResultats(resultats) {
-  $("#mypar").load("inc/views/caseLieu.inc.php", {
+  $("#resultatRecherche").load("inc/views/caseLieu.inc.php", {
     jsonFile: resultats,
   });
 }
 
+// Crée un point sur la map
 function afficherPoints(ville, type, map) {
   if ((ville === "0") == false && (type === "0") == false) {
     console.log(1);
@@ -169,6 +166,7 @@ function afficherPoints(ville, type, map) {
   }
 }
 
+// Initialise (rafraichît) la map
 function initMap(ville, type) {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: latDefaut, lng: lngDefaut },
@@ -183,15 +181,16 @@ function initMap(ville, type) {
   afficherPoints(ville, type, map);
 }
 
+// Initialise (rafraichît) la map
 function recupererAdresse() {
   var json = recuperationJSON(
     "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-      encodeURIComponent(document.getElementById("rechercheGoogleAPI").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) +
-      "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
-  );
-  console.log(
-    "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-      encodeURIComponent(document.getElementById("rechercheGoogleAPI").value) +
+      encodeURIComponent(
+        document
+          .getElementById("rechercheGoogleAPI")
+          .value.normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+      ) +
       "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
   );
   $("#resultats").load("inc/views/caseAdresse.inc.php", {
@@ -214,7 +213,6 @@ function addLieuBDD(
   typeLieu,
   auteur
 ) {
-  console.log("yes");
   $.post("http://localhost:8888/cityQuest/inc/ajouterLieu.inc.php", {
     nom: nom,
     desc: desc,
@@ -228,15 +226,6 @@ function addLieuBDD(
   });
   initMap();
 }
-
-
-
-
-
-
-
-
-
 
 $(document).ready(function () {
   $(window).scroll(function () {
@@ -260,6 +249,6 @@ $(document).ready(function () {
 
 function seDeclarerProprietaire(idLieu) {
   $.post("http://localhost:8888/cityQuest/inc/ajouterProprietaire.inc.php", {
-    idLieu: idLieu
+    idLieu: idLieu,
   });
 }

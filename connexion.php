@@ -1,7 +1,10 @@
 <?php
+session_start();
+require_once("inc/views/head.inc.php");
+
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
 define("TITLE", "Connexion - ");
-require_once("inc/views/head.inc.php");
+
 ?>
 
 <form action="inc/connexion.inc.php" method="post" class="form-signin text-center">
@@ -54,11 +57,11 @@ require_once("inc/views/head.inc.php");
   <label for="psw" class="sr-only"><b>Mot de passe</b></label>
   <input type="password" placeholder="Mot de passe" name="mdp" class="form-control bottom" required>
 
-  <!--<div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Se souvenir de moi
-        </label>
-    </div>-->
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Se souvenir de moi
+    </label>
+  </div>
 
   <button type="submit" class="btn btn-lg btn-danger btn-block rounded-pill w-100">Se connecter</button>
   <a href="inscription.php" class="text-danger"><small>Pas de compte? Inscrivez-vous ici.</small></a>

@@ -1,63 +1,57 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 session_start();
 require_once('../config/db.php');
 require_once('../lib/pdo_db.php');
 require_once('../models/Utilisateur.php');
+$user = new Utilisateur();
 
+
+
+// Importation de phpMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-
 require '../phpMailer/Exception.php';
 require '../phpMailer/PHPMailer.php';
 require '../phpMailer/SMTP.php';
 
-$email = $_POST['email'];
-$mdp = $_POST['mdp'];
-$mdpconfirmation = $_POST['mdpconfirmation'];
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-try {
-    $token = bin2hex(random_bytes(16));
-} catch (\Exception $e) {
-}
+// Generation d'un token unique
+$token = bin2hex(random_bytes(16));
 
-$user = new Utilisateur();
-$users = $user->getUtilisateurs();
 
-if (!(isset($_POST['email']) && isset($_POST['mdp']) && isset($_POST['mdpconfirmation']) && isset($_POST['nom']) &&  isset($_POST['prenom']))) {
+
+// Si un des champs sont manquants
+if (!(isset($_POST['email']) || !isset($_POST['mdp']) || !isset($_POST['mdpconfirmation']) || !isset($_POST['nom']) ||  !isset($_POST['prenom']))) {
     header('Location: ../inscription.php');
     exit();
-} elseif (!$mdp === $mdpconfirmation) {
+// Si les mots de passes de correspondent pas
+} elseif (!$_POST['mdp'] === $_POST['mdpconfirmation']) {
     header('Location: ../inscription.php?error=mdpDifferents');
     exit();
-} elseif ($user->emailExist($email)) {
+// Si le mail est déja utilisé
+} elseif ($user->emailExist($_POST['email'])) {
     header('Location: ../inscription.php?error=emailExistant');
     exit();
-} elseif (strlen($mdpconfirmation) < 6) {
+// Si le mot de passe à moins de 6 caractères
+} elseif (strlen($_POST['mdpconfirmation']) < 6) {
     header("Location: ../inscription.php?error=tropCourt");
     exit();
-} elseif (!preg_match("#[0-9]+#", $mdp)) {
+// Si il n'y a pas de chiffres
+} elseif (!preg_match("#[0-9]+#", $_POST['mdp'])) {
     header('Location: ../inscription.php?error=mdpSansChiffre');
     exit();
-} elseif (!preg_match("#[a-zA-Z]+#", $mdp)) {
+// Si il n'y a pas de lettres
+} elseif (!preg_match("#[a-zA-Z]+#", $_POST['mdp'])) {
     header('Location: ../inscription.php?error=mdpSansLettre');
     exit();
+// Si tout va bien
 } else {
-
+    
+    // Mise en place du mail
     $body = file_get_contents('../mails/email.html');
-
-    $body = str_replace('$nom', $nom, $body);
-    $body = str_replace('$prenom', $prenom, $body);
+    $body = str_replace('$nom', $_POST['nom'] , $body);
+    $body = str_replace('$prenom ', $_POST['prenom'] , $body);
     $body = str_replace('$token', $token, $body);
-
-
-
-
     $mail = new PHPMailer();
     $mail->isSMTP();
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -68,28 +62,28 @@ if (!(isset($_POST['email']) && isset($_POST['mdp']) && isset($_POST['mdpconfirm
     $mail->Username = 'cityquest.contact@gmail.com';
     $mail->Password = 'CityQuestIUTMAUBEUGE59%';
     $mail->setFrom('cityquest.contact@gmail.com', 'Ibrahim de CityQuest');
-    $mail->addAddress($email, $prenom . " " . $nom);
-
+    $mail->addAddress($_POST['email'], $_POST['prenom']  . " " . $_POST['nom'] );
     $mail->isHTML(true);
     $mail->Priority = 1;
     $mail->AddCustomHeader("X-MSMail-Priority: High");
     $mail->AddCustomHeader("Importance: High");
     $mail->Subject = 'CityQuest - Activation de compte';
-    //$mail->AddEmbeddedImage('../img/cQ.svg', 'logoPetit');
-    //$mail->AddEmbeddedImage('img/2u_cs_mini.jpg', 'logo_2u');
-    //$mail->AddEmbeddedImage('img/2u_cs_mini.jpg', 'logo_2u');
-    //$mail->AddEmbeddedImage('img/2u_cs_mini.jpg', 'logo_2u');
-    //$mail->AddEmbeddedImage('img/2u_cs_mini.jpg', 'logo_2u');
-    //$mail->AddEmbeddedImage('img/2u_cs_mini.jpg', 'logo_2u');
-    //$mail->body = " ";
     $mail->MsgHTML($body);
     $mail->IsHTML(true);
     $mail->CharSet = "utf-8";
     $mail->AltBody = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur ce lien : http://localhost:8888/cityQuest/api/token.php?token=" . $token;
+
+    // Si l'envoie du mail a marché
     if (!$mail->send()) {
+
+        // Print un message d'erreur
         echo 'Mailer Error: ' . $mail->ErrorInfo;
+    // Si l'envoie du mail n'a pas marché
     } else {
-        $rwer = $user->addUtilisateur(array("email" => $email, "mdp" => password_hash($mdp, PASSWORD_DEFAULT), "nom" => $nom, "prenom" => $prenom, "groupe" => 1, "avatar" => "default.svg", "bio" => "Je suis nouveau sur CityQuest !", "token" => $token));
+        // Insertion du nouvel utilisateur dans la base de donnée
+        $user->addUtilisateur(array("email" => $_POST['email'], "mdp" => password_hash($_POST['mdp'], PASSWORD_DEFAULT), "nom" => $_POST['nom'] , "prenom" => $_POST['prenom'] , "groupe" => 1, "avatar" => "default.svg", "bio" => "Je suis nouveau sur CityQuest !", "token" => $token));
+
+        // Renvoie vers la page de connexion avec un message qui demande à l'utilisateur de confirmer son compte
         header("Location: ../connexion.php?error=success");
         exit();
     }

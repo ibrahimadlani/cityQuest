@@ -46,9 +46,9 @@ class Avis
     return $results;
   }
 
-  public function getAvisParUtilisateur($idUser)
+  public function getAvisParUtilisateur($idUser):int
   {
-    $this->db->query('SELECT * FROM `Avis` WHERE `idPoint` =' . $idPoint . ' AND  `idPoint` = 2');
+    $this->db->query('SELECT * FROM `Avis` WHERE `auteur` =' . $idUser);
     $results = $this->db->resultset();
     return $results;
   }

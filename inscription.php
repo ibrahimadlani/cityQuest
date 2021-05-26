@@ -1,7 +1,10 @@
 <?php
+session_start();
+require_once("inc/views/head.inc.php");
+
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
 define("TITLE", "Inscription - ");
-require_once("inc/views/head.inc.php");
+
 ?>
 <form action="inc/inscription.inc.php" method="post" class="form-signin text-center">
   <a href="index.php"><img class="mb-1" src="img/cityQuest.svg" alt="" height="72"></a>
@@ -61,11 +64,11 @@ require_once("inc/views/head.inc.php");
   <label for="psw-repeat" class="sr-only"><b>Prénom</b></label>
   <input type="text" placeholder="Prénom" name="prenom" class="form-control bottom" required>
 
-  <!--<div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Se souvenir de moi
-        </label>
-    </div>-->
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Se souvenir de moi
+    </label>
+  </div>
   <button class="btn btn-lg btn-danger btn-block rounded-pill w-100" name="submit" type="submit">S'inscrire</button>
   <a href="connexion.php" class="text-danger"><small>Déjà un compte ? Connectez-vous ici.</small></a>
   <p class="my-5 text-center text-secondary"><small>© City<b class="text-danger">Quest</b> 2020 - Tous Droits Réservés</small></p>

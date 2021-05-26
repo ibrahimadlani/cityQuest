@@ -1,10 +1,11 @@
 <?php
+session_start();
+require_once("inc/views/head.inc.php");
+require_once("inc/views/header.inc.php");
+
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "");
-require_once("inc/views/head.inc.php");
 
-
-require_once("inc/views/header.inc.php");
 
 ?>
 

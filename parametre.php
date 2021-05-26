@@ -3,18 +3,16 @@ session_start();
 
 if (!isset($_SESSION["email"])) {header('Location: connexion.php?error=connexionRequise');exit();}
 
-define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
-define("TITLE", "Paramètre - ");
-
 require_once("inc/views/head.inc.php");
 require_once("inc/views/header.inc.php");
 require_once('config/db.php');
 require_once('lib/pdo_db.php');
 require_once('models/Utilisateur.php');
-
 $utilisateur = new Utilisateur();
 $utilisateurs = $utilisateur->getRandomSuggestion();
 
+define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
+define("TITLE", "Paramètre - ");
 
 ?>
 
@@ -35,9 +33,6 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
   </div>
    
   <form id="formParametre" action="inc/parametre.inc.php" method="POST" enctype="multipart/form-data">
-    <script>
-      $('#formParametre').hide();
-    </script>
     <div class="p-3 my-3 rounded border">
       <div class="row">
         <div class="col-3 rounded d-flex align-items-center justify-content-center">
@@ -96,22 +91,6 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
       </div>
 
     </div>
-
-    <!-- <img class="me-3" src="img/avatar/<?php //echo $_SESSION["avatar"];
-                                            ?>" alt="" height="45">
-      <div class="lh-1 row">
-      <div class="d-flex">
-          <input class="h6 mb-0 text-danger form-control bottom lh-1" value="<?php //echo $_SESSION["prenom"];
-                                                                              ?>">
-          <div style="width: 100px"></div>
-          <input class="h6 mb-0 text-danger form-control bottom lh-1" value="<?php //echo $_SESSION["nom"];
-                                                                              ?>">
-      </div>
-        <input class="text-secondary form-control bottom" value="<?php //echo $_SESSION["bio"];
-                                                                  ?>">
-        
-      </div>
-      -->
 
   </form>
 

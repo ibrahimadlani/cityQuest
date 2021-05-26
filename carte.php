@@ -64,7 +64,7 @@ require_once("inc/views/header.inc.php");
     <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
     <div class="row">
         <form class="col-12 mt-5">
-            <div id="mypar"></div>
+            <div id="resultatRecherche"></div>
         </form>
 
     </div>
