@@ -57,7 +57,7 @@ require_once("inc/views/header.inc.php");
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
           <strong class="text-gray-dark">Alaaedin ALMAJO</strong>
-          <a href="#" class="text-danger">Voire le profil</a>
+          <a href="#" class="text-danger">Voir le profil</a>
         </div>
         <span class="d-block">@imigreySangPapiey</span>
       </div>
@@ -67,7 +67,7 @@ require_once("inc/views/header.inc.php");
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
           <strong class="text-gray-dark">Alcide FAUCHERON</strong>
-          <a href="#" class="text-danger">Voire le profil</a>
+          <a href="#" class="text-danger">Voir le profil</a>
         </div>
         <span class="d-block">@bonwafwaf08150</span>
       </div>
@@ -77,7 +77,7 @@ require_once("inc/views/header.inc.php");
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
           <strong class="text-gray-dark">Clarence CLAUX</strong>
-          <a href="#" class="text-danger">Voire le profil</a>
+          <a href="#" class="text-danger">Voir le profil</a>
         </div>
         <span class="d-block">@bigzgegenergy</span>
       </div>
