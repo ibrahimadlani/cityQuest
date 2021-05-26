@@ -141,7 +141,7 @@ define("TITLE", "Paramètre - ");
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
               <div class="d-flex justify-content-between">
                 <strong class="text-gray-dark">' . $prenom . ' ' . $nom . '</strong>
-                <a href="profil.php?id=' . $id . '" class="text-danger">Voire le profil</a>
+                <a href="profil.php?id=' . $id . '" class="text-danger">Voir le profil</a>
               </div>
               <span class="d-block">' . $bio . '</span>
             </div>

@@ -1,16 +1,3 @@
-<?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-require_once(__DIR__ . '/../../config/db.php');
-require_once(__DIR__ . '/../../lib/pdo_db.php');
-require_once(__DIR__ . '/../../models/Utilisateur.php');
-
-$utilisateur = new Utilisateur();
-?>
-
 <nav class="navbar navbar-expand-lg navbar-light border-bottom">
     <div class="container">
         <a class="navbar-brand d-lg-none d-block" href="#" style="width:258px;"><img src="img/cityQuest.svg" alt="" height="50"></a>
@@ -26,15 +13,9 @@ $utilisateur = new Utilisateur();
                 <li class="nav-item">
                     <a class="nav-link px-3" href="carte.php">C A R T E</a>
                 </li>
-                <?php
-                if ($utilisateur->isProprietaire($_SESSION['id'])) {
-                    echo "
-                    <li class='nav-item'>
-                        <a class='nav-link px-3' href='offres.php'>O F F R E S</a>
-                    </li>
-                    ";
-                }
-                ?>
+                <li class='nav-item'>
+                    <a class='nav-link px-3' href='offres.php'>O F F R E S</a>
+                </li>
             </ul>
             <ul class="navbar-nav d-none d-lg-flex">
 

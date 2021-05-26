@@ -81,7 +81,7 @@ define("TITLE", "");
             <p class="lead text-secondary">En effet, avant d'être une web application, CityQuest est un lieu de partage entre les baroudeures des villes qui aime découvrir des partis inconnues de leur ville ou d'ailleurs.</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                 <button type="button" class="btn btn-danger rounded-pill btn-lg px-4 me-md-2">Nous rejoindre</button>
-                <button type="button" class="btn btn-outline-danger rounded-pill btn-lg px-4">Voire les offres</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill btn-lg px-4">Voir les offres</button>
             </div>
         </div>
     </div>
