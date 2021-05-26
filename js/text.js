@@ -186,7 +186,7 @@ function initMap(ville, type) {
 function recupererAdresse() {
   var json = recuperationJSON(
     "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-      encodeURIComponent(document.getElementById("rechercheGoogleAPI").value) +
+      encodeURIComponent(document.getElementById("rechercheGoogleAPI").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) +
       "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
   );
   console.log(
@@ -257,3 +257,9 @@ $(document).ready(function () {
     return false;
   });
 });
+
+function seDeclarerProprietaire(idLieu) {
+  $.post("http://localhost:8888/cityQuest/inc/ajouterProprietaire.inc.php", {
+    idLieu: idLieu
+  });
+}

@@ -19,17 +19,24 @@
             ?>
             <h2 class="display-6"><?php echo $l["nom"]; ?></h2>
             <p class="lead mb-0"><?php echo $l["description"]; ?></p>
-            <small class="text-warning">
-                <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
-                    <i class="fas fa-star"></i>
-                <?php } ?>
-                <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
-                    <i class="fas fa-star-half-alt"></i>
-                <?php } ?>
-                <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
-                    <i class="far fa-star"></i>
-                <?php } ?>
-            </small>
+            <div class="col-12">
+                <small class="text-warning">
+                    <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
+                        <i class="fas fa-star"></i>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
+                        <i class="fas fa-star-half-alt"></i>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
+                        <i class="far fa-star"></i>
+                    <?php } ?>
+                </small>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn px-3 border-start" onclick="seDeclarerProprietaire(<?php echo $l["id"]; ?>)">
+                    Se déclarer propriétaire
+                </button>
+            </div>
             <hr>
 
             <div class="row mt-4">
@@ -150,7 +157,11 @@
                 <div class="col-3 d-none d-xl-block">
 
                     <div class="d-flex justify-content-between align-items-baseline">
+<<<<<<< HEAD
                         <h5 class="">Horraire</h5><span class="badge bg-success badge-sm">Ouvert</span>
+=======
+                        <h5 class="">Horaires</h5><span class="badge bg-success badge-sm">Ouvert</span> <!--computer-->
+>>>>>>> b98c09464fb0e83b86498a3e89fab6d72a667356
                     </div>
 
                     <p class="text-secondary  mb-0 mt-3">Lundi</p>
