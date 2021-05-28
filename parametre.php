@@ -26,66 +26,74 @@ require_once("inc/views/header.inc.php");
             <p class="lead col-12 col-md-8 col-lg-6 text-center mx-auto text-secondary"><?php echo $_SESSION["bio"]; ?></p>
         </div>
         <div class="col-12 bg-white py-3 ">
-            <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" onclick="showForm()">
+            <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms"">
                 <i class="fas fa-edit" aria-hidden="true"></i> Editer mon profil
             </button>
         </div>
-        <div class="row collapse multi-collapse" id="formParametre">
-            <div class="col-12 col-md-8 col-lg-6 mx-auto my-3 pt-3 border-top">
-                <h3>Edition du profil</h3>
-                <hr>
-                <div class="row mt-2">
-                    <div class="col-6">
-                        <label class="lead" for="">Prénom</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="John" value="<?php echo $_SESSION["prenom"]; ?>">
-                    </div>
-                    <div class="col-6">
-                        <label class="lead" for="">Nom</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="Smith" value="<?php echo $_SESSION["nom"]; ?>">
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-8">
-                        <label class="lead" for="">Adresse mail</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="john.smith@email.com" value="<?php echo $_SESSION["email"]; ?>">
-                    </div>
-                    <div class="col-4">
-                        <label class="lead" for="">Photo de profil</label>
-                        <input class="form-control border-danger" type="file" id="formFile">
-                    </div>
 
-                </div>
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <label class="lead" for="">Bio</label>
-                        <textarea class="form-control border-danger rounded" id="exampleFormControlTextarea1" rows="3" placeholder="Je suis nouveau sur CityQuest !"><?php echo $_SESSION["bio"]; ?></textarea>
+        <div class="row collapse multi-collapse" id="forms">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto my-3 pt-3 border-top">
+
+                <form action="inc/parametre.inc.php" method="POST" enctype="multipart/form-data">
+                    <h3>Edition du profil</h3>
+                    <hr>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label class="lead" for="">Prénom</label>
+                            <input id="prenom" class="form-control border-danger rounded" type="text" placeholder="John" value="<?php echo $_SESSION["prenom"]; ?>">
+                        </div>
+                        <div class="col-6">
+                            <label class="lead" for="">Nom</label>
+                            <input id="nom" class="form-control border-danger rounded" type="text" placeholder="Smith" value="<?php echo $_SESSION["nom"]; ?>">
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" type="submit"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
+                    <div class="row mt-2">
+                        <div class="col-8">
+                            <label class="lead" for="">Adresse mail</label>
+                            <input id="email" class="form-control border-danger rounded" type="text" placeholder="john.smith@email.com" value="<?php echo $_SESSION["email"]; ?>">
+                        </div>
+                        <div class="col-4">
+                            <label class="lead" for="">Photo de profil</label>
+                            <input id="image" class="form-control border-danger" type="file" id="formFile">
+                        </div>
+
                     </div>
-                    <div class="col-6">
-                        <button class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" onclick="hideForm()"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="lead" for="">Bio</label>
+                            <textarea id="bio" class="form-control border-danger rounded" rows="3" placeholder="Je suis nouveau sur CityQuest !"><?php echo $_SESSION["bio"]; ?></textarea>
+                        </div>
                     </div>
-                </div>
-                <h3 class="mt-5">Changement de mot de passe</h3>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="lead" for="">Nouveau mot de passe</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="Prénom" />
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms" type="submit"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <label class="lead" for="">Confirmation du mot de passe</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="Prénom" />
+                </form>
+
+                <form>
+                    <h3 class="mt-5">Changement du mot de passe</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="lead" for="">Nouveau mot de passe</label>
+                            <input class="form-control border-danger rounded" type="password" placeholder="">
+                        </div>
+                        <div class="col-6">
+                            <label class="lead" for="">Confirmation du mot de passe</label>
+                            <input class="form-control border-danger rounded" type="password" placeholder="">
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#formParametre"><i class="fas fa-check" aria-hidden="true"></i> Changer mon mot de passe</button>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms"><i class="fas fa-check" aria-hidden="true"></i> Changer mon mot de passe</button>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
 
@@ -151,17 +159,3 @@ require_once("inc/views/header.inc.php");
 
 <?php require_once("inc/views/footer.inc.php"); ?>
 <?php require_once("inc/views/foot.inc.php"); ?>
-
-<script>
-    function hideForm() {
-        $('#formParametre').hide();
-        $('#editer').text('<i class="fas fa-edit" aria-hidden="true"></i> Editer mon profil');
-        $("#editer").attr("onclick", "showForm()");
-    }
-
-    function showForm() {
-        $('#formParametre').show();
-        $('#editer').text("Fermer");
-        $("#editer").attr("onclick", "hideForm()");
-    }
-</script>
