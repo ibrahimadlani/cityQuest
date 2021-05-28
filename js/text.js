@@ -193,7 +193,7 @@ function recupererAdresse() {
       ) +
       "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
   );
-  $("#resultats").load("inc/views/caseAdresse.inc.php", {
+  $("#fenetreAjouter").load("inc/views/caseAdresse.inc.php", {
     jsonFile: json,
     typeLieu: recuperationJSON(
       "http://localhost:8888/cityQuest/api/typelieu.php"

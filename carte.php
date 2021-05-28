@@ -49,14 +49,14 @@ require_once("inc/views/header.inc.php");
                 <hr>
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                        <input class="rounded-end form-control border-danger rounded-pill" type="text" placeholder="Trouver une adresse" id="rechercheGoogleAPI" />
+                        <input class="rounded-end form-control border-danger rounded-pill" type="text" placeholder="Trouver une adresse" id="rechercheGoogleAPI" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onchange="recupererAdresse()"/>
                     </div>
                     <div class="">
-                        <button type="button" class="rounded-start form-control border-danger btn-danger rounded-pill" onclick="recupererAdresse();"><i class="fas fa-search"></i></button>
+                        <button type="button" class="rounded-start form-control border-danger btn-danger rounded-pill" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onclick="recupererAdresse()"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
 
-                <div id="resultats">
+                <div id="fenetreAjouter" class="collapse multi-collapse">
 
                 </div>
             </form>
