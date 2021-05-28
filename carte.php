@@ -21,6 +21,7 @@ require_once("inc/views/header.inc.php");
 ?>
 
 <div id="map"></div>
+
 <div class="container my-5">
     <div class="row">
         <form class="col-12 col-lg-6">
