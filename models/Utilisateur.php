@@ -113,10 +113,10 @@
       }
     }
 
-    public function getRandomSuggestion(){
-      $this->db->query('SELECT id, nom, prenom, avatar, bio FROM `Utilisateur` ORDER BY RAND ( )  LIMIT 3  ');
-      $results = $this->db->resultset();
-      return $results;
+    public function getRandomProfiles($id){
+        $this->db->query('SELECT id, nom, prenom, avatar, bio FROM `Utilisateur` WHERE `id`!="' . $id . '" ORDER BY RAND ( )  LIMIT 3  ');
+        $results = $this->db->resultset();
+        return $results;
     }
 
     public function isProprietaire($id): bool {

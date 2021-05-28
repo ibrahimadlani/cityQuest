@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("inc/views/head.inc.php");
 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
 define("TITLE", "Inscription - ");
 
+require_once("inc/views/head.inc.php");
 ?>
 <form action="inc/inscription.inc.php" method="post" class="form-signin text-center">
   <a href="index.php"><img class="mb-1" src="img/cityQuest.svg" alt="" height="72"></a>

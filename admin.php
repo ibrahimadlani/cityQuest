@@ -1,7 +1,8 @@
 <?php
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Admin Panel -  ");
-require_once("inc/head.inc.php");
+
+require_once("inc/views/head.inc.php");
 ?>
 
 <main>

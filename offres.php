@@ -1,10 +1,11 @@
 <?php
 session_start();
-require_once("inc/views/head.inc.php");
-require_once("inc/views/header.inc.php");
 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/offres.css'>");
 define("TITLE", "Offres - ");
+
+require_once("inc/views/head.inc.php");
+require_once("inc/views/header.inc.php");
 ?>
 <main class="container container-main py-3 my-5">
   <div class="text-center mb-5">

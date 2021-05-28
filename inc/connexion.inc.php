@@ -5,7 +5,6 @@ require_once('../lib/pdo_db.php');
 require_once('../models/Utilisateur.php');
 $user = new Utilisateur();
 
-
 // Si soit l'adresse ou le mdp n'est pas infromé, retour à la page de connexion
 if (!(isset($_POST['email']) && isset($_POST['mdp']))) {
     header('Location: ../connexion.php');

@@ -3,11 +3,11 @@ session_start();
 
 if (!isset($_SESSION["email"])) { header('Location: connexion.php?error=connexionRequise'); exit(); }
 
-require_once("inc/views/head.inc.php");
-require_once("inc/views/header.inc.php");
-
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", $_SESSION["prenom"] . " " . $_SESSION["nom"] . " - ");
+
+require_once("inc/views/head.inc.php");
+require_once("inc/views/header.inc.php");
 ?>
 
 <main class="container">

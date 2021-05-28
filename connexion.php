@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("inc/views/head.inc.php");
 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
 define("TITLE", "Connexion - ");
 
+require_once("inc/views/head.inc.php");
 ?>
 
 <form action="inc/connexion.inc.php" method="post" class="form-signin text-center">

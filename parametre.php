@@ -3,18 +3,18 @@ session_start();
 
 if (!isset($_SESSION["email"])) {header('Location: connexion.php?error=connexionRequise');exit();}
 
-require_once("inc/views/head.inc.php");
-require_once("inc/views/header.inc.php");
 require_once('config/db.php');
 require_once('lib/pdo_db.php');
 require_once('models/Utilisateur.php');
+
 $utilisateur = new Utilisateur();
-$utilisateurs = $utilisateur->getRandomSuggestion();
+$utilisateurs = $utilisateur->getRandomProfiles($_SESSION["id"]);
 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
 define("TITLE", "Paramètre - ");
-require_once("inc/head.inc.php");
-require_once("inc/header.inc.php");
+
+require_once("inc/views/head.inc.php");
+require_once("inc/views/header.inc.php");
 ?>
 
 <main class="container">
@@ -26,7 +26,9 @@ require_once("inc/header.inc.php");
             <p class="lead col-12 col-md-8 col-lg-6 text-center mx-auto text-secondary"><?php echo $_SESSION["bio"]; ?></p>
         </div>
         <div class="col-12 bg-white py-3 ">
-            <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" onclick="showForm()"><i class="fas fa-edit" aria-hidden="true"></i> Editer mon profil</button>
+            <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" onclick="showForm()">
+                <i class="fas fa-edit" aria-hidden="true"></i> Editer mon profil
+            </button>
         </div>
         <div class="row collapse multi-collapse" id="formParametre">
             <div class="col-12 col-md-8 col-lg-6 mx-auto my-3 pt-3 border-top">
@@ -35,17 +37,17 @@ require_once("inc/header.inc.php");
                 <div class="row mt-2">
                     <div class="col-6">
                         <label class="lead" for="">Prénom</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="Prénom" />
+                        <input class="form-control border-danger rounded" type="text" placeholder="John" value="<?php echo $_SESSION["prenom"]; ?>">
                     </div>
                     <div class="col-6">
                         <label class="lead" for="">Nom</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="Prénom" />
+                        <input class="form-control border-danger rounded" type="text" placeholder="Smith" value="<?php echo $_SESSION["nom"]; ?>">
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-8">
                         <label class="lead" for="">Adresse mail</label>
-                        <input class="form-control border-danger rounded" type="text" placeholder="Prénom" />
+                        <input class="form-control border-danger rounded" type="text" placeholder="john.smith@email.com" value="<?php echo $_SESSION["email"]; ?>">
                     </div>
                     <div class="col-4">
                         <label class="lead" for="">Photo de profil</label>
@@ -56,15 +58,15 @@ require_once("inc/header.inc.php");
                 <div class="row mt-2">
                     <div class="col-12">
                         <label class="lead" for="">Bio</label>
-                        <textarea class="form-control border-danger rounded" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control border-danger rounded" id="exampleFormControlTextarea1" rows="3" placeholder="Je suis nouveau sur CityQuest !"><?php echo $_SESSION["bio"]; ?></textarea>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#formParametre"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
+                        <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" type="submit"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
                     </div>
                     <div class="col-6">
-                        <button class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#formParametre"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
+                        <button class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" onclick="hideForm()"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
                     </div>
                 </div>
                 <h3 class="mt-5">Changement de mot de passe</h3>
@@ -117,56 +119,49 @@ require_once("inc/header.inc.php");
 
     <div class="my-3 p-3 bg-body rounded border row">
         <h6 class="border-bottom pb-2 mb-0">Suggestions de profils</h6>
-        <div class="d-flex text-muted pt-3">
-        <img class="me-3 rounded" src="img/avatar/8BF161B6-A494-4F9A-B4FE-99D590B8ADF5_1_201_a.jpeg" alt="" height="32">
-            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                <div class="d-flex justify-content-between">
-                    <strong class="text-gray-dark">Alaaedin ALMAJO</strong>
-                    <a href="#" class="text-danger">Voir le profil</a>
+
+        <?php
+        foreach ($utilisateurs as $key => $user) {
+            $prenom = $user->prenom;
+            $nom = $user->nom;
+            $bio = $user->bio;
+            $avatar = $user->avatar;
+            $id = $user->id;
+
+            echo '
+            <div class="d-flex text-muted pt-3">
+                <img class="me-3 rounded" src="img/avatar/' . $avatar . '" alt="" height="32">
+                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                    <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">' . $prenom . ' ' . $nom . '</strong>
+                        <a href="profil.php?id=' . $id . '" class="text-danger">Voir le profil</a>
+                    </div>
+                    <span class="d-block">' . $bio . '</span>
                 </div>
-                <span class="d-block">@imigreySangPapiey</span>
             </div>
-        </div>
-        <div class="d-flex text-muted pt-3">
-            <img class="me-3 rounded" src="img/avatar/8BF161B6-A494-4F9A-B4FE-99D590B8ADF5_1_201_a.jpeg" alt="" height="32">
-            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                <div class="d-flex justify-content-between">
-                    <strong class="text-gray-dark">Alcide FAUCHERON</strong>
-                    <a href="#" class="text-danger">Voir le profil</a>
-                </div>
-                <span class="d-block">@bonwafwaf08150</span>
-            </div>
-        </div>
-        <div class="d-flex text-muted pt-3">
-            <img class="me-3 rounded" src="img/avatar/8BF161B6-A494-4F9A-B4FE-99D590B8ADF5_1_201_a.jpeg" alt="" height="32">
-            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                <div class="d-flex justify-content-between">
-                    <strong class="text-gray-dark">Clarence CLAUX</strong>
-                    <a href="#" class="text-danger">Voir le profil</a>
-                </div>
-                <span class="d-block">@bigzgegenergy</span>
-            </div>
-        </div>
-        <small class="d-block text-end mt-3">
+            ';
+        }
+        ?>
+
+        <!--<small class="d-block text-end mt-3">
             <a href="#" class="text-danger">Raffraichir les suggestions</a>
-        </small>
+        </small>-->
     </div>
 </main>
 
 <?php require_once("inc/views/footer.inc.php"); ?>
 <?php require_once("inc/views/foot.inc.php"); ?>
 
-
 <script>
-  function hideForm() {
-    $('#formParametre').hide();
-    $('#editer').text("<i class='fas fa-edit'></i> Editer mon profil");
-    $("#editer").attr("onclick", "showForm()");
-  }
+    function hideForm() {
+        $('#formParametre').hide();
+        $('#editer').text('<i class="fas fa-edit" aria-hidden="true"></i> Editer mon profil');
+        $("#editer").attr("onclick", "showForm()");
+    }
 
-  function showForm() {
-    $('#formParametre').show();
-    $('#editer').text("Fermer");
-    $("#editer").attr("onclick", "hideForm()");
-  }
+    function showForm() {
+        $('#formParametre').show();
+        $('#editer').text("Fermer");
+        $("#editer").attr("onclick", "hideForm()");
+    }
 </script>
