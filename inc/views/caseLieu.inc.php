@@ -3,12 +3,10 @@
 <?php foreach ($_POST["jsonFile"] as $l) { ?>
     <div class="row">
         <?php
-
         $note = intval($l["note"]);
         $etoilesPleines = ($note - ($note % 2)) / 2;
         $demiEtoile = $note % 2;
         $pasetoile = 5 - $etoilesPleines - $demiEtoile;
-
         ?>
         <div class="my-3 p-4  border rounded" id="<?php echo $l["id"]; ?>">
             <?php if ($l["promotion"] == "2") {
@@ -157,11 +155,7 @@
                 <div class="col-3 d-none d-xl-block">
 
                     <div class="d-flex justify-content-between align-items-baseline">
-<<<<<<< HEAD
-                        <h5 class="">Horraire</h5><span class="badge bg-success badge-sm">Ouvert</span>
-=======
                         <h5 class="">Horaires</h5><span class="badge bg-success badge-sm">Ouvert</span> <!--computer-->
->>>>>>> b98c09464fb0e83b86498a3e89fab6d72a667356
                     </div>
 
                     <p class="text-secondary  mb-0 mt-3">Lundi</p>

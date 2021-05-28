@@ -26,7 +26,7 @@ require_once("inc/views/header.inc.php");
             <p class="lead col-12 col-md-8 col-lg-6 text-center mx-auto text-secondary"><?php echo $_SESSION["bio"]; ?></p>
         </div>
         <div class="col-12 bg-white py-3 ">
-            <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms"">
+            <button id="editer" class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms"">
                 <i class="fas fa-edit" aria-hidden="true"></i> Editer mon profil
             </button>
         </div>
@@ -66,10 +66,10 @@ require_once("inc/views/header.inc.php");
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms" type="submit"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
+                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms" type="submit"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
                         </div>
                         <div class="col-6">
-                            <button class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
+                            <button class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
                         </div>
                     </div>
                 </form>
@@ -89,7 +89,7 @@ require_once("inc/views/header.inc.php");
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" href="#forms"><i class="fas fa-check" aria-hidden="true"></i> Changer mon mot de passe</button>
+                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms"><i class="fas fa-check" aria-hidden="true"></i> Changer mon mot de passe</button>
                         </div>
                     </div>
                 </form>
