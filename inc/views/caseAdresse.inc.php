@@ -49,7 +49,24 @@ foreach ($_POST["jsonFile"]["results"][0]["address_components"] as $ac) {
         </div>
         <hr>
 
-        <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onclick="addLieuBDD(document.getElementById('nom').value,document.getElementById('desc').value,document.getElementById('pres').value,'<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,parseInt(document.getElementById('ville2').value),parseInt(document.getElementById('typeLieu').value),<?php echo $_SESSION['id']; ?>);">Ajouter un lieu</button>
+        <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="addVilleBDD(
+            <?php echo $_POST['jsonFile']['results'][0]['address_components'][0]['long_name']; ?>,
+            <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
+            <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>);">
+            Ajouter une ville
+        </button>
+        <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onclick="addLieuBDD(
+            document.getElementById('nom').value,
+            document.getElementById('desc').value,
+            document.getElementById('pres').value,
+            <?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>,
+            <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
+            <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
+            parseInt(document.getElementById('ville2').value),
+            parseInt(document.getElementById('typeLieu').value),
+            <?php echo $_SESSION['id']; ?>);">
+            Ajouter un lieu
+        </button>
         <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onclick="console.log(document.getElementById('nom').value,document.getElementById('desc').value,document.getElementById('pres').value,'<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,<?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,parseInt(document.getElementById('ville').value),parseInt(document.getElementById('typeLieu').value),<?php echo $_SESSION['id']; ?>);">Ajouter un evenement</button>
     </div>
 </div>

@@ -227,6 +227,15 @@ function addLieuBDD(
   initMap();
 }
 
+function addVilleBDD(nom, latitude, longitude) {
+  $.post("http://localhost:8888/cityQuest/inc/ajouterVille.inc.php", {
+    nom: nom,
+    latitude: latitude,
+    longitude: longitude
+  });
+  initMap();
+}
+
 $(document).ready(function () {
   $(window).scroll(function () {
     if ($(this).scrollTop() > 50) {

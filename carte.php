@@ -45,11 +45,22 @@ require_once("inc/views/header.inc.php");
                 </div>
             </form>
             <form class="col-lg-6 col-12 mt-lg-0 mt-3">
-                <h3 class="display-6"><i class="fas fa-map-pin text-danger"></i> Ajouter</h3>
+                <h3 class="display-6"><i class="fas fa-map-pin text-danger"></i> Ajouter
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <input type="radio" class="btn-check" name="options" id="checkAjouterVille" autocomplete="off" checked>
+                        <label class="btn btn-secondary btn-danger" for="checkAjouterVille">Ville</label>
+
+                        <input type="radio" class="btn-check" name="options" id="checkAjouterLieu" autocomplete="off">
+                        <label class="btn btn-secondary btn-danger" for="checkAjouterLieu">Lieu</label>
+
+                        <input type="radio" class="btn-check" name="options" id="checkAjouterEvenement" autocomplete="off">
+                        <label class="btn btn-secondary btn-danger" for="checkAjouterEvenement">Evenement</label>
+                    </div>
+                </h3>
                 <hr>
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                        <input class="rounded-end form-control border-danger rounded-pill" type="text" placeholder="Trouver une adresse" id="rechercheGoogleAPI" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onchange="recupererAdresse()"/>
+                        <input class="rounded-end form-control border-danger rounded-pill" type="text" placeholder="Trouver une adresse" id="rechercheGoogleAPI"/>
                     </div>
                     <div class="">
                         <button type="button" class="rounded-start form-control border-danger btn-danger rounded-pill" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter" onclick="recupererAdresse()"><i class="fas fa-search"></i></button>
