@@ -77,6 +77,13 @@ class Lieu
         }
     }
 
+    /*public function getLieux() {
+        $this->db->query('SELECT `nom`, `description`, `presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `text`, `note`, `date`, AVG(`note`) FROM `Lieu` JOIN `Avis` ON (`Lieu`.`id` = `Avis`.`idPoint` AND `Avis`.`typePoint` = 1) JOIN `Utilisateur` ON (`Avis`.`auteur` = `Utilisateur`.`id`) GROUP BY `Lieu`.`id` ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC, `Avis`.`date` DESC');
+        $results = $this->db->resultset();
+        return $results;
+    }*/
+
+
   /*public function setNote($idLieu)) {
       $somme = 0;
       $effectifs = 0;

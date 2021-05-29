@@ -7,10 +7,12 @@ require_once('config/db.php');
 require_once('lib/pdo_db.php');
 require_once('models/Ville.php');
 require_once('models/TypeLieu.php');
+require_once('models/Avis.php');
 
 $ville = new Ville();
-$villes = $ville->getVilles();
 $typelieu = new TypeLieu();
+
+$villes = $ville->getVilles();
 $typeslieu = $typelieu->getTypesLieu();
 
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'>");
