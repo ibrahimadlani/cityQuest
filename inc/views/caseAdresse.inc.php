@@ -1,5 +1,20 @@
 <?php
 session_start();
+
+//Cherche la ville associée à l'adresse
+$locality = false;
+$political = false;
+foreach ($_POST['jsonFile']['results'][0]['address_components'] as $address_component) {
+    foreach ($address_component['types'] as $component_type) {
+        if ($component_type == 'locality') { $locality = true; }
+        if ($component_type == 'political') { $political = true; }
+        if ($locality && $political) { break; }
+    }
+    if ($locality && $political) {
+        $city = $address_component['long_name'];
+        break;
+    }
+}
 ?>
 <div class="card mb-4 rounded-3 shadow-sm mt-3">
     <div class="card-header py-3 bg-danger text-white">
@@ -41,52 +56,31 @@ session_start();
         </div>
         <hr>
 
-        <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="
-            <?php
-            //Cherche la ville associée à l'adresse
-            $locality = false;
-            $political = false;
-            foreach ($_POST['jsonFile']['results'][0]['address_components'] as $address_component) {
-                foreach ($address_component['types'] as $component_type) {
-                    if ($component_type == 'locality') { $locality = true; }
-                    if ($component_type == 'political') { $political = true; }
-                    if ($locality && $political) { break; }
-                }
-                if ($locality && $political) {
-                    $city = $address_component['long_name'];
-                    break;
-                }
-            }
-            ?>
-
-            const idVille = addVilleIfNotExistsBDD('<?php echo $city; ?>');
-
-            if (true) {
-                addLieuBDD(
-                    document.getElementById('nom').value,
-                    document.getElementById('description').value,
-                    document.getElementById('presentation').value,
-                    '<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',
-                    <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
-                    <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
-                    idVille,
-                    parseInt(document.getElementById('typeLieu').value),
-                    <?php echo $_SESSION['id']; ?>
-                )
-            }
-        ">
-            Ajouter
-        </button>
+        <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="createLieu()" data-bs-toggle="collapse" data-bs-target="#fenetreAjouter">Ajouter</button>
 
     </div>
 </div>
 
 <script>
-    function radioValue() {
-        const options = document.getElementsByName('optionsAjouter');
-        for(let option in options) {
-            if(option.checked)
-                return option.value;
+    function getRadioValue() {
+        return $('input[name="optionsAjouter"]:checked').val();
+    }
+
+    function createLieu() {
+        const idVille = addVilleIfNotExistsBDD('<?php echo $city; ?>');
+
+        if (getRadioValue() === 'lieu') {
+            addLieuBDD(
+                document.getElementById('nom').value,
+                document.getElementById('description').value,
+                document.getElementById('presentation').value,
+                '<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',
+                <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
+                <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
+                idVille,
+                parseInt(document.getElementById('typeLieu').value),
+                <?php echo $_SESSION['id']; ?>
+            )
         }
     }
 </script>
