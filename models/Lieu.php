@@ -22,11 +22,8 @@ class Lieu
     $this->db->bind(':typeLieu', $data['typeLieu']);
     $this->db->bind(':auteur', $data['auteur']);
 
-    if ($this->db->execute()) {
-      return true;
-    } else {
-      return false;
-    }
+    if ($this->db->execute()) { return $this->db->lastInsertId();}
+    else { return false; }
   }
 
   public function getLieux()

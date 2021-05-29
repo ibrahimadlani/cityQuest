@@ -45,18 +45,7 @@ require_once("inc/views/header.inc.php");
                 </div>
             </form>
             <form class="col-lg-6 col-12 mt-lg-0 mt-3">
-                <h3 class="display-6"><i class="fas fa-map-pin text-danger"></i> Ajouter
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <input type="radio" class="btn-check" name="options" id="checkAjouterVille" autocomplete="off" checked>
-                        <label class="btn btn-secondary btn-danger" for="checkAjouterVille">Ville</label>
-
-                        <input type="radio" class="btn-check" name="options" id="checkAjouterLieu" autocomplete="off">
-                        <label class="btn btn-secondary btn-danger" for="checkAjouterLieu">Lieu</label>
-
-                        <input type="radio" class="btn-check" name="options" id="checkAjouterEvenement" autocomplete="off">
-                        <label class="btn btn-secondary btn-danger" for="checkAjouterEvenement">Evenement</label>
-                    </div>
-                </h3>
+                <h3 class="display-6"><i class="fas fa-map-pin text-danger"></i> Ajouter</h3>
                 <hr>
                 <div class="d-flex">
                     <div class="flex-grow-1">
@@ -67,9 +56,8 @@ require_once("inc/views/header.inc.php");
                     </div>
                 </div>
 
-                <div id="fenetreAjouter" class="collapse multi-collapse">
+                <div id="fenetreAjouter" class="collapse multi-collapse"></div>
 
-                </div>
             </form>
         </div>
         <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>

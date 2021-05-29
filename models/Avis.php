@@ -18,11 +18,8 @@ class Avis
     $this->db->bind(':idPoint', $data['idPoint']);
     $this->db->bind(':typePoint', $data['typePoint']);
 
-    if ($this->db->execute()) {
-      return true;
-    } else {
-      return false;
-    }
+    if ($this->db->execute()) { return $this->db->lastInsertId();}
+    else { return false; }
   }
 
   public function getAvis()

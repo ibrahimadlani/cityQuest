@@ -16,7 +16,8 @@ class Utilisateur {
       $this->db->bind(':groupe', $data['groupe']);
       $this->db->bind(':mdp', $data['mdp']);
       $this->db->bind(':token', $data['token']);
-      if($this->db->execute()) { return true; }
+
+      if($this->db->execute()) { return $this->db->lastInsertId(); }
       else { return false; }
 
     }

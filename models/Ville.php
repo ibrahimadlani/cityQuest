@@ -11,11 +11,8 @@ class Ville {
         $this->db->bind(':lat', $data['lat']);
         $this->db->bind(':lng', $data['lng']);
 
-        if ($this->db->execute()) {
-          return true;
-        } else {
-          return false;
-        }
+        if ($this->db->execute()) { return $this->db->lastInsertId();}
+        else { return false; }
     }
 
     public function getVilles() {
@@ -36,12 +33,10 @@ class Ville {
         return $results;
     }
 
-    public function exists($nom): bool {
-        console.log('SELECT * FROM `Ville` WHERE `ville`="' . $nom . '"');
-        $this->db->query('SELECT * FROM `Ville` WHERE `ville`="' . $nom . '"');
+    public function getVillesUsingNom($nom) {
+        $this->db->query('SELECT * FROM `Ville` WHERE `ville` = "' . $nom . '"');
         $results = $this->db->resultset();
-        if (sizeof($results) > 0) { return true; }
-        else { return false; }
+        return $results;
     }
 }
 

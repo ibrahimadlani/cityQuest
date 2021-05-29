@@ -181,8 +181,7 @@ function initMap(ville, type) {
   afficherPoints(ville, type, map);
 }
 
-// Initialise (rafraichît) la map
-function recupererAdresse() {
+function recupererAdresse() { //Exporter la récupération des infos google map dans une autre fonction pour pouvoir réutiliser
   var json = recuperationJSON(
     "https://maps.googleapis.com/maps/api/geocode/json?address=" +
       encodeURIComponent(
@@ -195,31 +194,30 @@ function recupererAdresse() {
   );
   $("#fenetreAjouter").load("inc/views/caseAdresse.inc.php", {
     jsonFile: json,
-    typeLieu: recuperationJSON(
+    typesLieu: recuperationJSON(
       "http://localhost:8888/cityQuest/api/typelieu.php"
-    ),
-    ville: recuperationJSON("http://localhost:8888/cityQuest/api/ville.php"),
+    )
   });
 }
 
 function addLieuBDD(
   nom,
-  desc,
-  pres,
+  description,
+  presentation,
   adresse,
-  lat,
-  lng,
+  latitude,
+  longitude,
   ville,
   typeLieu,
   auteur
 ) {
   $.post("http://localhost:8888/cityQuest/inc/ajouterLieu.inc.php", {
     nom: nom,
-    desc: desc,
-    pres: pres,
+    description: description,
+    presentation: presentation,
     adresse: adresse,
-    lat: lat,
-    lng: lng,
+    latitude: latitude,
+    longitude: longitude,
     ville: ville,
     typeLieu: typeLieu,
     auteur: auteur,
@@ -227,13 +225,17 @@ function addLieuBDD(
   initMap();
 }
 
-function addVilleBDD(nom, latitude, longitude) {
-  $.post("http://localhost:8888/cityQuest/inc/ajouterVille.inc.php", {
-    nom: nom,
-    latitude: latitude,
-    longitude: longitude
-  });
-  initMap();
+function addVilleIfNotExistsBDD(nom) { //Rajouter une vérification par le place_id google map qu'on enregistrerais dans la bdd
+  $.post(
+      "http://localhost:8888/cityQuest/inc/ajouterVilleSiNonExistante.inc.php",
+      {
+        nom: nom
+      },
+      function (data) {
+        return data;
+      }
+  );
+  /*initMap();*/ //Pas d'initialisation de la map puisque la ville n'est pas validée donc n'apparaitra pas
 }
 
 $(document).ready(function () {
