@@ -10,7 +10,7 @@ class Lieu
 
   public function addLieu($data)
   {
-    $this->db->query('INSERT INTO `Lieu`(`nom`, `description`,`presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`) VALUES (:nom, :description, :presentation, :adresse, :lat, :lng, :ville, :typeLieu, :auteur)');
+    $this->db->query('INSERT INTO `Lieu`(`nom`, `description`, `presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`, `etat`) VALUES (:nom, :description, :presentation, :adresse, :lat, :lng, :ville, :typeLieu, :auteur, 1)');
 
     $this->db->bind(':nom', $data['nom']);
     $this->db->bind(':description', $data['description']);
@@ -26,55 +26,129 @@ class Lieu
     else { return false; }
   }
 
-  public function getLieux()
-  {
-    $this->db->query('SELECT * FROM `Lieu` ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
-    $results = $this->db->resultset();
-    return $results;
+    public function getLieux() {
+        $query =
+            'SELECT ' .
+                'Lieu.id, ' .
+                'Lieu.nom, ' .
+                'Lieu.description, ' .
+                'Lieu.presentation, ' .
+                'Lieu.adresse, ' .
+                'Lieu.lat, ' .
+                'Lieu.lng, ' .
+                'Lieu.ville, ' .
+                'Lieu.typeLieu, ' .
+                'Lieu.promotion, ' .
+                'IFNULL(AVG(Avis.note),0) as note ' .
+            'FROM Lieu ' .
+                'LEFT JOIN Avis ' .
+                    'ON Lieu.id = Avis.idPoint '.
+                    'AND Avis.typePoint = 1 ' .
+            'WHERE Lieu.etat = 2 ' .
+            'GROUP BY Lieu.id ' .
+            'ORDER BY ' .
+                'Lieu.promotion DESC, ' .
+                'note DESC';
+        $this->db->query($query);
+        $results = $this->db->resultset();
+        return $results;
+    }
+
+
+  public function getLieuxByVille($idVille) {
+      $query =
+          'SELECT ' .
+              'Lieu.id, ' .
+              'Lieu.nom, ' .
+              'Lieu.description, ' .
+              'Lieu.presentation, ' .
+              'Lieu.adresse, ' .
+              'Lieu.lat, ' .
+              'Lieu.lng, ' .
+              'Lieu.ville, ' .
+              'Lieu.typeLieu, ' .
+              'Lieu.promotion, ' .
+              'IFNULL(AVG(Avis.note),0) as note ' .
+          'FROM Lieu ' .
+              'LEFT JOIN Avis ' .
+                  'ON Lieu.id = Avis.idPoint '.
+                  'AND Avis.typePoint = 1 ' .
+          'WHERE ' .
+          'Lieu.etat = 2 ' .
+          'AND Lieu.ville = ' . $idVille . ' ' .
+          'GROUP BY Lieu.id ' .
+          'ORDER BY ' .
+              'Lieu.promotion DESC, ' .
+              'note DESC';
+      $this->db->query($query);
+      $results = $this->db->resultset();
+      return $results;
   }
 
-
-  public function getLieuxByVille($idVille)
-  {
-    $this->db->query('SELECT * FROM `Lieu` WHERE `ville` = "' . $idVille . '"  ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
-    $results = $this->db->resultset();
-    return $results;
+  public function getLieuxByType($idType) {
+      $query =
+          'SELECT ' .
+              'Lieu.id, ' .
+              'Lieu.nom, ' .
+              'Lieu.description, ' .
+              'Lieu.presentation, ' .
+              'Lieu.adresse, ' .
+              'Lieu.lat, ' .
+              'Lieu.lng, ' .
+              'Lieu.ville, ' .
+              'Lieu.typeLieu, ' .
+              'Lieu.promotion, ' .
+              'IFNULL(AVG(Avis.note),0) as note ' .
+          'FROM Lieu ' .
+              'LEFT JOIN Avis ' .
+                  'ON Lieu.id = Avis.idPoint '.
+                  'AND Avis.typePoint = 1 ' .
+          'WHERE ' .
+              'Lieu.etat = 2 ' .
+              'AND Lieu.typeLieu = ' . $idType . ' ' .
+          'GROUP BY Lieu.id ' .
+          'ORDER BY ' .
+              'Lieu.promotion DESC, ' .
+              'note DESC';
+      $this->db->query($query);
+      $results = $this->db->resultset();
+      return $results;
   }
 
-  public function getLieuxByAuteur($auteur)
-  {
-    $this->db->query('SELECT * FROM `Lieu` WHERE `auteur` = "' . $auteur . '" ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
-    $results = $this->db->resultset();
-    return $results;
-  }
-
-  public function getLieuxByPromotion($promotion)
-  {
-    $this->db->query('SELECT * FROM `Lieu` WHERE `promotion` = "' . $promotion . '" ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
-    $results = $this->db->resultset();
-    return $results;
-  }
-
-  public function getLieuxByType($idType)
-  {
-    $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '"  ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
-    $results = $this->db->resultset();
-    return $results;
-  }
-
-  public function getLieuxByVilleAndType($idType, $idVille)
-  {
-    $this->db->query('SELECT * FROM `Lieu` WHERE `typeLieu` = "' . $idType . '" AND `ville` = "' . $idVille . '"  ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC');
-    $results = $this->db->resultset();
-    return $results;
+  public function getLieuxByVilleAndType($idType, $idVille) {
+      $query =
+          'SELECT ' .
+              'Lieu.nom, ' .
+              'Lieu.description, ' .
+              'Lieu.presentation, ' .
+              'Lieu.adresse, ' .
+              'Lieu.lat, ' .
+              'Lieu.lng, ' .
+              'Lieu.ville, ' .
+              'Lieu.typeLieu, ' .
+              'Lieu.promotion, ' .
+              'IFNULL(AVG(Avis.note),0) as note ' .
+          'FROM Lieu ' .
+              'LEFT JOIN Avis ' .
+                  'ON Lieu.id = Avis.idPoint '.
+                  'AND Avis.typePoint = 1 ' .
+          'WHERE ' .
+              'Lieu.etat = 2 ' .
+              'AND Lieu.ville = ' . $idVille . ' ' .
+              'AND Lieu.typeLieu = ' . $idType . ' ' .
+          'GROUP BY Lieu.id ' .
+          'ORDER BY ' .
+              'Lieu.promotion DESC, ' .
+              'note DESC';
+      $this->db->query($query);
+      $results = $this->db->resultset();
+      return $results;
   }
 
     public function setProprietaire($idUtilisateur, $idLieu) {
         $this->db->query('INSERT INTO `Proprietaire`(`utilisateur`, `lieu`, `etat`) VALUES (' . $idUtilisateur . ', ' . $idLieu . ', 1)');
         $a = $this->db->execute();
-        if ($a){
-            return true;
-        }
+        if ($a) {return true;}
     }
 
     /*public function getLieux() {

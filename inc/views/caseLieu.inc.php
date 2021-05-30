@@ -11,11 +11,8 @@ echo "<script>console.log('loadResults reload');</script>";
 
 foreach ($_POST["jsonFile"] as $l) {
 
-    $note = intval($avis->getNoteLieu($l["id"]));
-    if ($note == null) { $note = 0; }
-
-    $etoilesPleines = ($note - ($note % 2)) / 2;
-    $demiEtoile = $note % 2;
+    $etoilesPleines = ($l['note'] - ($l['note'] % 2)) / 2;
+    $demiEtoile = $l['note'] % 2;
     $pasetoile = 5 - $etoilesPleines - $demiEtoile;
 ?>
     <div class="row">

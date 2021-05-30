@@ -32,7 +32,7 @@ class Avis {
   }
 
     public function getNoteLieu($idLieu) {
-        $this->db->query('SELECT AVG(`note`) FROM `Avis` WHERE `idPoint` = ' . $idLieu . ' AND `typePoint` = 1 GROUP BY `idPoint`');
+        $this->db->query('SELECT IFNULL(AVG(`note`),0) FROM `Avis` WHERE `idPoint` = ' . $idLieu . ' AND `typePoint` = 1 GROUP BY `idPoint`');
         $result = $this->db->resultset();
         return $result;
     }
@@ -44,7 +44,7 @@ class Avis {
   }
 
     public function getNoteEvenement($idEvenement) {
-        $this->db->query('SELECT AVG(`note`) FROM `Avis` WHERE `idPoint` =' . $idEvenement . ' AND  `typePoint` = 2');
+        $this->db->query('SELECT IFNULL(AVG(`note`),0) FROM `Avis` WHERE `idPoint` =' . $idEvenement . ' AND  `typePoint` = 2');
         $results = $this->db->resultset();
         return $results;
     }
