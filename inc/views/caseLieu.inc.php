@@ -1,18 +1,24 @@
 <?php
+session_start();
+require_once('../../config/db.php');
+require_once('../../lib/pdo_db.php');
+include_once('../../models/Avis.php');
 $avis = new Avis();
 ?>
 
-<h3 class="display-6"><i class="fas fa-map-marked-alt text-danger"></i> Resultat</h3>
-<hr>
-<?php foreach ($_POST["jsonFile"] as $l) { ?>
+<?php
+echo "<script>console.log('loadResults reload');</script>";
+
+foreach ($_POST["jsonFile"] as $l) {
+
+    $note = intval($avis->getNoteLieu($l["id"]));
+    if ($note == null) { $note = 0; }
+
+    $etoilesPleines = ($note - ($note % 2)) / 2;
+    $demiEtoile = $note % 2;
+    $pasetoile = 5 - $etoilesPleines - $demiEtoile;
+?>
     <div class="row">
-        <?php
-        $note = intval($avis->getNoteLieu($l['id']));
-        if ($note == null) { $note = 0; }
-        $etoilesPleines = ($note - ($note % 2)) / 2;
-        $demiEtoile = $note % 2;
-        $pasetoile = 5 - $etoilesPleines - $demiEtoile;
-        ?>
         <div class="my-3 p-4  border rounded" id="<?php echo $l["id"]; ?>">
             <?php if ($l["promotion"] == "2") {
                 echo "<span class='badge bg-warning mb-3'><i class='fas fa-certificate'></i> Contenu Sponsorisé</span>";
@@ -51,33 +57,34 @@ $avis = new Avis();
                         <div class="col-12 col-lg-8 col-xl-12">
 
                             <h5 class="mt-5">Avis des utilisateurs</h5>
-                            <?php foreach ($avis->getAvisLieu($l['id']) as $av) ?>
-                            <div class="row p-2">
-                                <div class="d-flex pt-3 border-bottom rounded border p-3">
-                                    <img class="me-3" src="img/no-racism.svg" alt="" height="32">
-                                    <p class=" mb-0 small lh-sm text-dark">
-                                        <strong class="d-block text-secondary"><?php echo $av->prenom . ' ' . $av->nom; ?></strong>
-                                        <small class="text-warning">
-                                            <?php
-                                            $note = intval($av->note);
-                                            $etoilesPleines = ($note - ($note % 2)) / 2;
-                                            $demiEtoile = $note % 2;
-                                            $pasetoile = 5 - $etoilesPleines - $demiEtoile;
-                                            ?>
-                                            <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
-                                                <i class="fas fa-star"></i>
-                                            <?php } ?>
-                                            <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            <?php } ?>
-                                            <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
-                                                <i class="far fa-star"></i>
-                                            <?php } ?>
-                                        </small><br>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid unde libero, tempore nisi architecto magni delectus.</strong>
-                                    </p>
+                            <?php foreach ($avis->getAvisLieu($l["id"]) as $av) { ?>
+                                <div class="row p-2">
+                                    <div class="d-flex pt-3 border-bottom rounded border p-3">
+                                        <img class="me-3" src="img/no-racism.svg" alt="" height="32">
+                                        <p class=" mb-0 small lh-sm text-dark">
+                                            <strong class="d-block text-secondary"><?php echo $av->prenom . ' ' . $av->nom; ?></strong>
+                                            <small class="text-warning">
+                                                <?php
+                                                $note = intval($av->note);
+                                                $etoilesPleines = ($note - ($note % 2)) / 2;
+                                                $demiEtoile = $note % 2;
+                                                $pasetoile = 5 - $etoilesPleines - $demiEtoile;
+                                                ?>
+                                                <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
+                                                    <i class="fas fa-star"></i>
+                                                <?php } ?>
+                                                <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                <?php } ?>
+                                                <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
+                                                    <i class="far fa-star"></i>
+                                                <?php } ?>
+                                            </small><br>
+                                            <?php echo $av->text; ?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
 
                             <div class="row p-2">
                                 <div class="d-flex pt-3 rounded  p-3">
@@ -191,5 +198,4 @@ $avis = new Avis();
             </div>
         </div>
     </div>
-
 <?php } ?>
