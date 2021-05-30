@@ -31,7 +31,7 @@ require_once("inc/views/header.inc.php");
                 <hr>
                 <div class="row">
                     <div class="col-6">
-                        <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="ville" onchange="initMap(); loadResults()">
+                        <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="ville" onchange="initMap()">
                             <option selected value="0">France</option>
                             <?php foreach ($villes as $v) {
                                 echo "<option value='" . $v->id . "'>" . $v->ville . "</option>";
@@ -39,7 +39,7 @@ require_once("inc/views/header.inc.php");
                         </select>
                     </div>
                     <div class="col-6">
-                        <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="type" onchange="initMap(); loadResults()">
+                        <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="type" onchange="initMap()">
                             <option selected value="0">Tout type</option>
                             <?php foreach ($typeslieu as $tl) {
                                 echo "<option value='" . $tl->id . "'>" . $tl->type . "</option>";
