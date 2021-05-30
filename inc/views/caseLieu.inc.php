@@ -7,8 +7,6 @@ $avis = new Avis();
 ?>
 
 <?php
-echo "<script>console.log('loadResults reload');</script>";
-
 foreach ($_POST["jsonFile"] as $l) {
 
     $etoilesPleines = ($l['note'] - ($l['note'] % 2)) / 2;

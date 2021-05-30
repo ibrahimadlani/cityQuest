@@ -67,14 +67,14 @@ foreach ($_POST['jsonFile']['results'][0]['address_components'] as $address_comp
     }
 
     function createLieu() {
-        const idVille = addVilleIfNotExistsBDD('<?php echo $city; ?>');
+        const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>");
 
         if (getRadioValue() === 'lieu') {
             addLieuBDD(
                 document.getElementById('nom').value,
                 document.getElementById('description').value,
                 document.getElementById('presentation').value,
-                '<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>',
+                "<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>",
                 <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
                 <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
                 idVille,

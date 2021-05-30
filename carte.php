@@ -60,7 +60,7 @@ require_once("inc/views/header.inc.php");
                     </div>
                 </div>
 
-                <div id="fenetreAjouter" class="collapse multi-collapse"></div>
+                <span id="fenetreAjouter" class="collapse multi-collapse"></span>
 
             </form>
         </div>
@@ -69,7 +69,9 @@ require_once("inc/views/header.inc.php");
             <form class="col-12 mt-5">
                 <h3 class="display-6"><i class="fas fa-map-marked-alt text-danger"></i> Resultat</h3>
                 <hr>
-                <div id="resultatRecherche"></div>
+
+                <span id="resultatRecherche"></span>
+
             </form>
         </div>
     </div>
