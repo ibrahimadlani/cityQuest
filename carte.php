@@ -69,67 +69,75 @@ require_once("inc/views/header.inc.php");
             <form class="col-12 mt-5">
                 <h3 class="display-6"><i class="fas fa-map-marked-alt text-danger"></i> Resultat</h3>
                 <hr>
-                <div id="resultatRecherche"></div>
-            </form>
+                <div id="resultsDetails"></div>
+                <?php
+                echo "<script>console.log('loadResults reload');</script>";
 
-        </div>
-    </div>
+                $champVille = "<script>$('#ville').val()</script>";
+                $champType = "<script>$('#type').val()</script>";
 
-<?php require_once("inc/views/footer.inc.php"); ?>
-<?php require_once("inc/views/foot.inc.php"); ?>
+                if (!($champVille === "0") && !($champType === "0")) { //Aucun n'est renseigné
+                    $lieux = $lieu->getLieux();
+                }
+                else if (!($champVille === "0") && ($champType === "0")) { //La ville n'est pas renseignée mais le type si
+                    $lieux = $lieu->getLieuxByType($champType);
+                }
+                else if (($champVille === "0") && !($champType === "0")) { //La ville est renseignée mais le type non
+                    $lieux = $lieu->getLieuxByVille($champVille);
+                }
+                else if (($champVille === "0") && ($champType === "0")) { //Tous sont renseignés
+                    $lieux = $lieu->getLieuxByVilleAndType($champType, $champVille);
+                }
 
-<script>
-    function loadResults() {
-        $('#resultatRecherche').html("
-            <?php
-            $lieux = $lieu->getLieux();
-            foreach ($lieux as $l) {
-                $note = intval($avis->getNoteLieu($l['id']));
-                if ($note == null) { $note = 0; }
-                $etoilesPleines = ($note - ($note % 2)) / 2;
-                $demiEtoile = $note % 2;
-                $pasetoile = 5 - $etoilesPleines - $demiEtoile;
-            ?>
-                <div class='row'>
-                    <div class='my-3 p-4  border rounded' id='<?php echo $l["id"]; ?>'>
-                        <?php if ($l["promotion"] == "2") {
+                foreach ($lieux as $l) {
+
+                    $note = intval($avis->getNoteLieu($l->id));
+                    if ($note == null) { $note = 0; }
+
+                    $etoilesPleines = ($note - ($note % 2)) / 2;
+                    $demiEtoile = $note % 2;
+                    $pasetoile = 5 - $etoilesPleines - $demiEtoile;
+                ?>
+                <div class="row">
+                    <div class="my-3 p-4  border rounded" id="<?php echo $l->id; ?>">
+                        <?php if ($l->promotion == "2") {
                             echo "<span class='badge bg-warning mb-3'><i class='fas fa-certificate'></i> Contenu Sponsorisé</span>";
-                        } elseif ($l["promotion"] == "1") {
+                        } elseif ($l->promotion == "1") {
                             echo "<span class='badge bg-danger mb-3'><i class='fas fa-heart'></i> Coup de cœur CityQuest</span>";
                         }
                         ?>
-                        <h2 class='display-6'><?php echo $l['nom']; ?></h2>
-                        <p class='lead mb-0'><?php echo $l['description']; ?></p>
-                        <div class='col-12'>
-                            <small class='text-warning'>
+                        <h2 class="display-6"><?php echo $l->nom; ?></h2>
+                        <p class="lead mb-0"><?php echo $l->description; ?></p>
+                        <div class="col-12">
+                            <small class="text-warning">
                                 <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
-                                    <i class='fas fa-star'></i>
+                                    <i class="fas fa-star"></i>
                                 <?php } ?>
                                 <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
-                                    <i class='fas fa-star-half-alt'></i>
+                                    <i class="fas fa-star-half-alt"></i>
                                 <?php } ?>
                                 <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
-                                    <i class='far fa-star'></i>
+                                    <i class="far fa-star"></i>
                                 <?php } ?>
                             </small>
                         </div>
-                        <div class='col-12'>
-                            <button type="button" class='btn px-3 border-start' onclick='seDeclarerProprietaire(<?php echo $l["id"]; ?>)'>
+                        <div class="col-12">
+                            <button type="button" class="btn px-3 border-start" onclick="seDeclarerProprietaire(<?php echo $l->id; ?>)">
                                 Se déclarer propriétaire
                             </button>
                         </div>
                         <hr>
 
-                        <div class='row mt-4'>
+                        <div class="row mt-4">
                             <div class="col-12 col-xl-9">
                                 <h5 class="">Présentation</h5>
-                                <p><?php echo $l["presentation"]; ?></p>
+                                <p><?php echo $l->presentation; ?></p>
                                 <hr>
                                 <div class="row">
                                     <div class="col-12 col-lg-8 col-xl-12">
 
                                         <h5 class="mt-5">Avis des utilisateurs</h5>
-                                        <?php foreach ($avis->getAvisLieu($l['id']) as $av) ?>
+                                        <?php foreach ($avis->getAvisLieu($l->id) as $av) { ?>
                                         <div class="row p-2">
                                             <div class="d-flex pt-3 border-bottom rounded border p-3">
                                                 <img class="me-3" src="img/no-racism.svg" alt="" height="32">
@@ -152,10 +160,11 @@ require_once("inc/views/header.inc.php");
                                                             <i class="far fa-star"></i>
                                                         <?php } ?>
                                                     </small><br>
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid unde libero, tempore nisi architecto magni delectus.</strong>
+                                                    <?php echo $av->text; ?>
                                                 </p>
                                             </div>
                                         </div>
+                                        <?php } ?>
 
                                         <div class="row p-2">
                                             <div class="d-flex pt-3 rounded  p-3">
@@ -269,8 +278,18 @@ require_once("inc/views/header.inc.php");
                         </div>
                     </div>
                 </div>
+                <?php } ?>
+            </form>
 
-            <?php } ?>
-        ")
+        </div>
+    </div>
+
+<?php require_once("inc/views/footer.inc.php"); ?>
+<?php require_once("inc/views/foot.inc.php"); ?>
+
+<script>
+    function loadResults() {
+        console.log('loadResults appelé');
+        $("#resultsDetails").load(location.href + " #resultsDetails");
     }
 </script>
