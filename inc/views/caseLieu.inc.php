@@ -57,7 +57,7 @@ foreach ($_POST["jsonFile"] as $l) {
                             <?php foreach ($avis->getAvisLieu($l["id"]) as $av) { ?>
                                 <div class="row p-2">
                                     <div class="d-flex pt-3 border-bottom rounded border p-3">
-                                        <img class="me-3" src="img/no-racism.svg" alt="" height="32">
+                                        <img class="me-3" src="img/avatar/<?php echo $av->avatar; ?>" alt="" height="32">
                                         <p class=" mb-0 small lh-sm text-dark">
                                             <strong class="d-block text-secondary"><?php echo $av->prenom . ' ' . $av->nom; ?></strong>
                                             <small class="text-warning">
