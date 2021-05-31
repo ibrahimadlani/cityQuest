@@ -2,18 +2,31 @@
 session_start();
 
 //Cherche la ville associée à l'adresse
-$locality = false;
-$political = false;
+$city = null;
+$country = null;
 foreach ($_POST['jsonFile']['results'][0]['address_components'] as $address_component) {
+    $isLocality = false;
+    $isPolitical = false;
+    $isCountry = false;
     foreach ($address_component['types'] as $component_type) {
-        if ($component_type == 'locality') { $locality = true; }
-        if ($component_type == 'political') { $political = true; }
-        if ($locality && $political) { break; }
+        if ($component_type == 'locality') { $isLocality = true; }
+        if ($component_type == 'political') { $isPolitical = true; }
+        if ($component_type == 'country') { $isCountry = true; }
+        if (($isLocality || $isCountry) && $isPolitical) { break; }
     }
-    if ($locality && $political) {
+    if ($isLocality && $isPolitical) {
         $city = $address_component['long_name'];
+    }
+    else if ($isCountry && $isPolitical) {
+        $country = $address_component['long_name'];
+    }
+    if ($city != null && $country != null) {
         break;
     }
+}
+if ($city == null || $country == null) {
+    $city = null;
+    $country = null;
 }
 ?>
 <div class="card mb-4 rounded-3 shadow-sm mt-3">
@@ -67,7 +80,7 @@ foreach ($_POST['jsonFile']['results'][0]['address_components'] as $address_comp
     }
 
     function createLieu() {
-        const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>");
+        const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>", "<?php echo $country; ?>");
 
         if (getRadioValue() === 'lieu') {
             addLieuBDD(
