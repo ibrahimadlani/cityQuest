@@ -1,15 +1,19 @@
-<h3 class="display-6"><i class="fas fa-map-marked-alt text-danger"></i> Resultat</h3>
-<hr>
-<?php foreach ($_POST["jsonFile"] as $l) { ?>
+<?php
+session_start();
+require_once('../../config/db.php');
+require_once('../../lib/pdo_db.php');
+include_once('../../models/Avis.php');
+$avis = new Avis();
+?>
+
+<?php
+foreach ($_POST["jsonFile"] as $l) {
+
+    $etoilesPleines = ($l['note'] - ($l['note'] % 2)) / 2;
+    $demiEtoile = $l['note'] % 2;
+    $pasetoile = 5 - $etoilesPleines - $demiEtoile;
+?>
     <div class="row">
-        <?php
-
-        $note = intval($l["note"]);
-        $etoilesPleines = ($note - ($note % 2)) / 2;
-        $demiEtoile = $note % 2;
-        $pasetoile = 5 - $etoilesPleines - $demiEtoile;
-
-        ?>
         <div class="my-3 p-4  border rounded" id="<?php echo $l["id"]; ?>">
             <?php if ($l["promotion"] == "2") {
                 echo "<span class='badge bg-warning mb-3'><i class='fas fa-certificate'></i> Contenu Sponsorisé</span>";
@@ -19,17 +23,24 @@
             ?>
             <h2 class="display-6"><?php echo $l["nom"]; ?></h2>
             <p class="lead mb-0"><?php echo $l["description"]; ?></p>
-            <small class="text-warning">
-                <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
-                    <i class="fas fa-star"></i>
-                <?php } ?>
-                <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
-                    <i class="fas fa-star-half-alt"></i>
-                <?php } ?>
-                <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
-                    <i class="far fa-star"></i>
-                <?php } ?>
-            </small>
+            <div class="col-12">
+                <small class="text-warning">
+                    <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
+                        <i class="fas fa-star"></i>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
+                        <i class="fas fa-star-half-alt"></i>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
+                        <i class="far fa-star"></i>
+                    <?php } ?>
+                </small>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn px-3 border-start" onclick="seDeclarerProprietaire(<?php echo $l["id"]; ?>)">
+                    Se déclarer propriétaire
+                </button>
+            </div>
             <hr>
 
             <div class="row mt-4">
@@ -39,60 +50,50 @@
                     <hr>
                     <div class="row">
                         <div class="col-12 col-lg-8 col-xl-12">
+
                             <h5 class="mt-5">Avis des utilisateurs</h5>
+                            <?php foreach ($avis->getAvisLieu($l["id"]) as $av) { ?>
+                                <div class="row p-2">
+                                    <div class="d-flex pt-3 border-bottom rounded border p-3">
+                                        <img class="me-3" src="img/avatar/<?php echo $av->avatar; ?>" alt="" height="32">
+                                        <p class=" mb-0 small lh-sm text-dark">
+                                            <strong class="d-block text-secondary"><?php echo $av->prenom . ' ' . $av->nom; ?></strong>
+                                            <small class="text-warning">
+                                                <?php
+                                                $note = intval($av->note);
+                                                $etoilesPleines = ($note - ($note % 2)) / 2;
+                                                $demiEtoile = $note % 2;
+                                                $pasetoile = 5 - $etoilesPleines - $demiEtoile;
+                                                ?>
+                                                <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
+                                                    <i class="fas fa-star"></i>
+                                                <?php } ?>
+                                                <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                <?php } ?>
+                                                <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
+                                                    <i class="far fa-star"></i>
+                                                <?php } ?>
+                                            </small><br>
+                                            <?php echo $av->text; ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             <div class="row p-2">
-                                <div class="d-flex pt-3 border-bottom rounded border p-3">
-                                    <img class="me-3" src="img/no-racism.svg" alt="" height="32">
-                                    <p class=" mb-0 small lh-sm text-dark">
-                                        <strong class="d-block text-secondary">Ibrahim ADLANI</strong>
-                                        <small class="text-warning">
+                                <div class="d-flex pt-3 rounded  p-3">
+                                    <img class="me-3 border rounded-pill p-1" src="img/avatar/<?php echo $_SESSION["avatar"]; ?>" alt="" height="50">
+                                    <textarea name="" id="" rows="4" class="border w-100 rounded-3"></textarea>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="">Poster</button>
 
-
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
-                                        </small><br>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid unde libero, tempore nisi architecto magni delectus.</strong>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row p-2">
-                                <div class="d-flex pt-3 border-bottom rounded border p-3">
-                                    <img class="me-3" src="img/no-racism.svg" alt="" height="32">
-                                    <p class=" mb-0 small lh-sm text-dark">
-                                        <strong class="d-block text-secondary">Ibrahim ADLANI</strong>
-                                        <small class="text-warning">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
-                                        </small><br>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid unde libero, tempore nisi architecto magni delectus.</strong>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row p-2">
-                                <div class="d-flex pt-3 border-bottom rounded border p-3">
-                                    <img class="me-3" src="img/no-racism.svg" alt="" height="32">
-                                    <p class=" mb-0 small lh-sm text-dark">
-                                        <strong class="d-block text-secondary">Ibrahim ADLANI</strong>
-                                        <small class="text-warning">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
-                                        </small><br>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid unde libero, tempore nisi architecto magni delectus.</strong>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="col-12 d-xl-none d-block mt-4">
 
                                 <div class="d-flex justify-content-between align-items-baseline">
-                                    <h5 class="">Horraire 1</h5><span class="badge bg-success badge-sm">Ouvert</span>
+                                    <h5 class="">Horraire</h5><span class="badge bg-success badge-sm">Ouvert</span>
                                 </div>
 
                                 <p class="text-secondary  mb-0 mt-3">Lundi</p>
@@ -144,7 +145,7 @@
                 <div class="col-3 d-none d-xl-block">
 
                     <div class="d-flex justify-content-between align-items-baseline">
-                        <h5 class="">Horraire 2</h5><span class="badge bg-success badge-sm">Ouvert</span>
+                        <h5 class="">Horaires</h5><span class="badge bg-success badge-sm">Ouvert</span> <!--computer-->
                     </div>
 
                     <p class="text-secondary  mb-0 mt-3">Lundi</p>
@@ -193,5 +194,4 @@
             </div>
         </div>
     </div>
-
 <?php } ?>

@@ -12,11 +12,13 @@ function ajouterMarker(lat, lng, map, icon) {
   return marker;
 }
 
+// Recentre la carte sur des coordoonnée a un certain zoom
 function definirCentre(lat, lng, zoom, map) {
   map.setZoom(zoom);
   map.setCenter({ lat: lat, lng: lng });
 }
 
+// Transforme un requete AJAX en un objet JSON
 function recuperationJSON(requete) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function test() {
@@ -30,12 +32,14 @@ function recuperationJSON(requete) {
   return JSON.parse(xhttp.responseText);
 }
 
+// Affichage (rafraichissement) des cases Lieu sur la page carte.php
 function afficherResultats(resultats) {
-  $("#mypar").load("inc/views/caseLieu.inc.php", {
+  $("#resultatRecherche").load("inc/views/caseLieu.inc.php", {
     jsonFile: resultats,
   });
 }
 
+// Crée un point sur la map
 function afficherPoints(ville, type, map) {
   if ((ville === "0") == false && (type === "0") == false) {
     console.log(1);
@@ -162,8 +166,7 @@ function afficherPoints(ville, type, map) {
   }
 }
 
-let service;
-
+// Initialise (rafraichît) la map
 function initMap(ville, type) {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: latDefaut, lng: lngDefaut },
@@ -177,50 +180,62 @@ function initMap(ville, type) {
 
   afficherPoints(ville, type, map);
 }
-function recupererAdresse() {
+
+function recupererAdresse() { //Exporter la récupération des infos google map dans une autre fonction pour pouvoir réutiliser
   var json = recuperationJSON(
     "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-      encodeURIComponent(document.getElementById("rechercheGoogleAPI").value) +
+      encodeURIComponent(
+        document
+          .getElementById("rechercheGoogleAPI")
+          .value.normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+      ) +
       "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
   );
-  console.log(
-    "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-      encodeURIComponent(document.getElementById("rechercheGoogleAPI").value) +
-      "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
-  );
-  $("#resultats").load("inc/views/caseAdresse.inc.php", {
+  $("#fenetreAjouter").load("inc/views/caseAdresse.inc.php", {
     jsonFile: json,
-    typeLieu: recuperationJSON(
+    typesLieu: recuperationJSON(
       "http://localhost:8888/cityQuest/api/typelieu.php"
-    ),
-    ville: recuperationJSON("http://localhost:8888/cityQuest/api/ville.php"),
+    )
   });
 }
 
 function addLieuBDD(
   nom,
-  desc,
-  pres,
+  description,
+  presentation,
   adresse,
-  lat,
-  lng,
+  latitude,
+  longitude,
   ville,
   typeLieu,
   auteur
 ) {
-  console.log("yes");
   $.post("http://localhost:8888/cityQuest/inc/ajouterLieu.inc.php", {
     nom: nom,
-    desc: desc,
-    pres: pres,
+    description: description,
+    presentation: presentation,
     adresse: adresse,
-    lat: lat,
-    lng: lng,
+    latitude: latitude,
+    longitude: longitude,
     ville: ville,
     typeLieu: typeLieu,
     auteur: auteur,
   });
   initMap();
+}
+
+function addVilleIfNotExistsBDD(nom) { //Rajouter une vérification par le place_id google map qu'on enregistrerais dans la bdd
+  $.post(
+      "http://localhost:8888/cityQuest/inc/ajouterVilleSiNonExistante.inc.php",
+      {
+        nom: nom
+      },
+      function (data) {
+        return data;
+      }
+  );
+  /*initMap();*/ //Pas d'initialisation de la map puisque la ville n'est pas validée donc n'apparaitra pas
 }
 
 $(document).ready(function () {
@@ -242,3 +257,9 @@ $(document).ready(function () {
     return false;
   });
 });
+
+function seDeclarerProprietaire(idLieu) {
+  $.post("http://localhost:8888/cityQuest/inc/ajouterProprietaire.inc.php", {
+    idLieu: idLieu,
+  });
+}

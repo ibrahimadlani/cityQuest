@@ -1,5 +1,5 @@
 <?php
-  class Utilisateur {
+class Utilisateur {
     private $db;
 
     public function __construct() { $this->db = new Database; }
@@ -16,7 +16,8 @@
       $this->db->bind(':groupe', $data['groupe']);
       $this->db->bind(':mdp', $data['mdp']);
       $this->db->bind(':token', $data['token']);
-      if($this->db->execute()) { return true; }
+
+      if($this->db->execute()) { return $this->db->lastInsertId(); }
       else { return false; }
 
     }
@@ -119,10 +120,10 @@
       }
     }
 
-    public function getRandomSuggestion(){
-      $this->db->query('SELECT id, nom, prenom, avatar, bio FROM `Utilisateur` ORDER BY RAND ( )  LIMIT 3  ');
-      $results = $this->db->resultset();
-      return $results;
+    public function getRandomProfiles($id){
+        $this->db->query('SELECT id, nom, prenom, avatar, bio FROM `Utilisateur` WHERE `id`!="' . $id . '" ORDER BY RAND ( )  LIMIT 3  ');
+        $results = $this->db->resultset();
+        return $results;
     }
 
     public function isProprietaire($id): bool {

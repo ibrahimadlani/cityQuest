@@ -15,11 +15,8 @@ class TypeLieu
     $this->db->bind(':type', $data['type']);
     $this->db->bind(':icone', $data['icone']);
 
-    if ($this->db->execute()) {
-      return true;
-    } else {
-      return false;
-    }
+    if ($this->db->execute()) { return $this->db->lastInsertId();}
+    else { return false; }
   }
 
   public function getTypesLieu()

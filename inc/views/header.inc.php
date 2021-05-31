@@ -13,8 +13,8 @@
                 <li class="nav-item">
                     <a class="nav-link px-3" href="carte.php">C A R T E</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="offres.php">O F F R E S</a>
+                <li class='nav-item'>
+                    <a class='nav-link px-3' href='offres.php'>O F F R E S</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-none d-lg-flex">
@@ -23,7 +23,7 @@
                 if (isset($_SESSION["email"])) {
                     echo "
                     <li class='nav-item'>
-                        <a class='nav-link px-3 border-start border-end' href='parametre.php'><i class='fas fa-sign-in-alt'></i> Paramètre</a>
+                        <a class='nav-link px-3 border-start border-end' href='parametre.php'><i class='fas fa-cog'></i> Paramètre</a>
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link px-3 border-start border-end' href='inc/deconnexion.inc.php'><i class='fas fa-sign-in-alt'></i> Deconnexion</a>

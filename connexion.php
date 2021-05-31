@@ -1,6 +1,9 @@
 <?php
+session_start();
+
 define("CONSTANT", "<link rel='stylesheet' href='css/master.css'><link rel='stylesheet' href='css/formulaires.css'>");
 define("TITLE", "Connexion - ");
+
 require_once("inc/views/head.inc.php");
 ?>
 
@@ -36,7 +39,15 @@ require_once("inc/views/head.inc.php");
         <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
       </div>
       ";
+  } elseif ($_GET["error"] == "deconnexionReussi") {
+    echo "
+      <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <strong>Let's goooo !</strong> Vous vous êtes bien déconnecter... À bientôt !
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>
+      ";
   }
+
   ?>
   <hr>
 
@@ -46,11 +57,11 @@ require_once("inc/views/head.inc.php");
   <label for="psw" class="sr-only"><b>Mot de passe</b></label>
   <input type="password" placeholder="Mot de passe" name="mdp" class="form-control bottom" required>
 
-  <!--<div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Se souvenir de moi
-        </label>
-    </div>-->
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Se souvenir de moi
+    </label>
+  </div>
 
   <button type="submit" class="btn btn-lg btn-danger btn-block rounded-pill w-100">Se connecter</button>
   <a href="inscription.php" class="text-danger"><small>Pas de compte? Inscrivez-vous ici.</small></a>

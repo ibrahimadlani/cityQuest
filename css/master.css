@@ -32,3 +32,4 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
   display: none;
   opacity: 0.5;
 }
+
