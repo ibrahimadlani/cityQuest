@@ -41,8 +41,8 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€15<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>Soyez parmi les premiers dans le référencement !</li>
-            <br>
+            <li>Boostez votre référencement !</li>
+            <br><br>
             <li>Support client prioritaire</li>
           </ul>
           <button type="button" class="w-100 btn btn-lg btn-danger rounded-pill">Commencer</button>
