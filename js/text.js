@@ -35,7 +35,13 @@ function recuperationJSON(requete) {
 // Affichage (rafraichissement) des cases Lieu sur la page carte.php
 function afficherResultats(resultats) {
     $("#resultatRecherche").load("inc/views/caseLieu.inc.php", {
-        jsonFile: resultats,
+        jsonFile: resultats
+    });
+}
+
+function afficherPromotions(resultats) {
+    $("#carouselPromotions").load("inc/views/casePromotions.inc.php", {
+        jsonFile: resultats
     });
 }
 
@@ -136,6 +142,9 @@ function afficherPoints(ville, type, map) {
 
     //Affiche les détails des lieux
     afficherResultats(jsonLieux);
+
+    //Afficher le carousel de promotions
+    afficherPromotions(jsonLieux);
 
     let infoWindows = [];
 

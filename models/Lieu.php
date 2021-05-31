@@ -34,25 +34,29 @@ class Lieu
     {
         $query =
             'SELECT ' .
-            'Lieu.id, ' .
-            'Lieu.nom, ' .
-            'Lieu.description, ' .
-            'Lieu.presentation, ' .
-            'Lieu.adresse, ' .
-            'Lieu.lat, ' .
-            'Lieu.lng, ' .
-            'Lieu.ville, ' .
-            'Lieu.typeLieu, ' .
-            'Lieu.promotion, ' .
-            'IFNULL(AVG(Avis.note),0) as note ' .
+                'Lieu.id, ' .
+                'Lieu.nom, ' .
+                'Lieu.description, ' .
+                'Lieu.presentation, ' .
+                'Lieu.adresse, ' .
+                'Lieu.lat, ' .
+                'Lieu.lng, ' .
+                'Lieu.ville, ' .
+                'Lieu.typeLieu, ' .
+                'Lieu.promotion, ' .
+                'IFNULL(AVG(Avis.note),0) as note, ' .
+                'TypeLieu.type, ' .
+                'TypeLieu.icone ' .
             'FROM Lieu ' .
-            'LEFT JOIN Avis ' .
-            'ON Lieu.id = Avis.idLieu ' .
+                'LEFT JOIN Avis ' .
+                    'ON Lieu.id = Avis.idLieu ' .
+                'JOIN TypeLieu ' .
+                    'ON Lieu.typeLieu = TypeLieu.id ' .
             'WHERE Lieu.etat = 2 ' .
             'GROUP BY Lieu.id ' .
             'ORDER BY ' .
-            'Lieu.promotion DESC, ' .
-            'note DESC';
+                'Lieu.promotion DESC, ' .
+                'note DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
@@ -63,27 +67,31 @@ class Lieu
     {
         $query =
             'SELECT ' .
-            'Lieu.id, ' .
-            'Lieu.nom, ' .
-            'Lieu.description, ' .
-            'Lieu.presentation, ' .
-            'Lieu.adresse, ' .
-            'Lieu.lat, ' .
-            'Lieu.lng, ' .
-            'Lieu.ville, ' .
-            'Lieu.typeLieu, ' .
-            'Lieu.promotion, ' .
-            'IFNULL(AVG(Avis.note),0) as note ' .
+                'Lieu.id, ' .
+                'Lieu.nom, ' .
+                'Lieu.description, ' .
+                'Lieu.presentation, ' .
+                'Lieu.adresse, ' .
+                'Lieu.lat, ' .
+                'Lieu.lng, ' .
+                'Lieu.ville, ' .
+                'Lieu.typeLieu, ' .
+                'Lieu.promotion, ' .
+                'IFNULL(AVG(Avis.note),0) as note, ' .
+                'TypeLieu.type, ' .
+                'TypeLieu.icone ' .
             'FROM Lieu ' .
-            'LEFT JOIN Avis ' .
-            'ON Lieu.id = Avis.idLieu ' .
+                'LEFT JOIN Avis ' .
+                    'ON Lieu.id = Avis.idLieu ' .
+                'JOIN TypeLieu ' .
+                    'ON Lieu.typeLieu = TypeLieu.id ' .
             'WHERE ' .
-            'Lieu.etat = 2 ' .
-            'AND Lieu.ville = ' . $idVille . ' ' .
+                'Lieu.etat = 2 ' .
+                'AND Lieu.ville = ' . $idVille . ' ' .
             'GROUP BY Lieu.id ' .
             'ORDER BY ' .
-            'Lieu.promotion DESC, ' .
-            'note DESC';
+                'Lieu.promotion DESC, ' .
+                'note DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
@@ -93,27 +101,31 @@ class Lieu
     {
         $query =
             'SELECT ' .
-            'Lieu.id, ' .
-            'Lieu.nom, ' .
-            'Lieu.description, ' .
-            'Lieu.presentation, ' .
-            'Lieu.adresse, ' .
-            'Lieu.lat, ' .
-            'Lieu.lng, ' .
-            'Lieu.ville, ' .
-            'Lieu.typeLieu, ' .
-            'Lieu.promotion, ' .
-            'IFNULL(AVG(Avis.note),0) as note ' .
+                'Lieu.id, ' .
+                'Lieu.nom, ' .
+                'Lieu.description, ' .
+                'Lieu.presentation, ' .
+                'Lieu.adresse, ' .
+                'Lieu.lat, ' .
+                'Lieu.lng, ' .
+                'Lieu.ville, ' .
+                'Lieu.typeLieu, ' .
+                'Lieu.promotion, ' .
+                'IFNULL(AVG(Avis.note),0) as note, ' .
+                'TypeLieu.type, ' .
+                'TypeLieu.icone ' .
             'FROM Lieu ' .
-            'LEFT JOIN Avis ' .
-            'ON Lieu.id = Avis.idLieu ' .
+                'LEFT JOIN Avis ' .
+                    'ON Lieu.id = Avis.idLieu ' .
+                'JOIN TypeLieu ' .
+                    'ON Lieu.typeLieu = TypeLieu.id ' .
             'WHERE ' .
-            'Lieu.etat = 2 ' .
-            'AND Lieu.typeLieu = ' . $idType . ' ' .
+                'Lieu.etat = 2 ' .
+                'AND Lieu.typeLieu = ' . $idType . ' ' .
             'GROUP BY Lieu.id ' .
             'ORDER BY ' .
-            'Lieu.promotion DESC, ' .
-            'note DESC';
+                'Lieu.promotion DESC, ' .
+                'note DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
@@ -123,33 +135,36 @@ class Lieu
     {
         $query =
             'SELECT ' .
-            'Lieu.id, ' .
-            'Lieu.nom, ' .
-            'Lieu.description, ' .
-            'Lieu.presentation, ' .
-            'Lieu.adresse, ' .
-            'Lieu.lat, ' .
-            'Lieu.lng, ' .
-            'Lieu.ville, ' .
-            'Lieu.typeLieu, ' .
-            'Lieu.promotion, ' .
-            'IFNULL(AVG(Avis.note),0) as note ' .
+                'Lieu.id, ' .
+                'Lieu.nom, ' .
+                'Lieu.description, ' .
+                'Lieu.presentation, ' .
+                'Lieu.adresse, ' .
+                'Lieu.lat, ' .
+                'Lieu.lng, ' .
+                'Lieu.ville, ' .
+                'Lieu.typeLieu, ' .
+                'Lieu.promotion, ' .
+                'IFNULL(AVG(Avis.note),0) as note, ' .
+                'TypeLieu.type, ' .
+                'TypeLieu.icone ' .
             'FROM Lieu ' .
-            'LEFT JOIN Avis ' .
-            'ON Lieu.id = Avis.idLieu ' .
+                'LEFT JOIN Avis ' .
+                    'ON Lieu.id = Avis.idLieu ' .
+                'JOIN TypeLieu ' .
+                    'ON Lieu.typeLieu = TypeLieu.id ' .
             'WHERE ' .
-            'Lieu.etat = 2 ' .
-            'AND Lieu.ville = ' . $idVille . ' ' .
-            'AND Lieu.typeLieu = ' . $idType . ' ' .
+                'Lieu.etat = 2 ' .
+                'AND Lieu.ville = ' . $idVille . ' ' .
+                'AND Lieu.typeLieu = ' . $idType . ' ' .
             'GROUP BY Lieu.id ' .
             'ORDER BY ' .
-            'Lieu.promotion DESC, ' .
-            'note DESC';
+                'Lieu.promotion DESC, ' .
+                'note DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
     }
-
     public function setProprietaire($idUtilisateur, $idLieu)
     {
         $this->db->query('INSERT INTO `Proprietaire`(`utilisateur`, `lieu`, `etat`) VALUES (' . $idUtilisateur . ', ' . $idLieu . ', 1)');

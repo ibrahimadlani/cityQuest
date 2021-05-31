@@ -15,7 +15,7 @@ foreach ($_POST["jsonFile"] as $l) {
 ?>
     <div class="row">
         <div class="my-3 p-4  border rounded" id="<?php echo $l["id"]; ?>">
-            <?php if ($l["promotion"] == "2") {
+            <?php if ($l["promotion"] >= "2") {
                 echo "<span class='badge bg-warning mb-3'><i class='fas fa-certificate'></i> Contenu Sponsorisé</span>";
             } elseif ($l["promotion"] == "1") {
                 echo "<span class='badge bg-danger mb-3'><i class='fas fa-heart'></i> Coup de cœur CityQuest</span>";
