@@ -118,6 +118,7 @@ class Lieu
   public function getLieuxByVilleAndType($idType, $idVille) {
       $query =
           'SELECT ' .
+              'Lieu.id, ' .
               'Lieu.nom, ' .
               'Lieu.description, ' .
               'Lieu.presentation, ' .
@@ -150,26 +151,4 @@ class Lieu
         $a = $this->db->execute();
         if ($a) {return true;}
     }
-
-    /*public function getLieux() {
-        $this->db->query('SELECT `nom`, `description`, `presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `text`, `note`, `date`, AVG(`note`) FROM `Lieu` JOIN `Avis` ON (`Lieu`.`id` = `Avis`.`idPoint` AND `Avis`.`typePoint` = 1) JOIN `Utilisateur` ON (`Avis`.`auteur` = `Utilisateur`.`id`) GROUP BY `Lieu`.`id` ORDER BY `Lieu`.`promotion` DESC ,`Lieu`.`note` DESC, `Avis`.`date` DESC');
-        $results = $this->db->resultset();
-        return $results;
-    }*/
-
-
-  /*public function setNote($idLieu)) {
-      $somme = 0;
-      $effectifs = 0;
-      $avis = new Avis();
-      $avisParLieu = $avis->getAvisParLieu();
-      foreach ($avisParLieu as $a) {
-        $somme =+ $a->note;
-        $effectifs++;
-      }
-      $moyenne = $somme / $effectifs;
-      $this->db->query('UPDATE `Lieu` SET `note`= ' . $moyenne .' WHERE `id` = ' . $idLieu);
-      $results = $this->db->resultset();
-      return $results;
-    }*/
 }

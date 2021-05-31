@@ -34,7 +34,6 @@ function recuperationJSON(requete) {
 
 // Affichage (rafraichissement) des cases Lieu sur la page carte.php
 function afficherResultats(resultats) {
-    console.log('afficherResultats appelé');
     $("#resultatRecherche").load("inc/views/caseLieu.inc.php", {
         jsonFile: resultats,
     });
@@ -98,7 +97,7 @@ function afficherPoints(ville, type, map) {
             map
         );
 
-        if (type === "0") {
+        if (type === "0") { // Ville : oui, Type : non
             $.ajax({
                 url: './api/lieu.php?',
                 type: 'GET',
@@ -136,7 +135,6 @@ function afficherPoints(ville, type, map) {
     }
 
     //Affiche les détails des lieux
-    console.log(jsonLieux);
     afficherResultats(jsonLieux);
 
     let infoWindows = [];
