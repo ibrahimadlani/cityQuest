@@ -308,7 +308,7 @@ function seDeclarerProprietaire(idLieu) {
     });
 }
 
-function ajouterAvis(id, auteur, typePoint) {
+function ajouterAvis(id, auteur) {
     item = $('#inputAvisId' + id).val();
     note = $('#inputNote' + id).val();
 
@@ -316,12 +316,14 @@ function ajouterAvis(id, auteur, typePoint) {
         alert("Merci de sélectionner une note");
         return;
     }
+    else {
+        window.location.reload()
+    }
 
     texte = item;
     note = note;
     auteur = auteur;
-    idPoint = id;
-    typePoint = typePoint;
+    idLieu = id;
 
 
     $.ajax({
@@ -331,8 +333,7 @@ function ajouterAvis(id, auteur, typePoint) {
             texte: texte,
             note: note,
             auteur: auteur,
-            idPoint: id,
-            typePoint: typePoint
+            idLieu: id
         },
         dataType: 'html',
         success: function (data) {

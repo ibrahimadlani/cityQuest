@@ -14,10 +14,9 @@ $avis = new Avis();
 $text = $_POST['texte'];
 $note = $_POST['note'];
 $auteur = $_POST['auteur'];
-$idPoint = $_POST['idPoint'];
-$typePoint = $_POST['typePoint'];
+$idLieu = $_POST['idLieu'];
 
-$data = array("text"=>$text, "note"=>$note, "auteur"=>$auteur, "idPoint"=>$idPoint, "typePoint"=>$typePoint);
+$data = array("text"=>$text, "note"=>$note, "auteur"=>$auteur, "idLieu"=>$idLieu);
 
 echo($avis->addAvis($data));
 
