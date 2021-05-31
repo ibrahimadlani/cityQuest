@@ -71,7 +71,7 @@ if (!(isset($_POST['email']) || !isset($_POST['mdp']) || !isset($_POST['mdpconfi
     $mail->MsgHTML($body);
     $mail->IsHTML(true);
     $mail->CharSet = "utf-8";
-    $mail->AltBody = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur ce lien : http://localhost:8888/cityQuest/api/token.php?token=" . $token;
+    $mail->AltBody = "Vous avez crée votre compte CityQuest et c'est le moment de le valider en cliquant sur ce lien : https://faucheron.fr/cityQuest/api/token.php?token=" . $token;
 
     // Si l'envoie du mail a marché
     if (!$mail->send()) {

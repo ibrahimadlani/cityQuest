@@ -14,7 +14,7 @@ $prenom = $_POST["prenom"];
 $bio = $_POST["bio"];
 var_dump($_FILES["fileToUpload"]["name"]);
 if (strlen($_FILES["fileToUpload"]["name"]) > 0) {
-  $target_dir = "/Applications/MAMP/htdocs/cityQuest/img/avatar/";
+  $target_dir = "./img/avatar/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $file = basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
@@ -68,18 +68,14 @@ if($nom == "" || $prenom == ""){
 
 $user = new Utilisateur();
 
-if($email != $_SESSION['email']){
-  //$_SESSION["email"] = $email;
-}
-
-if ($user->modifierInfos($id, $nom, $prenom, $bio,  $file)) {
+if ($user->modifierInfos($id, $nom, $prenom, $bio, $file)) {
   $_SESSION["nom"] = $nom;
   $_SESSION["prenom"] = $prenom;
   $_SESSION["bio"] = $bio;
   $_SESSION["avatar"] = $file;
-  header("location: http://localhost:8888/cityQuest/parametre.php?error=success");
-  exit();
+  echo "yes";
 } else {
-  header("location: http://localhost:8888/cityQuest/parametre.php?error=fail");
-  exit();
+  echo "fail";
 };
+
+?>
