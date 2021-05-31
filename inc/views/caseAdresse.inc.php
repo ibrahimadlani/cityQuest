@@ -57,13 +57,13 @@ if ($city == null || $country == null) {
                     } ?>
                 </select>
             </div>
-            <div class="col-6">
+            <div class="col-6 d-flex justify-content-end">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <input type="radio" class="btn-check" name="optionsAjouter" id="checkAjouterLieu" value="lieu" autocomplete="off" checked>
-                    <label class="btn btn-secondary btn-danger" for="checkAjouterLieu">Lieu</label>
+                    <label class="btn btn-md btn-danger rounded-pill rounded-end" for="checkAjouterLieu">Lieu</label>
 
                     <input type="radio" class="btn-check" name="optionsAjouter" id="checkAjouterEvenement" value="evenement" autocomplete="off">
-                    <label class="btn btn-secondary btn-danger" for="checkAjouterEvenement">Evenement</label>
+                    <label class="btn btn-md btn-danger rounded-pill rounded-start" for="checkAjouterEvenement">Evenement</label>
                 </div>
             </div>
         </div>
