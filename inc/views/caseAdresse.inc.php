@@ -95,5 +95,7 @@ if ($city == null || $country == null) {
                 <?php echo $_SESSION['id']; ?>
             )
         }
+
+        alert('Votre demande a bien été prise en compte, elle sera validée sous peu');
     }
 </script>
