@@ -9,15 +9,22 @@ foreach ($_POST['jsonFile']['results'][0]['address_components'] as $address_comp
     $isPolitical = false;
     $isCountry = false;
     foreach ($address_component['types'] as $component_type) {
-        if ($component_type == 'locality') { $isLocality = true; }
-        if ($component_type == 'political') { $isPolitical = true; }
-        if ($component_type == 'country') { $isCountry = true; }
-        if (($isLocality || $isCountry) && $isPolitical) { break; }
+        if ($component_type == 'locality') {
+            $isLocality = true;
+        }
+        if ($component_type == 'political') {
+            $isPolitical = true;
+        }
+        if ($component_type == 'country') {
+            $isCountry = true;
+        }
+        if (($isLocality || $isCountry) && $isPolitical) {
+            break;
+        }
     }
     if ($isLocality && $isPolitical) {
         $city = $address_component['long_name'];
-    }
-    else if ($isCountry && $isPolitical) {
+    } else if ($isCountry && $isPolitical) {
         $country = $address_component['long_name'];
     }
     if ($city != null && $country != null) {
@@ -64,6 +71,58 @@ if ($city == null || $country == null) {
                 <input type="radio" class="btn-check" name="optionsAjouter" id="checkAjouterEvenement" value="evenement" autocomplete="off">
                 <label class="btn btn-md btn-danger rounded-pill rounded-start" for="checkAjouterEvenement">Evenement</label>
             </div>
+            <form action="" id="horaire">
+                <div class="border-danger rounded-5" id="divHoraire">
+                    <?php
+                    $Jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
+                    for ($i = 1; $i <= 7; $i++) {
+                        $i1 = $i + 1;
+                        $i2 = $i + 2;
+                        $i3 = $i + 3;
+                        echo "
+                <div class='mb-3'>
+                  <label for='description' class='col-form-label'>" . $Jours[$i - 1] . "</label>
+                  <div class='row'>
+                    <div class='col-6'>
+                      <div class='row align-items-center'>
+                        <div class='col-1 d-flex justify-content-center'>
+                          <p>De</p>
+                        </div>
+                        <div class='col-5'>
+                          <p><input type='number' class='form-control' name='heure" . $i . "' id='heure" . $i . "' placeholder='hh:mm'></p>
+                        </div>
+                        <div class='col-1 d-flex justify-content-center'>
+                          <p>à</p>
+                        </div>
+                        <div class='col-5'>
+                          <p><input type='number' class='form-control' name='heure" . $i1 . "' id='heure" . $i1 . "' placeholder='hh:mm'></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='col-6'>
+                      <div class='row align-items-center'>
+                        <div class='col-1 d-flex justify-content-center'>
+                          <p>De</p>
+                        </div>
+                        <div class='col-5'>
+                          <p><input type='number' class='form-control' name='heure" . $i2 . "' id='heure" . $i2 . "' placeholder='hh:mm'></p>
+                        </div>
+                        <div class='col-1 d-flex justify-content-center'>
+                          <p>à</p>
+                        </div>
+                        <div class='col-5'>
+                          <p><input type='number' class='form-control' name='heure" . $i3 . "' id='heure" . $i3 . "' placeholder='hh:mm'></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ";
+                    }
+
+                    ?>
+                </div>
+            </form>
         </div>
         <hr>
 
@@ -80,11 +139,14 @@ if ($city == null || $country == null) {
     function createLieu() {
         const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>", "<?php echo $country; ?>");
 
+
+
         if (getRadioValue() === 'lieu') {
             addLieuBDD(
                 document.getElementById('nom').value,
                 document.getElementById('description').value,
                 document.getElementById('presentation').value,
+                $("#horaire").serialize(),
                 "<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>",
                 <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
                 <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
@@ -95,5 +157,13 @@ if ($city == null || $country == null) {
         }
 
         alert('Votre demande a bien été prise en compte, elle sera validée sous peu');
+    }
+
+    function cacherHoraire() {
+        $("#divHoraire").hide();
+    }
+
+    function afficherHoraire() {
+        $("#divHoraire").show();
     }
 </script>
