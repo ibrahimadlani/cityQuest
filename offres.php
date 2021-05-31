@@ -10,7 +10,7 @@ require_once("inc/views/header.inc.php");
 <main class="container container-main py-3 my-5">
   <div class="text-center mb-5">
     <h1 class="display-4">Boostez l'influence<br>de votre etablissement !</h1>
-    <p class="lead text-secondary">En sousscrivant à l'une de nos offres qui s'adaptera le mieux à vos besoins.</p>
+    <p class="lead text-secondary">En sousscrivant à l'une de nos offres qui s'adaptera au mieux à vos besoins.</p>
 
   </div>
   <hr class="mb-5">
