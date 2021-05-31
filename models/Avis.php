@@ -9,7 +9,7 @@ class Avis {
   public function addAvis($data) {
     $this->db->query('INSERT INTO `Avis`(`text`, `note`, `auteur`, `idPoint`, `typePoint`) VALUES (:text, :note, :auteur, :idPoint, :typePoint)');
 
-    $this->db->bind(':nom', $data['nom']);
+    $this->db->bind(':text', $data['text']);
     $this->db->bind(':note', $data['note']);
     $this->db->bind(':auteur', $data['auteur']);
     $this->db->bind(':idPoint', $data['idPoint']);

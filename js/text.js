@@ -284,3 +284,38 @@ function seDeclarerProprietaire(idLieu) {
     idLieu: idLieu,
   });
 }
+
+function ajouterAvis(id, auteur, typePoint){
+  item = $('#inputAvisId'+id).val();
+  note = $('#inputNote'+id).val();
+
+  if(!note){
+    alert("Merci de sélectionner une note");
+    return;
+  }
+
+  texte = item;
+  note = note;
+  auteur = auteur;
+  idPoint = id;
+  typePoint = typePoint;
+
+
+  $.ajax({
+    url : './inc/ajouterNote.inc.php', // La ressource ciblée
+    type : 'POST', // Le type de la requête HTTP.
+    data : {
+      texte : texte,
+      note : note,
+      auteur : auteur,
+      idPoint : id,
+      typePoint : typePoint
+    },
+    dataType : 'html',
+    success: function(data){
+      console.log(data);
+    }
+  });
+
+
+}
