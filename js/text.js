@@ -222,6 +222,7 @@ function addLieuBDD(
   nom,
   description,
   presentation,
+  horaires,
   adresse,
   latitude,
   longitude,
@@ -229,7 +230,8 @@ function addLieuBDD(
   typeLieu,
   auteur
 ) {
-  $.post("./inc/ajouterLieu.inc.php", {
+  console.log(horaires);
+  $.post("./inc/ajouterLieu.inc.php?"+horaires, {
     nom: nom,
     description: description,
     presentation: presentation,
@@ -239,6 +241,8 @@ function addLieuBDD(
     ville: ville,
     typeLieu: typeLieu,
     auteur: auteur,
+  }, function(data){
+    console.log(data);
   });
   /*initMap();*/ //Pas d'initialisation de la map puisque le lieu n'est pas validé donc n'apparaitra pas
 }

@@ -61,7 +61,6 @@ require_once("inc/views/header.inc.php");
                 </div>
 
                 <span id="fenetreAjouter" class="collapse multi-collapse"></span>
-
             </form>
         </div>
         <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
