@@ -16,19 +16,16 @@ class Ville {
     }
 
     public function getVilles() {
-        $this->db->query('SELECT * FROM `Ville` ORDER BY `id`');
-        $results = $this->db->resultset();
-        return $results;
-    }
-
-    public function getVillesNonValide() {
-        $this->db->query('SELECT * FROM `Ville` WHERE `etat` = 1');
-        $results = $this->db->resultset();
-        return $results;
-    }
-
-    public function getVillesValide() {
-        $this->db->query('SELECT * FROM `Ville` WHERE `etat` = 2');
+        $query =
+            'SELECT ' .
+                'Ville.id, ' .
+                'Ville.ville, ' .
+                'Ville.lat, ' .
+                'Ville.lng ' .
+            'FROM Ville ' .
+            'WHERE Ville.etat = 2 ' .
+            'ORDER BY Ville.ville';
+        $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
     }

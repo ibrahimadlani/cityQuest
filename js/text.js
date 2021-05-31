@@ -222,19 +222,40 @@ function addLieuBDD(
     typeLieu: typeLieu,
     auteur: auteur,
   });
-  initMap();
+  /*initMap();*/ //Pas d'initialisation de la map puisque le lieu n'est pas validé donc n'apparaitra pas
 }
 
 function addVilleIfNotExistsBDD(nom) { //Rajouter une vérification par le place_id google map qu'on enregistrerais dans la bdd
-  $.post(
-      "http://localhost:8888/cityQuest/inc/ajouterVilleSiNonExistante.inc.php",
-      {
-        nom: nom
-      },
-      function (data) {
-        return data;
-      }
+  var json = recuperationJSON(
+      "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+      encodeURIComponent(
+          nom
+      ) +
+      "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
   );
+
+  var result;
+  $.ajax({
+    url : './inc/ajouterVilleSiNonExistante.inc.php', // La ressource ciblée
+    type : 'POST', // Le type de la requête HTTP.
+    async : false,
+    data : {
+      nom: json['results'][0]['address_components'][0]['long_name'],
+      latitude: json['results'][0]['geometry']['location']['lat'],
+      longitude: json['results'][0]['geometry']['location']['lng']
+    },
+    dataType : 'json',
+    success: function(data) {
+      console.log('valeur data : ' + data);
+      return data;
+    }
+  })
+      .done(function(data) {
+        result = data;
+      });
+
+  return result;
+
   /*initMap();*/ //Pas d'initialisation de la map puisque la ville n'est pas validée donc n'apparaitra pas
 }
 

@@ -13,10 +13,10 @@ if (count($result) == 0) { //Si la ville n'existe pas, on la créé
         'lng' => $_POST['longitude']
     ));
 }
-else {
+else { //Sinon on récupère son id
     $result = $result[0]->id;
 }
 
-return $result;
+echo $result;
 
 
