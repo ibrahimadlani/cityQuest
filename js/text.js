@@ -64,9 +64,18 @@ function afficherPoints(ville, type, map) {
         document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey";
       });
     });
-    var infoVille = recuperationJSON(
-      "./api/ville.php"
-    )[ville - 1];
+
+    let infoVille;
+    let infoVilles = recuperationJSON(
+        "./api/ville.php"
+    )
+    for (let item in infoVilles) {
+      if (infoVilles[item]['id'] == ville) {
+        infoVille = infoVilles[item];
+        break;
+      }
+    }
+
     definirCentre(
       parseFloat(infoVille.lat),
       parseFloat(infoVille.lng),
@@ -100,9 +109,18 @@ function afficherPoints(ville, type, map) {
         document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey";
       });
     });
-    var infoVille = recuperationJSON(
-      "./api/ville.php"
-    )[ville - 1];
+
+    let infoVille;
+    let infoVilles = recuperationJSON(
+        "./api/ville.php"
+    )
+    for (let item in infoVilles) {
+      if (infoVilles[item]['id'] == ville) {
+        infoVille = infoVilles[item];
+        break;
+      }
+    }
+
     definirCentre(
       parseFloat(infoVille.lat),
       parseFloat(infoVille.lng),
@@ -225,14 +243,15 @@ function addLieuBDD(
   /*initMap();*/ //Pas d'initialisation de la map puisque le lieu n'est pas validé donc n'apparaitra pas
 }
 
-function addVilleIfNotExistsBDD(nom) { //Rajouter une vérification par le place_id google map qu'on enregistrerais dans la bdd
+function addVilleIfNotExistsBDD(nomVille, nomPays) { //Rajouter une vérification par le place_id google map qu'on enregistrerais dans la bdd
   var json = recuperationJSON(
       "https://maps.googleapis.com/maps/api/geocode/json?address=" +
       encodeURIComponent(
-          nom
+          nomVille + ' ' + nomPays
       ) +
       "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
   );
+  console.log(nomVille + ' ' + nomPays);
 
   var result;
   $.ajax({

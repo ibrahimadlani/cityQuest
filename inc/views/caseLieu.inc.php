@@ -24,8 +24,8 @@ foreach ($_POST["jsonFile"] as $l) {
             <h2 class="display-6"><?php echo $l["nom"]; ?></h2>
             <p class="lead mb-0"><?php echo $l["description"]; ?></p>
             <div class="row">
-            <div class="col-9 mt-2">
-                <small class="text-warning">
+            <div class="d-flex justify-content-between">
+                <small class="text-warning align-middle">
                     <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
                         <i class="fas fa-star"></i>
                     <?php } ?>
@@ -36,8 +36,6 @@ foreach ($_POST["jsonFile"] as $l) {
                         <i class="far fa-star"></i>
                     <?php } ?>
                 </small>
-            </div>
-            <div class="col-3">
                 <button type="button" class="btn px-3 border-start" onclick="seDeclarerProprietaire(<?php echo $l["id"]; ?>)">
                     Se déclarer propriétaire
                 </button>
@@ -59,7 +57,7 @@ foreach ($_POST["jsonFile"] as $l) {
                                     <div class="d-flex pt-3 border-bottom rounded border p-3">
                                         <img class="me-3" src="img/avatar/<?php echo $av->avatar; ?>" alt="" height="32">
                                         <p class=" mb-0 small lh-sm text-dark">
-                                            <strong class="d-block text-secondary"><?php echo $av->prenom . ' ' . $av->nom; ?></strong>
+                                            <strong class="d-block text-secondary"><?php echo $av->prenom . ' ' . $av->nom . ' le ' . date_format(new DateTime($av->date), 'd/m/Y'); ?></strong>
                                             <small class="text-warning">
                                                 <?php
                                                 $note = intval($av->note);
@@ -85,8 +83,13 @@ foreach ($_POST["jsonFile"] as $l) {
                             <div class="row p-2">
                                 <div class="d-flex pt-3 rounded  p-3">
                                     <img class="me-3 border rounded-pill p-1" src="img/avatar/<?php echo $_SESSION["avatar"]; ?>" alt="" height="50">
-                                    <div style="width: 120px" class="mx-2">
-                                        <select name="inputNote" id="inputNote<?php echo $l["id"] ?>" class="form-select">
+                                    <textarea name="" id="inputAvisId<?php echo $l["id"] ?>" rows="4" class="border w-100 rounded-3"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <div class="px-2 mx-9">
+                                        <select name="inputNote" id="inputNote<?php echo $l["id"] ?>" class="form-select rounded-pill px-3 mx-2">
                                             <option value="none" disabled selected>Note</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -100,11 +103,6 @@ foreach ($_POST["jsonFile"] as $l) {
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-                                    <textarea name="" id="inputAvisId<?php echo $l["id"] ?>" rows="4" class="border w-100 rounded-3"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-end">
                                     <button type="button" class="btn btn-sm btn-danger rounded-pill px-3 mx-2" onclick="ajouterAvis(<?php echo ''. $l['id'] .', ' . $_SESSION['id'] .', ' . $l['typeLieu'] ?>)">Poster</button>
                                 </div>
                             </div>

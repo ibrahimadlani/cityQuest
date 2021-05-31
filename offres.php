@@ -24,19 +24,11 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€0<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>Utilisateur lambda</li>
-            <li>Accès aux lieux et événements</li>
-            <li>Ajouter de une photo par lieu</li>
-            <li>Ajouter des commentaires</li>
+            <li>Laissez la communauté choisir de votre référencement</li>
+            <br>
+            <li>Support client basique</li>
           </ul>
-          <?php
-          if (isset($_SESSION["email"])) {
-            echo '<button type="button" class="w-100 btn btn-lg btn-outline-danger disabled rounded-pill">Déjà connecté</button>';
-          } else {
-            echo '<a type="button" class="w-100 btn btn-lg btn-outline-danger rounded-pill" href="connexion.php">Sign up for free</a>';
-          }
-          ?>
-
+          <button type="button" class="w-100 btn btn-lg btn-outline-danger disabled rounded-pill">Possédé</button>
         </div>
       </div>
     </div>
@@ -49,10 +41,9 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€15<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>Ajout d'un lieu propriétaire</li>
-            <li>Ajout de 5 photos</li>
-            <li>Support client basique</li>
-            <li>Possibilité de se faire référencer par le site</li>
+            <li>Boostez votre référencement !</li>
+            <br><br>
+            <li>Support client prioritaire</li>
           </ul>
           <button type="button" class="w-100 btn btn-lg btn-danger rounded-pill">Commencer</button>
         </div>
@@ -67,10 +58,9 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€29<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>Création et gestion de lieux</li>
-            <li>Photos illimitées</li>
-            <li>Meilleur référencement</li>
-            <li>Support 24/24 7/7</li>
+            <li>Soyez mis en avant comme jamais auparavant !</li>
+            <br>
+            <li>Support client prioritaire 24/24 7/7</li>
           </ul>
           <button type="button" class="w-100 btn btn-lg btn-danger rounded-pill">Nous contacter</button>
         </div>
@@ -84,48 +74,42 @@ require_once("inc/views/header.inc.php");
     <table class="table text-center">
       <thead>
         <tr>
-          <th style="width: 34%;"></th>
-          <th style="width: 22%;">Gratuit</th>
-          <th style="width: 22%;">Pro</th>
-          <th style="width: 22%;">Enterprise</th>
+          <th style="width: 40%;"></th>
+          <th style="width: 20%;">Gratuit</th>
+          <th style="width: 20%;">Pro</th>
+          <th style="width: 20%;">Enterprise</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row" class="text-start">Public</th>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
+          <th scope="row" class="text-start">Apparaître en début de référencement</th>
+          <td></td>
           <td><i class="fas fa-check text-danger"></i></svg></td>
           <td><i class="fas fa-check text-danger"></i></svg></td>
         </tr>
         <tr>
-          <th scope="row" class="text-start">Private</th>
+          <th scope="row" class="text-start">Apparaître dans la bannière publicitaire</th>
           <td></td>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
+          <td></td>
           <td><i class="fas fa-check text-danger"></i></svg></td>
         </tr>
       </tbody>
 
       <tbody>
         <tr>
-          <th scope="row" class="text-start">Permissions</th>
+          <th scope="row" class="text-start">Support basique</th>
           <td><i class="fas fa-check text-danger"></i></svg></td>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
-          <th scope="row" class="text-start">Sharing</th>
+          <th scope="row" class="text-start">Support prioritaire</th>
           <td></td>
           <td><i class="fas fa-check text-danger"></i></svg></td>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
-        </tr>
-        <tr>
-          <th scope="row" class="text-start">Unlimited members</th>
           <td></td>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
-          <td><i class="fas fa-check text-danger"></i></svg></td>
         </tr>
         <tr>
-          <th scope="row" class="text-start">Extra security</th>
+          <th scope="row" class="text-start">Support prioritaire 24/24 7/7</th>
           <td></td>
           <td></td>
           <td><i class="fas fa-check text-danger"></i></svg></td>
