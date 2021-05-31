@@ -1,6 +1,6 @@
 <?php
 
-class TypeLieu
+class TypeEvenement
 {
     private $db;
 
@@ -9,9 +9,9 @@ class TypeLieu
         $this->db = new Database;
     }
 
-    public function addTypeLieu($data)
+    public function addTypeEvenement($data)
     {
-        $this->db->query('INSERT INTO `TypeLieu`(`type`, `icone`) VALUES (:type, :icone)');
+        $this->db->query('INSERT INTO `TypeEvenement`(`type`, `icone`) VALUES (:type, :icone)');
 
         $this->db->bind(':type', $data['type']);
         $this->db->bind(':icone', $data['icone']);
@@ -23,9 +23,9 @@ class TypeLieu
         }
     }
 
-    public function getTypesLieu()
+    public function getTypesEvenement()
     {
-        $this->db->query('SELECT * FROM `TypeLieu` ORDER BY `id`');
+        $this->db->query('SELECT * FROM `TypeEvenement` ORDER BY `id`');
         $results = $this->db->resultset();
         return $results;
     }

@@ -103,7 +103,7 @@ foreach ($_POST["jsonFile"] as $l) {
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-danger rounded-pill px-3 mx-2" onclick="ajouterAvis(<?php echo ''. $l['id'] .', ' . $_SESSION['id'] .', ' . $l['typeLieu'] ?>)">Poster</button>
+                                    <button type="button" class="btn btn-sm btn-danger rounded-pill px-3 mx-2" onclick="ajouterAvis(<?php echo '' . $l['id']; ?>, <?php echo $_SESSION['id'] ?>)">Poster</button>
                                 </div>
                             </div>
 
