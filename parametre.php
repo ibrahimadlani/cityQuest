@@ -25,7 +25,7 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
       <div class="lh-1">
         <h1 class="h6 mb-0 text-danger lh-1"><b><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?></b></h1>
         <small class="text-secondary"><?php echo $_SESSION["bio"]; ?></small>
-        <button id="editer" class="btn btn-secondary" onclick="showForm()">Editer</button>
+        <button id="editer" class="btn btn-secondary ms-3" onclick="showForm()">Editer</button>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
 
       <div class="row">
         <div class="col-3 rounded d-flex align-items-center justify-content-start">
-          <img class="mx-auto my-4" src="" alt="" height="45">
+          <img class="" src="" alt="" height="45">
         </div>
         <div class="col-9">
           <div class="row">
@@ -92,22 +92,6 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
       </div>
 
     </div>
-
-    <!-- <img class="me-3" src="img/avatar/<?php //echo $_SESSION["avatar"];
-                                            ?>" alt="" height="45">
-      <div class="lh-1 row">
-      <div class="d-flex">
-          <input class="h6 mb-0 text-danger form-control bottom lh-1" value="<?php //echo $_SESSION["prenom"];
-                                                                              ?>">
-          <div style="width: 100px"></div>
-          <input class="h6 mb-0 text-danger form-control bottom lh-1" value="<?php //echo $_SESSION["nom"];
-                                                                              ?>">
-      </div>
-        <input class="text-secondary form-control bottom" value="<?php //echo $_SESSION["bio"];
-                                                                  ?>">
-        
-      </div>
-      -->
 
   </form>
 
@@ -139,7 +123,7 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
     </small>
   </div>
 
-  <div class="my-3 p-3 bg-body rounded border">
+  <div class="my-3 p-3 bg-body rounded border" id="suggestion">
     <h6 class="border-bottom pb-2 mb-0">Suggestions de profils</h6>
 
     <?php
@@ -172,7 +156,7 @@ $utilisateurs = $utilisateur->getRandomSuggestion();
 
   </div>
   <small class="d-block text-end mt-3">
-    <a href="#" class="text-danger">Raffraichir les suggestions</a>
+    <a href="parametre.php" class="text-danger">Raffraichir les suggestions</a>
   </small>
   </div>
 </main>

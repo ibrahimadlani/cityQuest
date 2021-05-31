@@ -33,6 +33,12 @@
       return $results;
     }
 
+    public function getUtilisateurbyId($id) {
+      $this->db->query('SELECT * FROM `Utilisateur` WHERE `id` = '. $id .'');
+      $results = $this->db->resultset();
+      return $results;
+    }
+
     public function getUtilisateurModerateur() {
       $this->db->query('SELECT * FROM `Utilisateur` WHERE `groupe` = 2');
       $results = $this->db->resultset();
