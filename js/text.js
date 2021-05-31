@@ -159,7 +159,7 @@ function afficherPoints(ville, type, map) {
                 typeLieu.icone
             );
 
-            var infowindow = new google.maps.InfoWindow({
+            var infoWindow = new google.maps.InfoWindow({
                 content:
                     '<h3 className="display-6">' + lieu.nom + '</h3>' +
                     '<p className="lead mb-0">' + lieu.description + '</p>' +
@@ -169,17 +169,21 @@ function afficherPoints(ville, type, map) {
                     '">Détails</button>'
             });
 
-            //Retire l'ombre derrièere la carte du lieu lorsque l'infoWindow est fermée
-            google.maps.event.addListener(infowindow, 'closeclick', function () {
+            //Retire l'ombre derrière la carte du lieu lorsque l'infoWindow est fermée
+            google.maps.event.addListener(infoWindow, 'closeclick', function () {
                 document.getElementById(lieu.id).style.boxShadow = '';
             });
 
-            infoWindows.push(infowindow);
+            infoWindows.push(infoWindow);
 
-            //Ferme toutes les autres infoWindows et ouvre celle rattachée lorsqu'on clique sur un marker
+            //Quand on clique sur un marker
             marker.addListener('click', function () {
+                //Ferme toutes les infoWindows
                 for (let iw in infoWindows) { infoWindows[iw].close(); }
-                infowindow.open(map, marker);
+                //Retire l'ombre derrière toutes les cartes de lieux
+                jsonLieux.forEach((lieu) => { document.getElementById(lieu.id).style.boxShadow = ''; })
+                //Ouvre l'infoWindow du lieu sur lequel on a cliqué
+                infoWindow.open(map, marker);
             });
 
         }
@@ -256,8 +260,8 @@ function addVilleIfNotExistsBDD(nomVille, nomPays) { //Rajouter une vérificatio
 
     var result;
     $.ajax({
-        url: './inc/ajouterVilleSiNonExistante.inc.php', // La ressource ciblée
-        type: 'POST', // Le type de la requête HTTP.
+        url: './inc/ajouterVilleSiNonExistante.inc.php',
+        type: 'POST',
         async: false,
         data: {
             nom: json['results'][0]['address_components'][0]['long_name'],
@@ -321,8 +325,8 @@ function ajouterAvis(id, auteur, typePoint) {
 
 
     $.ajax({
-        url: './inc/ajouterNote.inc.php', // La ressource ciblée
-        type: 'POST', // Le type de la requête HTTP.
+        url: './inc/ajouterNote.inc.php',
+        type: 'POST',
         data: {
             texte: texte,
             note: note,
