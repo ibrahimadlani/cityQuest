@@ -32,7 +32,7 @@ require_once("inc/views/header.inc.php");
         <div class="row collapse multi-collapse" id="forms">
             <div class="col-12 col-md-8 col-lg-6 mx-auto my-3 pt-3 border-top">
 
-                <form action="inc/parametre.inc.php" method="POST" enctype="multipart/form-data">
+                <form id="formulaire" action="inc/parametre.inc.php" method="POST" enctype="multipart/form-data">
                     <h3>Edition du profil</h3>
                     <hr>
                     <div class="row mt-2">
@@ -64,7 +64,7 @@ require_once("inc/views/header.inc.php");
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms" type="submit"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
+                            <button class="btn btn-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms" type="button" onclick="modifierParametre()"><i class="fas fa-check" aria-hidden="true"></i> Sauvegarder mon profil</button>
                         </div>
                         <div class="col-6">
                             <button type="button" class="btn btn-outline-danger rounded-pill mx-auto d-block px-4" data-bs-toggle="collapse" data-bs-target="#forms"><i class="fas fa-times" aria-hidden="true"></i> Annuler les modifications</button>
@@ -136,3 +136,23 @@ require_once("inc/views/header.inc.php");
 
 <?php require_once("inc/views/footer.inc.php"); ?>
 <?php require_once("inc/views/foot.inc.php"); ?>
+
+
+<script>
+function modifierParametre(){
+    formu = $('#formulaire').serialize();
+    console.log(formu);
+    $.ajax({
+    url : './inc/parametre.inc.php', // La ressource ciblée
+    type : 'POST', // Le type de la requête HTTP.
+    data : formu,
+    dataType : 'html',
+    success: function(data){
+        console.log(data);
+      //document.location.reload();
+    }
+  });
+}
+
+
+</script>
