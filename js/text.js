@@ -64,9 +64,18 @@ function afficherPoints(ville, type, map) {
         document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey";
       });
     });
-    var infoVille = recuperationJSON(
-      "./api/ville.php"
-    )[ville - 1];
+
+    let infoVille;
+    let infoVilles = recuperationJSON(
+        "./api/ville.php"
+    )
+    for (let item in infoVilles) {
+      if (infoVilles[item]['id'] == ville) {
+        infoVille = infoVilles[item];
+        break;
+      }
+    }
+
     definirCentre(
       parseFloat(infoVille.lat),
       parseFloat(infoVille.lng),
@@ -100,9 +109,18 @@ function afficherPoints(ville, type, map) {
         document.getElementById(lieu.id).style.boxShadow = "0px 0px 31px grey";
       });
     });
-    var infoVille = recuperationJSON(
-      "./api/ville.php"
-    )[ville - 1];
+
+    let infoVille;
+    let infoVilles = recuperationJSON(
+        "./api/ville.php"
+    )
+    for (let item in infoVilles) {
+      if (infoVilles[item]['id'] == ville) {
+        infoVille = infoVilles[item];
+        break;
+      }
+    }
+
     definirCentre(
       parseFloat(infoVille.lat),
       parseFloat(infoVille.lng),
