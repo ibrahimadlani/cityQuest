@@ -12,6 +12,7 @@ $id = $_SESSION['id'];
 $nom = $_POST["nom"];
 $prenom = $_POST["prenom"];
 $bio = $_POST["bio"];
+$mail = $_POST["mail"];
 var_dump($_FILES["fileToUpload"]["name"]);
 if (strlen($_FILES["fileToUpload"]["name"]) > 0) {
   $target_dir = "/Applications/MAMP/htdocs/cityQuest/img/avatar/";
@@ -62,11 +63,17 @@ if (strlen($_FILES["fileToUpload"]["name"]) > 0) {
   $file = $_SESSION['avatar'];
 }
 
-
+if($nom == "" || $prenom == ""){
+  exit();
+}
 
 $user = new Utilisateur();
 
-if ($user->modifierInfos($id, $nom, $prenom, $bio, $file)) {
+if($email != $_SESSION['email']){
+  //$_SESSION["email"] = $email;
+}
+
+if ($user->modifierInfos($id, $nom, $prenom, $bio, $mail,  $file)) {
   $_SESSION["nom"] = $nom;
   $_SESSION["prenom"] = $prenom;
   $_SESSION["bio"] = $bio;

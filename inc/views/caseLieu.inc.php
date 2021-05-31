@@ -23,7 +23,8 @@ foreach ($_POST["jsonFile"] as $l) {
             ?>
             <h2 class="display-6"><?php echo $l["nom"]; ?></h2>
             <p class="lead mb-0"><?php echo $l["description"]; ?></p>
-            <div class="col-12">
+            <div class="row">
+            <div class="col-9 mt-2">
                 <small class="text-warning">
                     <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
                         <i class="fas fa-star"></i>
@@ -36,10 +37,11 @@ foreach ($_POST["jsonFile"] as $l) {
                     <?php } ?>
                 </small>
             </div>
-            <div class="col-12">
+            <div class="col-3">
                 <button type="button" class="btn px-3 border-start" onclick="seDeclarerProprietaire(<?php echo $l["id"]; ?>)">
                     Se déclarer propriétaire
                 </button>
+            </div>
             </div>
             <hr>
 
@@ -83,10 +85,29 @@ foreach ($_POST["jsonFile"] as $l) {
                             <div class="row p-2">
                                 <div class="d-flex pt-3 rounded  p-3">
                                     <img class="me-3 border rounded-pill p-1" src="img/avatar/<?php echo $_SESSION["avatar"]; ?>" alt="" height="50">
-                                    <textarea name="" id="" rows="4" class="border w-100 rounded-3"></textarea>
+                                    <div style="width: 120px" class="mx-2">
+                                        <select name="inputNote" id="inputNote<?php echo $l["id"] ?>" class="form-select">
+                                            <option value="none" disabled selected>Note</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                    <textarea name="" id="inputAvisId<?php echo $l["id"] ?>" rows="4" class="border w-100 rounded-3"></textarea>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="">Poster</button>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-sm btn-danger rounded-pill px-3 mx-2" onclick="ajouterAvis(<?php echo ''. $l['id'] .', ' . $_SESSION['id'] .', ' . $l['typeLieu'] ?>)">Poster</button>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="col-lg-4">
