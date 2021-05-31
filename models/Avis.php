@@ -26,7 +26,7 @@ class Avis {
   }
 
   public function getAvisLieu($idLieu) {
-    $this->db->query('SELECT * FROM `Avis` JOIN `Utilisateur` ON `Avis`.`auteur` = `Utilisateur`.`id` WHERE `idPoint` =' . $idLieu . ' AND  `typePoint` = 1 ORDER BY `date` DESC');
+    $this->db->query('SELECT * FROM `Avis` JOIN `Utilisateur` ON `Avis`.`auteur` = `Utilisateur`.`id` WHERE `idPoint` =' . $idLieu . ' AND  `typePoint` = 1 ORDER BY `date`');
     $results = $this->db->resultset();
     return $results;
   }
