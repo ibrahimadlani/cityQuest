@@ -24,10 +24,10 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€0<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>10 users included</li>
-            <li>2 GB of storage</li>
-            <li>Email support</li>
-            <li>Help center access</li>
+            <li>Utilisateur lambda</li>
+            <li>Accès aux lieux et événements</li>
+            <li>Ajouter de une photo par lieu</li>
+            <li>Ajouter des commentaires</li>
           </ul>
           <?php
           if (isset($_SESSION["email"])) {
@@ -49,10 +49,10 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€15<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>20 users included</li>
-            <li>10 GB of storage</li>
-            <li>Priority email support</li>
-            <li>Help center access</li>
+            <li>Ajout d'un lieu propriétaire</li>
+            <li>Ajout de 5 photos</li>
+            <li>Support client basique</li>
+            <li>Possibilité de se faire référencer par le site</li>
           </ul>
           <button type="button" class="w-100 btn btn-lg btn-danger rounded-pill">Commencer</button>
         </div>
@@ -67,10 +67,10 @@ require_once("inc/views/header.inc.php");
         <div class="card-body">
           <h1 class="card-title pricing-card-title">€29<small class="text-muted fw-light">/mois</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>30 users included</li>
-            <li>15 GB of storage</li>
-            <li>Phone and email support</li>
-            <li>Help center access</li>
+            <li>Création et gestion de lieux</li>
+            <li>Photos illimitées</li>
+            <li>Meilleur référencement</li>
+            <li>Support 24/24 7/7</li>
           </ul>
           <button type="button" class="w-100 btn btn-lg btn-danger rounded-pill">Nous contacter</button>
         </div>
