@@ -44,7 +44,7 @@ function afficherPoints(ville, type, map) {
   if ((ville === "0") == false && (type === "0") == false) {
     console.log(1);
     recuperationJSON(
-      "http://localhost:8888/cityQuest/api/lieu.php?ville=" +
+      "./api/lieu.php?ville=" +
         ville +
         "&typeLieu=" +
         type
@@ -53,7 +53,7 @@ function afficherPoints(ville, type, map) {
         parseFloat(lieu.lat),
         parseFloat(lieu.lng),
         map,
-        recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[
+        recuperationJSON("./api/typelieu.php")[
           parseInt(lieu.typeLieu) - 1
         ].icone
       );
@@ -65,7 +65,7 @@ function afficherPoints(ville, type, map) {
       });
     });
     var infoVille = recuperationJSON(
-      "http://localhost:8888/cityQuest/api/ville.php"
+      "./api/ville.php"
     )[ville - 1];
     definirCentre(
       parseFloat(infoVille.lat),
@@ -75,7 +75,7 @@ function afficherPoints(ville, type, map) {
     );
     afficherResultats(
       recuperationJSON(
-        "http://localhost:8888/cityQuest/api/lieu.php?ville=" +
+        "./api/lieu.php?ville=" +
           ville +
           "&typeLieu=" +
           type
@@ -83,13 +83,13 @@ function afficherPoints(ville, type, map) {
     );
   } else if ((ville === "0") == false && (type === "0") == true) {
     recuperationJSON(
-      "http://localhost:8888/cityQuest/api/lieu.php?ville=" + ville
+      "./api/lieu.php?ville=" + ville
     ).forEach((lieu) => {
       var marker = ajouterMarker(
         parseFloat(lieu.lat),
         parseFloat(lieu.lng),
         map,
-        recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[
+        recuperationJSON("./api/typelieu.php")[
           parseInt(lieu.typeLieu) - 1
         ].icone
       );
@@ -101,7 +101,7 @@ function afficherPoints(ville, type, map) {
       });
     });
     var infoVille = recuperationJSON(
-      "http://localhost:8888/cityQuest/api/ville.php"
+      "./api/ville.php"
     )[ville - 1];
     definirCentre(
       parseFloat(infoVille.lat),
@@ -111,18 +111,18 @@ function afficherPoints(ville, type, map) {
     );
     afficherResultats(
       recuperationJSON(
-        "http://localhost:8888/cityQuest/api/lieu.php?ville=" + ville
+        "./api/lieu.php?ville=" + ville
       )
     );
   } else if ((ville === "0") == true && (type === "0") == false) {
     recuperationJSON(
-      "http://localhost:8888/cityQuest/api/lieu.php?typeLieu=" + type
+      "./api/lieu.php?typeLieu=" + type
     ).forEach((lieu) => {
       var marker = ajouterMarker(
         parseFloat(lieu.lat),
         parseFloat(lieu.lng),
         map,
-        recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[
+        recuperationJSON("./api/typelieu.php")[
           parseInt(lieu.typeLieu) - 1
         ].icone
       );
@@ -136,17 +136,17 @@ function afficherPoints(ville, type, map) {
     definirCentre(latDefaut, lngDefaut, zoomDefaut, map);
     afficherResultats(
       recuperationJSON(
-        "http://localhost:8888/cityQuest/api/lieu.php?typeLieu=" + type
+        "./api/lieu.php?typeLieu=" + type
       )
     );
   } else if ((ville === "0") == true && (type === "0") == true) {
-    recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php").forEach(
+    recuperationJSON("./api/lieu.php").forEach(
       (lieu) => {
         var marker = ajouterMarker(
           parseFloat(lieu.lat),
           parseFloat(lieu.lng),
           map,
-          recuperationJSON("http://localhost:8888/cityQuest/api/typelieu.php")[
+          recuperationJSON("./api/typelieu.php")[
             parseInt(lieu.typeLieu) - 1
           ].icone
         );
@@ -161,7 +161,7 @@ function afficherPoints(ville, type, map) {
     );
     definirCentre(latDefaut, lngDefaut, zoomDefaut, map);
     afficherResultats(
-      recuperationJSON("http://localhost:8888/cityQuest/api/lieu.php")
+      recuperationJSON("./api/lieu.php")
     );
   }
 }
@@ -195,7 +195,7 @@ function recupererAdresse() { //Exporter la récupération des infos google map 
   $("#fenetreAjouter").load("inc/views/caseAdresse.inc.php", {
     jsonFile: json,
     typesLieu: recuperationJSON(
-      "http://localhost:8888/cityQuest/api/typelieu.php"
+      "./api/typelieu.php"
     )
   });
 }
@@ -211,7 +211,7 @@ function addLieuBDD(
   typeLieu,
   auteur
 ) {
-  $.post("http://localhost:8888/cityQuest/inc/ajouterLieu.inc.php", {
+  $.post("./inc/ajouterLieu.inc.php", {
     nom: nom,
     description: description,
     presentation: presentation,
@@ -280,7 +280,7 @@ $(document).ready(function () {
 });
 
 function seDeclarerProprietaire(idLieu) {
-  $.post("http://localhost:8888/cityQuest/inc/ajouterProprietaire.inc.php", {
+  $.post("./inc/ajouterProprietaire.inc.php", {
     idLieu: idLieu,
   });
 }
