@@ -14,11 +14,15 @@ $avis = new Avis();
     </ol>
     <div class="carousel-inner">
         <?php
+        $count = 0;
         foreach ($_POST["jsonFile"] as $l) {
             if ($l['promotion'] == 3) {
+                if ($count == 0) { echo '<div class="carousel-item active">'; }
+                else { echo '<div class="carousel-item">'; }
         ?>
-        <div class="carousel-item active">
-            <img src="../../img/iconsLieu/<?php echo $l['icone'] ?>"><p><?php echo $l['nom']; ?></p>
+            <img src="./img/iconsLieu/<?php echo $l['icone'] ?>" height="50" style="white-space: nowrap"><p><?php echo $l['nom']; ?></p>
+            <h2 class="display-6"><?php echo $l["nom"]; ?></h2>
+            <p class="lead mb-0"><?php echo $l["description"]; ?></p>
         </div>
         <?php }} ?>
     </div>
