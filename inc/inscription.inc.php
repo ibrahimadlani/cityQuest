@@ -61,7 +61,7 @@ if (!(isset($_POST['email']) || !isset($_POST['mdp']) || !isset($_POST['mdpconfi
     $mail->SMTPAuth = true;
     $mail->Username = 'cityquest.contact@gmail.com';
     $mail->Password = 'CityQuestIUTMAUBEUGE59%';
-    $mail->setFrom('cityquest.contact@gmail.com', 'Ibrahim de CityQuest');
+    $mail->setFrom('cityquest.contact@gmail.com', 'Equipe de CityQuest');
     $mail->addAddress($_POST['email'], $_POST['prenom']  . " " . $_POST['nom'] );
     $mail->isHTML(true);
     $mail->Priority = 1;
