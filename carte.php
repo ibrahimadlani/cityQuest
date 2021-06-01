@@ -48,7 +48,7 @@ require_once("inc/views/header.inc.php");
                     </select>
                 </div>
                 <div class="col-6">
-                    <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="type"
+                    <select class="form-select border-danger rounded-pill" aria-label="Default select example" id="typeLieu"
                             onchange="initMap()">
                         <option selected value="0">Tous les types</option>
                         <?php foreach ($typeslieu as $tl) {
