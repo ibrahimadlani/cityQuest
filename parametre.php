@@ -141,14 +141,12 @@ require_once("inc/views/header.inc.php");
 <script>
 function modifierParametre(){
     formu = $('#formulaire').serialize();
-    console.log(formu);
     $.ajax({
     url : './inc/parametre.inc.php', // La ressource ciblée
     type : 'POST', // Le type de la requête HTTP.
     data : formu,
     dataType : 'html',
     success: function(data){
-        console.log(data);
       //document.location.reload();
     }
   });

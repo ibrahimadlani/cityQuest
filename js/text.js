@@ -33,8 +33,14 @@ function recuperationJSON(requete) {
 }
 
 // Affichage (rafraichissement) des cases Lieu sur la page carte.php
-function afficherResultats(resultats) {
-    $("#resultatRecherche").load("inc/views/caseLieu.inc.php", {
+function afficherLieux(resultats) {
+    $("#resultatsLieux").load("inc/views/caseLieu.inc.php", {
+        jsonFile: resultats
+    });
+}
+
+function afficherEvenements(resultats) {
+    $("#resultatsEvenements").load("inc/views/caseEvenement.inc.php", {
         jsonFile: resultats
     });
 }
@@ -55,7 +61,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         if (typeLieu === "0") { // Ville : non, TypeLieu : non
             $.ajax({
-                url: './api/lieu.php?',
+                url: './api/lieu.php',
                 type: 'GET',
                 async: false,
                 dataType: 'json',
@@ -69,7 +75,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         } else { // Ville : non, TypeLieu : oui
             $.ajax({
-                url: './api/lieu.php?',
+                url: './api/lieu.php',
                 type: 'GET',
                 async: false,
                 data: {
@@ -87,7 +93,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         if (typeEvenement === "0") { // Ville : non, TypeEvenement : non
             $.ajax({
-                url: './api/evenement.php?',
+                url: './api/evenement.php',
                 type: 'GET',
                 async: false,
                 dataType: 'json',
@@ -101,7 +107,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         } else { // Ville : non, TypeEvenement : oui
             $.ajax({
-                url: './api/evenement.php?',
+                url: './api/evenement.php',
                 type: 'GET',
                 async: false,
                 data: {
@@ -138,7 +144,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         if (typeLieu === "0") { // Ville : oui, TypeLieu : non
             $.ajax({
-                url: './api/lieu.php?',
+                url: './api/lieu.php',
                 type: 'GET',
                 async: false,
                 data: {
@@ -155,7 +161,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         } else { // Ville : oui, TypeLieu : oui
             $.ajax({
-                url: './api/lieu.php?',
+                url: './api/lieu.php',
                 type: 'GET',
                 async: false,
                 data: {
@@ -174,7 +180,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         if (typeEvenement === "0") { // Ville : oui, TypeEvenement : non
             $.ajax({
-                url: './api/evenement.php?',
+                url: './api/evenement.php',
                 type: 'GET',
                 async: false,
                 data: {
@@ -191,7 +197,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
 
         } else { // Ville : oui, TypeEvenement : oui
             $.ajax({
-                url: './api/evenement.php?',
+                url: './api/evenement.php',
                 type: 'GET',
                 async: false,
                 data: {
@@ -209,8 +215,11 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
         }
     }
 
+    //Affiche les détails des événements
+    afficherEvenements(jsonEvenements);
+
     //Affiche les détails des lieux
-    afficherResultats(jsonLieux);
+    afficherLieux(jsonLieux);
 
     //Afficher le carousel de promotions
     //afficherPromotions(jsonLieux);
