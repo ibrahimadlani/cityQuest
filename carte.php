@@ -83,7 +83,11 @@ require_once("inc/views/header.inc.php");
             <h3 class="display-6"><i class="fas fa-map-marked-alt text-danger"></i> Resultat</h3>
             <hr>
 
-            <span id="resultatRecherche"></span>
+            <span id="resultatsEvenements"></span>
+
+            <span id="resultatsLieux"></span>
+
+            <span id="testtest"></span>
 
         </form>
     </div>
