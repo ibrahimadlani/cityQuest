@@ -24,7 +24,7 @@ require_once("inc/views/header.inc.php");
             <img class="rounded-pill mx-auto d-block" height="200" width="200" src="img/avatar/<?php echo $user[0]->avatar ?>" alt="">
             <h1 class="display-4 fw-bold text-center mb-0"><?php echo $user[0]->prenom . " " . $user[0]->nom; ?></h1>
             <small class="text-center mx-auto d-block text-danger"><?php echo $user[0]->email; ?> - Inscrit depuis le <?php echo strftime("%d/%m/%Y", strtotime($user[0]->dateCreation)); ?></small>
-            <p class="lead col-12 col-md-8 col-lg-6 text-center mx-auto text-secondary">><?php echo $user[0]->bio; ?></p>
+            <p class="lead col-12 col-md-8 col-lg-6 text-center mx-auto text-secondary"><?php echo $user[0]->bio; ?></p>
         </div>
     </div>
 

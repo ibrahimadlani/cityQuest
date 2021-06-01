@@ -66,10 +66,10 @@ if ($city == null || $country == null) {
             </div>
             <div class="btn-group btn-group-toggle d-flex col-6 justify-content-center" data-toggle="buttons">
                 <input type="radio" class="btn-check" name="optionsAjouter" id="checkAjouterLieu" value="lieu" autocomplete="off" checked>
-                <label class="btn btn-md btn-danger rounded-pill rounded-end" for="checkAjouterLieu">Lieu</label>
+                <label class="btn btn-md btn-danger rounded-pill rounded-end" for="checkAjouterLieu" onclick="afficherHoraire()">Lieu</label>
 
                 <input type="radio" class="btn-check" name="optionsAjouter" id="checkAjouterEvenement" value="evenement" autocomplete="off">
-                <label class="btn btn-md btn-danger rounded-pill rounded-start" for="checkAjouterEvenement">Evenement</label>
+                <label class="btn btn-md btn-danger rounded-pill rounded-start" for="checkAjouterEvenement" onclick="cacherHoraire()">Evenement</label>
             </div>
             <form action="" id="horaire">
                 <div class="border-danger rounded-5" id="divHoraire">
@@ -146,7 +146,6 @@ if ($city == null || $country == null) {
                 document.getElementById('nom').value,
                 document.getElementById('description').value,
                 document.getElementById('presentation').value,
-                $("#horaire").serialize(),
                 "<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>",
                 <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
                 <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
