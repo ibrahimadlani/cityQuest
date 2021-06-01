@@ -45,13 +45,13 @@ class Evenement
                 'Evenement.lng, ' .
                 'Evenement.ville, ' .
                 'Evenement.typeEvenement, ' .
-                'Evenement.debut ' .
+                'Evenement.debut, ' .
                 'Evenement.fin ' .
             'FROM Evenement ' .
             'WHERE ' .
                 'Evenement.etat = 2 ' .
-                'AND Evenement.fin > NOW() ' .
-            'ORDER BY Evenement.debut DESC, ';
+                'AND Evenement.fin >= NOW() ' .
+            'ORDER BY Evenement.debut DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
@@ -71,14 +71,14 @@ class Evenement
                 'Evenement.lng, ' .
                 'Evenement.ville, ' .
                 'Evenement.typeEvenement, ' .
-                'Evenement.debut ' .
+                'Evenement.debut, ' .
                 'Evenement.fin ' .
             'FROM Evenement ' .
             'WHERE ' .
                 'Evenement.etat = 2 ' .
                 'AND Evenement.fin > NOW() ' .
                 'AND Evenement.ville = ' . $idVille . ' ' .
-            'ORDER BY Evenement.debut DESC, ';
+            'ORDER BY Evenement.debut DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
@@ -97,14 +97,14 @@ class Evenement
                 'Evenement.lng, ' .
                 'Evenement.ville, ' .
                 'Evenement.typeEvenement, ' .
-                'Evenement.debut ' .
+                'Evenement.debut, ' .
                 'Evenement.fin ' .
             'FROM Evenement ' .
             'WHERE ' .
                 'Evenement.etat = 2 ' .
                 'AND Evenement.fin > NOW() ' .
                 'AND Evenement.typeEvenement = ' . $idType . ' ' .
-            'ORDER BY Evenement.debut DESC, ';
+            'ORDER BY Evenement.debut DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;
@@ -123,7 +123,7 @@ class Evenement
                 'Evenement.lng, ' .
                 'Evenement.ville, ' .
                 'Evenement.typeEvenement, ' .
-                'Evenement.debut ' .
+                'Evenement.debut, ' .
                 'Evenement.fin ' .
             'FROM Evenement ' .
             'WHERE ' .
@@ -131,7 +131,7 @@ class Evenement
                 'AND Evenement.fin > NOW() ' .
                 'AND Evenement.ville = ' . $idVille . ' ' .
                 'AND Evenement.typeEvenement = ' . $idType . ' ' .
-            'ORDER BY Evenement.debut DESC, ';
+            'ORDER BY Evenement.debut DESC';
         $this->db->query($query);
         $results = $this->db->resultset();
         return $results;

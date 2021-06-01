@@ -53,7 +53,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
     if (ville === "0") { // Si la ville n'est pas spécifiée
         definirCentre(latDefaut, lngDefaut, zoomDefaut, map);
 
-        if (type === "0") { // Ville : non, Type : non
+        if (typeLieu === "0") { // Ville : non, TypeLieu : non
             $.ajax({
                 url: './api/lieu.php?',
                 type: 'GET',
@@ -66,20 +66,8 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
                 .done(function (data) {
                     jsonLieux = data;
                 });
-            $.ajax({
-                url: './api/evenement.php?',
-                type: 'GET',
-                async: false,
-                dataType: 'json',
-                success: function (data) {
-                    return data;
-                }
-            })
-                .done(function (data) {
-                    jsonEvenements = data;
-                });
 
-        } else { // Ville : non, Type : oui
+        } else { // Ville : non, TypeLieu : oui
             $.ajax({
                 url: './api/lieu.php?',
                 type: 'GET',
@@ -95,6 +83,23 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
                 .done(function (data) {
                     jsonLieux = data;
                 });
+        }
+
+        if (typeEvenement === "0") { // Ville : non, TypeEvenement : non
+            $.ajax({
+                url: './api/evenement.php?',
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    return data;
+                }
+            })
+                .done(function (data) {
+                    jsonEvenements = data;
+                });
+
+        } else { // Ville : non, TypeEvenement : oui
             $.ajax({
                 url: './api/evenement.php?',
                 type: 'GET',
@@ -131,7 +136,7 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
             map
         );
 
-        if (type === "0") { // Ville : oui, Type : non
+        if (typeLieu === "0") { // Ville : oui, TypeLieu : non
             $.ajax({
                 url: './api/lieu.php?',
                 type: 'GET',
@@ -147,23 +152,8 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
                 .done(function (data) {
                     jsonLieux = data;
                 });
-            $.ajax({
-                url: './api/evenement.php?',
-                type: 'GET',
-                async: false,
-                data: {
-                    ville: ville
-                },
-                dataType: 'json',
-                success: function (data) {
-                    return data;
-                }
-            })
-                .done(function (data) {
-                    jsonEvenements = data;
-                });
 
-        } else { // Ville : oui, Type : oui
+        } else { // Ville : oui, TypeLieu : oui
             $.ajax({
                 url: './api/lieu.php?',
                 type: 'GET',
@@ -180,6 +170,26 @@ function afficherPoints(ville, typeLieu, typeEvenement, map) {
                 .done(function (data) {
                     jsonLieux = data;
                 });
+        }
+
+        if (typeEvenement === "0") { // Ville : oui, TypeEvenement : non
+            $.ajax({
+                url: './api/evenement.php?',
+                type: 'GET',
+                async: false,
+                data: {
+                    ville: ville
+                },
+                dataType: 'json',
+                success: function (data) {
+                    return data;
+                }
+            })
+                .done(function (data) {
+                    jsonEvenements = data;
+                });
+
+        } else { // Ville : oui, TypeEvenement : oui
             $.ajax({
                 url: './api/evenement.php?',
                 type: 'GET',
@@ -270,7 +280,7 @@ function initMap() {
     var ville = document.getElementById("ville").value;
     var typeLieu = document.getElementById("typeLieu").value;
 
-    afficherPoints(ville, typeLieu, 2, map);
+    afficherPoints(ville, typeLieu, "0", map);
 }
 
 function recupererAdresse() { //Exporter la récupération des infos google map dans une autre fonction pour pouvoir réutiliser
