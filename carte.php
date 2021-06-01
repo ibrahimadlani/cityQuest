@@ -87,8 +87,6 @@ require_once("inc/views/header.inc.php");
 
             <span id="resultatsLieux"></span>
 
-            <span id="testtest"></span>
-
         </form>
     </div>
 </div>
