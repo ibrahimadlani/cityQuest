@@ -71,56 +71,80 @@ if ($city == null || $country == null) {
                 <input type="radio" class="btn-check" name="optionsAjouter" id="checkAjouterEvenement" value="evenement" autocomplete="off">
                 <label class="btn btn-md btn-danger rounded-pill rounded-start" for="checkAjouterEvenement" onclick="cacherHoraire()">Evenement</label>
             </div>
-            <form action="" id="horaire">
-                <div class="border-danger rounded-5" id="divHoraire">
-                    <?php
-                    $Jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
-                    for ($i = 1; $i <= 7; $i++) {
-                        $i1 = $i + 1;
-                        $i2 = $i + 2;
-                        $i3 = $i + 3;
-                        echo "
-                <div class='mb-3'>
-                  <label for='description' class='col-form-label'>" . $Jours[$i - 1] . "</label>
-                  <div class='row'>
-                    <div class='col-6'>
-                      <div class='row align-items-center'>
-                        <div class='col-1 d-flex justify-content-center'>
-                          <p>De</p>
-                        </div>
-                        <div class='col-5'>
-                          <p><input type='number' class='form-control' name='heure" . $i . "' id='heure" . $i . "' placeholder='hh:mm'></p>
-                        </div>
-                        <div class='col-1 d-flex justify-content-center'>
-                          <p>à</p>
-                        </div>
-                        <div class='col-5'>
-                          <p><input type='number' class='form-control' name='heure" . $i1 . "' id='heure" . $i1 . "' placeholder='hh:mm'></p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class='col-6'>
-                      <div class='row align-items-center'>
-                        <div class='col-1 d-flex justify-content-center'>
-                          <p>De</p>
-                        </div>
-                        <div class='col-5'>
-                          <p><input type='number' class='form-control' name='heure" . $i2 . "' id='heure" . $i2 . "' placeholder='hh:mm'></p>
-                        </div>
-                        <div class='col-1 d-flex justify-content-center'>
-                          <p>à</p>
-                        </div>
-                        <div class='col-5'>
-                          <p><input type='number' class='form-control' name='heure" . $i3 . "' id='heure" . $i3 . "' placeholder='hh:mm'></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                ";
-                    }
+            <div id="container" class="container d-flex flex-column justify-content-center align-items-center" style="">
 
-                    ?>
+    <div id="horaireForm" class="container d-flex flex-column justify-content-center align-items-center mt-3" style="">
+
+        <div id="horaire" class="d-flex flex-column justify-content-center align-items-center mt-3">
+
+            <div class="hour-box border border-danger rounded p-3" style="width: 600px">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>ouvre à</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>ferme à</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="w-100" type="time" name="" id="">
+                    </div>
+                    <div class="col-md-6">
+                        <input class="w-100" type="time" name="" id="">
+                    </div>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around align-items-center mt-3">
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Lun</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Mar</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Mer</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Jeu</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Ven</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Sam</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Dim</label>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <p class="mt-2 fake-link" style="color : blue; cursor: pointer;" onclick="ajouterhoraire()"><u>+ ajouter plus</u></p>
+
                 </div>
             </form>
         </div>
@@ -139,22 +163,6 @@ if ($city == null || $country == null) {
     function createLieu() {
         const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>", "<?php echo $country; ?>");
 
-
-
-        if (getRadioValue() === 'lieu') {
-            addLieuBDD(
-                document.getElementById('nom').value,
-                document.getElementById('description').value,
-                document.getElementById('presentation').value,
-                "<?php echo $_POST['jsonFile']['results'][0]['formatted_address']; ?>",
-                <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lat']; ?>,
-                <?php echo $_POST['jsonFile']['results'][0]['geometry']['location']['lng']; ?>,
-                idVille,
-                parseInt(document.getElementById('typeLieu').value),
-                <?php echo $_SESSION['id']; ?>
-            )
-        }
-
         alert('Votre demande a bien été prise en compte, elle sera validée sous peu');
     }
 
@@ -164,5 +172,9 @@ if ($city == null || $country == null) {
 
     function afficherHoraire() {
         $("#divHoraire").show();
+    }
+
+    function ajouterhoraire() {
+        $('#horaire').clone().appendTo("#horaireForm");
     }
 </script>

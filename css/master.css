@@ -33,3 +33,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
   opacity: 0.5;
 }
 
+.fake-link{
+  color: blue;
+}
+
