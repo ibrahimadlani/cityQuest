@@ -38,8 +38,8 @@ if ($city == null || $country == null) {
 ?>
 <div class="card mb-4 rounded-3 shadow-sm mt-3">
     <div class="card-header py-3 bg-danger text-white">
-        <p class="mb-0"><b><?php echo $_POST["jsonFile"]["results"][0]["formatted_address"]; ?></b></p>
-        <p class="mb-0"><?php echo $_POST["jsonFile"]["results"][0]["geometry"]["location"]["lat"] . ", " . $_POST["jsonFile"]["results"][0]["geometry"]["location"]["lng"] ?></p>
+        <p class="mb-0" id="adresseCustom"><b><?php echo $_POST["jsonFile"]["results"][0]["formatted_address"]; ?></b></p>
+        <p class="mb-0" id="locationCustom"><?php echo $_POST["jsonFile"]["results"][0]["geometry"]["location"]["lat"] . ", " . $_POST["jsonFile"]["results"][0]["geometry"]["location"]["lng"] ?></p>
     </div>
     <div class="card-body">
         <div class="row">
@@ -57,8 +57,8 @@ if ($city == null || $country == null) {
         </div>
         <div class="row mt-3">
             <div class="col-6">
-                <select class="form-select border-danger rounded-5" id="typeLieu">
-                    <option selected value="0">Type de lieu</option>
+                <select class="form-select border-danger rounded-5" id="typeLieuCustom2">
+                    <option value="0" disabled selected>Type de lieu</option>
                     <?php foreach ($_POST["typesLieu"] as $tl) {
                         echo "<option value='" . $tl["id"] . "'>" . $tl["type"] . "</option>";
                     } ?>
@@ -162,7 +162,20 @@ if ($city == null || $country == null) {
 
     function createLieu() {
         const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>", "<?php echo $country; ?>");
-        addLieuBDD("test", "test", "test", "test", "12", "12", "Valenciennes", "1", "1");
+        nom = $("#nom").val();
+        description = $("#description").val();
+        presentation = $("#presentation").val();
+        typeLieuCustom = $("#typeLieuCustom2").val();
+        adresseCustom = $("#adresseCustom").text();
+        adresseCustom = adresseCustom.split(",");
+        locationCustom = $("#locationCustom").text();
+        locationCustom = locationCustom.split(",");
+    
+        liste = [nom, description, presentation, adresseCustom[0],locationCustom[0], locationCustom[1].replace(" ", ""), adresseCustom[1].split(" ")[2].replace(" ", ''), typeLieuCustom, "1"];
+
+        console.log(liste);
+
+        addLieuBDD(nom, description, presentation, adresseCustom[0],locationCustom[0], locationCustom[1].replace(" ", ""), 1, typeLieuCustom, "1");
         alert('Votre demande a bien été prise en compte, elle sera validée sous peu');
     }
 

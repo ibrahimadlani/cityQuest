@@ -11,7 +11,7 @@ class Ville
 
     public function addVille($data)
     {
-        $this->db->query('INSERT INTO `Ville`(`ville`, `lat`, `lng`, `etat`) VALUES (:ville, :lat, :lng, 1)');
+        $this->db->query('INSERT INTO `Ville`(`ville`, `lat`, `lng`, `etat`) VALUES (:ville, :lat, :lng, 2)');
 
         $this->db->bind(':ville', $data['ville']);
         $this->db->bind(':lat', $data['lat']);

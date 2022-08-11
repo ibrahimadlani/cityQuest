@@ -13,7 +13,7 @@ class Lieu
 
     public function addLieu($data)
     {
-        $this->db->query('INSERT INTO `Lieu`(`nom`, `description`, `presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`, `etat`) VALUES (:nom, :description, :presentation, :adresse, :lat, :lng, :ville, :typeLieu, :auteur, 1)');
+        $this->db->query('INSERT INTO `Lieu`(`nom`, `description`, `presentation`, `adresse`, `lat`, `lng`, `ville`, `typeLieu`, `auteur`, `etat`) VALUES (:nom, :description, :presentation, :adresse, :lat, :lng, :ville, :typeLieu, :auteur, 2)');
 
         $this->db->bind(':nom', $data['nom']);
         $this->db->bind(':description', $data['description']);
