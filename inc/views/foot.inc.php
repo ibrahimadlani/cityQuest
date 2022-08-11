@@ -1,6 +1,6 @@
 <!-- Google Map API -->
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI&libraries=places&callback=initMap" async></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCugoNB8VrjWAaX3fqLRYdLeOPXqvsQgTI&libraries=places&callback=initMap" async></script>
 
 
 

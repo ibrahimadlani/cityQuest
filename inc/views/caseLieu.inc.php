@@ -24,27 +24,24 @@ foreach ($_POST["jsonFile"] as $l) {
             <h2 class="display-6"><?php echo $l["nom"]; ?></h2>
             <p class="lead mb-0"><?php echo $l["description"]; ?></p>
             <div class="row">
-            <div class="d-flex justify-content-between">
-                <small class="text-warning align-middle">
-                    <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
-                        <i class="fas fa-star"></i>
-                    <?php } ?>
-                    <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
-                        <i class="fas fa-star-half-alt"></i>
-                    <?php } ?>
-                    <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
-                        <i class="far fa-star"></i>
-                    <?php } ?>
-                </small>
-                <button type="button" class="btn px-3 border-start" onclick="seDeclarerProprietaire(<?php echo $l["id"]; ?>)">
-                    Se déclarer propriétaire
-                </button>
-            </div>
+                <div class="d-flex justify-content-between">
+                    <small class="text-warning align-middle">
+                        <?php for ($i = 0; $i < $etoilesPleines; $i++) { ?>
+                            <i class="fas fa-star"></i>
+                        <?php } ?>
+                        <?php for ($i = 0; $i < $demiEtoile; $i++) { ?>
+                            <i class="fas fa-star-half-alt"></i>
+                        <?php } ?>
+                        <?php for ($i = 0; $i < $pasetoile; $i++) { ?>
+                            <i class="far fa-star"></i>
+                        <?php } ?>
+                    </small>
+                </div>
             </div>
             <hr>
 
             <div class="row mt-4">
-                <div class="col-12 col-xl-9">
+                <div class="col-12 col-xl-12">
                     <h5 class="">Présentation</h5>
                     <p><?php echo $l["presentation"]; ?></p>
                     <hr>
@@ -108,105 +105,7 @@ foreach ($_POST["jsonFile"] as $l) {
                             </div>
 
                         </div>
-                        <div class="col-lg-4">
-                            <div class="col-12 d-xl-none d-block mt-4">
 
-                                <div class="d-flex justify-content-between align-items-baseline">
-                                    <h5 class="">Horraire</h5><span class="badge bg-success badge-sm">Ouvert</span>
-                                </div>
-
-                                <p class="text-secondary  mb-0 mt-3">Lundi</p>
-                                <hr class="my-1">
-                                <div class="row d-flex justify-content-center">
-                                    <p class="col text-start m-0">08:00 - 12:30</p>
-                                    <p class="col text-end m-0">14:00 - 18:30</p>
-                                </div>
-
-                                <p class="text-secondary  mb-0 mt-3">Mardi</p>
-                                <hr class="my-1">
-                                <div class="row d-flex justify-content-center">
-                                    <p class="col text-start m-0">08:00 - 12:30</p>
-                                    <p class="col text-end m-0">14:00 - 18:30</p>
-                                </div>
-
-                                <p class="text-secondary  mb-0 mt-3">Mercredi</p>
-                                <hr class="my-1">
-                                <div class="row d-flex justify-content-center">
-                                    <p class="col text-start m-0">08:00 - 12:30</p>
-                                    <p class="col text-end m-0">14:00 - 18:30</p>
-                                </div>
-
-                                <p class="text-secondary  mb-0 mt-3">Jeudi</p>
-                                <hr class="my-1">
-                                <div class="row d-flex justify-content-center">
-                                    <p class="col text-start m-0">08:00 - 12:30</p>
-                                    <p class="col text-end m-0">14:00 - 18:30</p>
-                                </div>
-
-                                <p class="text-secondary  mb-0 mt-3">Vendredi</p>
-                                <hr class="my-1">
-                                <div class="row d-flex justify-content-center">
-                                    <p class="col text-start m-0">08:00 - 12:30</p>
-                                    <p class="col text-end m-0">14:00 - 18:30</p>
-                                </div>
-
-                                <p class="text-secondary  mb-0 mt-3">Samedi</p>
-                                <hr class="my-1">
-                                <div class="row d-flex justify-content-center">
-                                    <p class="col text-start m-0">08:00 - 12:30</p>
-                                    <p class="col text-end m-0">14:00 - 18:30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3 d-none d-xl-block">
-
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <h5 class="">Horaires</h5><span class="badge bg-success badge-sm">Ouvert</span> <!--computer-->
-                    </div>
-
-                    <p class="text-secondary  mb-0 mt-3">Lundi</p>
-                    <hr class="my-1">
-                    <div class="row d-flex justify-content-center">
-                        <p class="col text-start m-0">08:00 - 12:30</p>
-                        <p class="col text-end m-0">14:00 - 18:30</p>
-                    </div>
-
-                    <p class="text-secondary  mb-0 mt-3">Mardi</p>
-                    <hr class="my-1">
-                    <div class="row d-flex justify-content-center">
-                        <p class="col text-start m-0">08:00 - 12:30</p>
-                        <p class="col text-end m-0">14:00 - 18:30</p>
-                    </div>
-
-                    <p class="text-secondary  mb-0 mt-3">Mercredi</p>
-                    <hr class="my-1">
-                    <div class="row d-flex justify-content-center">
-                        <p class="col text-start m-0">08:00 - 12:30</p>
-                        <p class="col text-end m-0">14:00 - 18:30</p>
-                    </div>
-
-                    <p class="text-secondary  mb-0 mt-3">Jeudi</p>
-                    <hr class="my-1">
-                    <div class="row d-flex justify-content-center">
-                        <p class="col text-start m-0">08:00 - 12:30</p>
-                        <p class="col text-end m-0">14:00 - 18:30</p>
-                    </div>
-
-                    <p class="text-secondary  mb-0 mt-3">Vendredi</p>
-                    <hr class="my-1">
-                    <div class="row d-flex justify-content-center">
-                        <p class="col text-start m-0">08:00 - 12:30</p>
-                        <p class="col text-end m-0">14:00 - 18:30</p>
-                    </div>
-
-                    <p class="text-secondary  mb-0 mt-3">Samedi</p>
-                    <hr class="my-1">
-                    <div class="row d-flex justify-content-center">
-                        <p class="col text-start m-0">08:00 - 12:30</p>
-                        <p class="col text-end m-0">14:00 - 18:30</p>
                     </div>
                 </div>
 

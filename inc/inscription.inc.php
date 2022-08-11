@@ -59,8 +59,8 @@ if (!(isset($_POST['email']) || !isset($_POST['mdp']) || !isset($_POST['mdpconfi
     $mail->Port = 587;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->SMTPAuth = true;
-    $mail->Username = 'cityquest.contact@gmail.com';
-    $mail->Password = 'CityQuestIUTMAUBEUGE59%';
+    $mail->Username = 'hello.cityquest@gmail.com';
+    $mail->Password = 'Fiona08200';
     $mail->setFrom('cityquest.contact@gmail.com', 'Equipe de CityQuest');
     $mail->addAddress($_POST['email'], $_POST['prenom']  . " " . $_POST['nom'] );
     $mail->isHTML(true);

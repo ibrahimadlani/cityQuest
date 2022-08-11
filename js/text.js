@@ -293,6 +293,7 @@ function initMap() {
 }
 
 function recupererAdresse() { //Exporter la récupération des infos google map dans une autre fonction pour pouvoir réutiliser
+
     var json = recuperationJSON(
         "https://maps.googleapis.com/maps/api/geocode/json?address=" +
         encodeURIComponent(
@@ -301,8 +302,11 @@ function recupererAdresse() { //Exporter la récupération des infos google map 
                 .value.normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
         ) +
-        "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
+        "&key=AIzaSyCugoNB8VrjWAaX3fqLRYdLeOPXqvsQgTI"
     );
+
+    console.log(json)
+
     $("#fenetreAjouter").load("inc/views/caseAdresse.inc.php", {
         jsonFile: json,
         typesLieu: recuperationJSON(
@@ -322,17 +326,25 @@ function addLieuBDD(
     typeLieu,
     auteur
 ) {
-    $.post("./inc/ajouterLieu.inc.php", {
-        nom: nom,
-        description: description,
-        presentation: presentation,
-        adresse: adresse,
-        latitude: latitude,
-        longitude: longitude,
-        ville: ville,
-        typeLieu: typeLieu,
-        auteur: auteur,
-    });
+    $.ajax({
+        type: "POST",
+        url: "./inc/ajouterLieu.inc.php",
+        data: {
+            nom: nom,
+            description: description,
+            presentation: presentation,
+            adresse: adresse,
+            latitude: latitude,
+            longitude: longitude,
+            ville: ville,
+            typeLieu: typeLieu,
+            auteur: auteur,
+        },
+        success: function(data){
+            console.log(data)
+        }
+      });
+
     /*initMap();*/ //Pas d'initialisation de la map puisque le lieu n'est pas validé donc n'apparaitra pas
 }
 
@@ -342,7 +354,7 @@ function addVilleIfNotExistsBDD(nomVille, nomPays) { //Rajouter une vérificatio
         encodeURIComponent(
             nomVille + ' ' + nomPays
         ) +
-        "&key=AIzaSyDPddKexH8VgK3ORDbfuxpcdNFwwcjg5GI"
+        "&key=AIzaSyCugoNB8VrjWAaX3fqLRYdLeOPXqvsQgTI"
     );
 
     var result;

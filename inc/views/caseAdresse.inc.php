@@ -73,7 +73,7 @@ if ($city == null || $country == null) {
             </div>
             <div id="container" class="container d-flex flex-column justify-content-center align-items-center" style="">
 
-    <div id="horaireForm" class="container d-flex flex-column justify-content-center align-items-center mt-3" style="">
+    <!-- <div id="horaireForm" class="container d-flex flex-column justify-content-center align-items-center mt-3" style="">
 
         <div id="horaire" class="d-flex flex-column justify-content-center align-items-center mt-3">
 
@@ -141,9 +141,9 @@ if ($city == null || $country == null) {
 
 
 
-    </div>
+    </div> -->
 
-    <p class="mt-2 fake-link" style="color : blue; cursor: pointer;" onclick="ajouterhoraire()"><u>+ ajouter plus</u></p>
+    <!-- <p class="mt-2 fake-link" style="color : blue; cursor: pointer;" onclick="ajouterhoraire()"><u>+ ajouter plus</u></p> -->
 
                 </div>
             </form>
@@ -162,7 +162,7 @@ if ($city == null || $country == null) {
 
     function createLieu() {
         const idVille = addVilleIfNotExistsBDD("<?php echo $city; ?>", "<?php echo $country; ?>");
-
+        addLieuBDD("test", "test", "test", "test", "12", "12", "Valenciennes", "1", "1");
         alert('Votre demande a bien été prise en compte, elle sera validée sous peu');
     }
 

@@ -1,11 +1,12 @@
 <?php
+error_reporting(E_ALL);
 session_start();
 require_once('../config/db.php');
 require_once('../lib/pdo_db.php');
 require_once('../models/Lieu.php');
 $lieu = new Lieu();
 
-$lieu->addLieu(array(
+$data = array(
     'nom' => $_POST['nom'],
     'description' => $_POST['description'],
     'presentation' => $_POST['presentation'],
@@ -15,4 +16,8 @@ $lieu->addLieu(array(
     'ville' => $_POST['ville'],
     'typeLieu' => $_POST['typeLieu'],
     'auteur' => $_POST['auteur']
-));
+);
+
+print_r($data);
+
+$lieu->addLieu($data);
